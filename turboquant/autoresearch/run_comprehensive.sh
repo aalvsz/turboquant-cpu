@@ -6,8 +6,10 @@ set -e
 
 WORKER=10.15.1.154
 BENCH=/home/ubuntu/llama.cpp/build/bin/llama-bench
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TURBOQUANT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 # Allow resuming an existing dir via env var
-RDIR=${RDIR:-/home/ubuntu/dev/repos/chameleon-system-black/docs/turboquant/results/comprehensive_$(date +%Y%m%d_%H%M%S)}
+RDIR=${RDIR:-"$TURBOQUANT_DIR/results/comprehensive_$(date +%Y%m%d_%H%M%S)"}
 mkdir -p "$RDIR"
 
 echo "Results dir: $RDIR"

@@ -6,7 +6,9 @@ set -e
 
 WORKER=10.15.1.154
 CLI=/home/ubuntu/llama.cpp/build/bin/llama-cli
-OUT_DIR=/home/ubuntu/dev/repos/chameleon-system-black/docs/turboquant/results/quality_$(date +%Y%m%d_%H%M%S)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TURBOQUANT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+OUT_DIR="$TURBOQUANT_DIR/results/quality_$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$OUT_DIR"
 
 declare -A MODELS

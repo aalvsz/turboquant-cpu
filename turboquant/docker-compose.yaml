@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  project-dev:
+  turboquant-dev:
     build:
       context: .
       dockerfile: docker/dev.dockerfile
-    container_name: project-dev
+    container_name: turboquant-dev
     volumes:
-      - .:/opt/project
+      - .:/workspace/turboquant
     command: /bin/bash

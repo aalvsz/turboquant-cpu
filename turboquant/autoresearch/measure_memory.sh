@@ -6,7 +6,9 @@ set -e
 
 WORKER=10.15.1.154
 BENCH=/home/ubuntu/llama.cpp/build/bin/llama-bench
-OUT=/home/ubuntu/dev/repos/chameleon-system-black/docs/turboquant/results/memory_$(date +%Y%m%d_%H%M%S).tsv
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TURBOQUANT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+OUT="$TURBOQUANT_DIR/results/memory_$(date +%Y%m%d_%H%M%S).tsv"
 
 declare -A MODELS
 MODELS=(

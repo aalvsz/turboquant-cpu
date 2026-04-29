@@ -74,7 +74,7 @@ Currently running: 3 models × 6 KV types × 4 depths × tg128
 - Models: Gilda 3.2B (Llama), Qwen2.5 7B, Gemma 2 9B
 - KV: F16, Q8_0, Q4_0, TBQ4, TBQ3, TBQ2
 - Depths: 0, 2048, 4096, 8192
-- Output: docs/turboquant/results/comprehensive_20260412_042410/
+- Output: `turboquant/results/comprehensive_20260412_042410/`
 
 Started: 2026-04-12 04:24
 Expected runtime: ~2 hours (tg-only is faster than pp+tg).

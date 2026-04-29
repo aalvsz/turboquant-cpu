@@ -1,8 +1,10 @@
-# Template project
+# TurboQuant CPU Research
 
 ## Use Case
 
-This project is to be used as a project template. It contains all the basic tool configuration files for a project.
+This directory contains TurboQuant CPU research notes, benchmark scripts, plots,
+and raw results. The main implementation lives in the repository-level
+`llama.cpp/` snapshot.
 
 ## Develop
 
@@ -11,7 +13,7 @@ This project is to be used as a project template. It contains all the basic tool
 Open a bash command line inside container using the command:
 
 ```
-docker-compose run project-dev
+docker-compose run turboquant-dev
 ```
 
 The bash command line within the docker container allows to run the commands below:
@@ -56,19 +58,15 @@ This can be checked with:
 make test_coverage
 ```
 
-### CI
-
-You can view the SAST report:
-- On your merge request dashboard, by clicking "View full report" in the "Security" area
-- In the "semgrep-sast" job of the pipeline, by clicking "Browse" under **Job artifacts** in the right sidebar
-
-You can view the code quality report:
-- In the "code_quality" job of the pipeline, by clicking "Browse" under **Job artifacts** in the right sidebar
-
 ## Run
 
-How to run an example.
+Benchmark and quality-evaluation scripts are in `autoresearch/`. They assume the
+modified `llama.cpp` binaries have been built and that the referenced GGUF model
+files exist locally or on the configured worker.
 
 ## Modules
 
-The code design and modules.
+- `autoresearch/` - benchmark, plotting, and quality-analysis utilities.
+- `results/` - captured benchmark outputs and generated plots.
+- `results/source_code/` - source snapshots and patch artifacts from the kernel
+  audit.

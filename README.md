@@ -8,14 +8,12 @@ tree used for the benchmarks.
 - `llama.cpp/` - full `llama.cpp` source snapshot with TurboQuant CPU changes,
   copied from `/home/ubuntu/llama.cpp`. Generated `build/` artifacts are not
   included.
-- `turboquant/` - research notes, scripts, plots, and raw results copied from
-  `/home/ubuntu/dev/repos/chameleon-system-black/.claude/worktrees/turboquant2`.
-  The nested `autoresearch` checkout is flattened into normal source files.
+- `turboquant/` - research notes, scripts, plots, and raw results for the
+  TurboQuant CPU benchmark work. The nested `autoresearch` checkout is flattened
+  into normal source files.
 - `patches/` - reproducibility artifacts for the modified `llama.cpp` source:
   full working-tree diff vs upstream, uncommitted patch, commit log, and the
   older WIP stash patch.
-- `docs/SOURCES.md` - source audit, external dependencies, model paths, and
-  known caveats.
 
 ## Build
 
@@ -39,6 +37,6 @@ Example hybrid KV benchmark:
 
 ## Notes
 
-The benchmark scripts in `turboquant/autoresearch/` still preserve the original
-absolute paths and worker host used during the research run. The model files are
-not included because they are large external GGUF artifacts.
+The benchmark scripts in `turboquant/autoresearch/` keep the original worker and
+model paths used during the research run. The model files are not included
+because they are large external GGUF artifacts.
