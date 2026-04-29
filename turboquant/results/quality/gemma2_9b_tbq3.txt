@@ -1,0 +1,213 @@
+=== gemma2_9b × tbq3 ===
+### Prompt 1: The capital of France is
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> The capital of France is
+
+This is a bit of a trick question! 
+
+The capital of France is **Paris**.  
+
+
+[ Prompt: 26,4 t/s | Generation: 5,1 t/s ]
+
+Exiting...
+
+### Prompt 2: Explain photosynthesis in one paragraph.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Explain photosynthesis in one paragraph.
+
+Photosynthesis is the remarkable process by which green plants and some other organisms convert light energy into chemical energy in the form of glucose. This process occurs within specialized organelles called chloroplasts, where chlorophyll pigments capture sunlight. Using this energy, plants combine water from the soil and carbon dioxide from the atmosphere to produce glucose, releasing oxygen as a byproduct. This glucose serves as the primary energy source for the plant and is also used to build other essential molecules.  
+
+
+
+
+[ Prompt: 26,8 t/s | Generation: 4,9 t/s ]
+
+Exiting...
+
+### Prompt 3: Write a Python function to compute the nth Fibonacci number.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write a Python function to compute the nth Fibonacci number.
+
+```python
+def fibonacci(n):
+  """
+  Computes the nth Fibonacci number.
+
+  Args:
+    n: An integer representing the desired Fibonacci number.
+
+  Returns:
+    The nth Fibonacci number.
+  """
+  if n <= 0:
+    return 0
+  elif n == 1:
+    return 1
+  else:
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# Example usage
+print(fibonacci(6))  # Output: 8
+```
+
+**Explanation:**
+
+
+
+[ Prompt: 35,5 t/s | Generation: 4,8 t/s ]
+
+Exiting...
+
+### Prompt 4: What are the main symptoms of a stroke?
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> What are the main symptoms of a stroke?
+
+It's important to remember that **time is brain** during a stroke. Recognizing the symptoms quickly and calling emergency services immediately can save lives and minimize long-term damage.
+
+The main symptoms of a stroke can be remembered using the acronym **FAST**:
+
+* **F**ace drooping: Does one side of the face droop or is it numb? Ask the person to smile.
+* **A**rm weakness: Is one arm weak or numb? Ask the person to raise both arms. Does one arm drift downward?
+* **S**peech difficulty: Is speech slurred, are
+
+[ Prompt: 35,4 t/s | Generation: 4,8 t/s ]
+
+Exiting...
+
+### Prompt 5: Describe the structure of a haiku with an example.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Describe the structure of a haiku with an example.
+
+A haiku is a three-line poem with a specific syllable structure:
+
+* **Line 1:** 5 syllables
+* **Line 2:** 7 syllables
+* **Line 3:** 5 syllables
+
+Haiku often focus on nature and capture a fleeting moment or feeling. 
+
+**Here's an example:**
+
+*An old silent pond*  (5 syllables)
+*A frog jumps into the pond* (7 syllables)
+*Splash! Silence again.* (5 syllables) 
+
+
+
+Let me know if you'd like to see another example or try
+
+[ Prompt: 35,1 t/s | Generation: 4,8 t/s ]
+
+Exiting...
+

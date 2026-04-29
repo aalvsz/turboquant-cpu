@@ -1,0 +1,8 @@
+| model                          |       size |     params | backend    | threads | type_k | type_v | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | -----: | -----: | -: | --------------: | -------------------: |
+| llama 8B Q4_K - Medium         |   4.58 GiB |     8.03 B | CPU        |      12 |   q8_0 |   q8_0 |  1 |           tg128 |          6.10 ± 0.04 |
+| llama 8B Q4_K - Medium         |   4.58 GiB |     8.03 B | CPU        |      12 |   q8_0 |   q8_0 |  1 |   tg128 @ d2048 |          5.86 ± 0.02 |
+| llama 8B Q4_K - Medium         |   4.58 GiB |     8.03 B | CPU        |      12 |   q8_0 |   q8_0 |  1 |   tg128 @ d4096 |          5.60 ± 0.01 |
+| llama 8B Q4_K - Medium         |   4.58 GiB |     8.03 B | CPU        |      12 |   q8_0 |   q8_0 |  1 |   tg128 @ d8192 |          4.64 ± 0.01 |
+
+build: a53c2d225 (7961)

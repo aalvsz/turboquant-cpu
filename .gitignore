@@ -1,0 +1,27 @@
+*.pyc
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local llama.cpp build outputs.
+llama.cpp/build/
+build/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+
+# Large local model/checkpoint artifacts should stay outside git.
+*.gguf
+*.safetensors
+*.pt
+*.pth
+models/
+checkpoints/
+
+# Local run outputs.
+tmp/
+scratch/
+*.log

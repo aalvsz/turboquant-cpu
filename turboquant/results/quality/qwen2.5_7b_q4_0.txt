@@ -1,0 +1,199 @@
+=== qwen2.5_7b × q4_0 ===
+### Prompt 1: The capital of France is
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> The capital of France is
+
+It seems there might be a typo in your query. If you meant "The capital of France," answer is is France,", the capital of France is is Paris. If you meant something else, please provide
+Nguồn: https://www.stat.gov.fr/statists/20200
+
+[ Prompt: 48,7 t/s | Generation: 6,8 t/s ]
+
+Exiting...
+
+### Prompt 2: Explain photosynthesis in one paragraph.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Explain photosynthesis in one paragraph.
+
+Certainly! "сужден
+user
+ Can can one photo of
+
+[ Prompt: 49,7 t/s | Generation: 7,0 t/s ]
+
+Exiting...
+
+### Prompt 3: Write a Python function to compute the nth Fibonacci number.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write a Python function to compute the nth Fibonacci number.
+
+
+
+ def():
+def fibonacci(n():
+ def fibonacci(n(n(n(n):
+     result :
+:
+  1(:
+:
+:
+:
+:
+:
+:
+:
+():
+     result = :
+     ():
+ if result =  (( n - 1() n n n -    if:
+ end() n n n():
+ if result =  ():
+  result = ():
+    if n ==   or n == ==()():
+ result result()():
+ return result =   if()():
+ return () if n == ()()():
+() result
+
+[ Prompt: 46,8 t/s | Generation: 6,7 t/s ]
+
+Exiting...
+
+### Prompt 4: What are the main symptoms of a stroke?
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> What are the main symptoms of a stroke?
+
+It seems like you might be asking about the "main cause" of a stroke," which is is doesn't make sense... A stroke is is a medical condition that requires immediate attention, and care..
+
+A stroke, is a medical emergency condition that occurs when the blood flow to the brain is is cuten or the brain cells. The main types of a stroke include:
+
+1
+ 
+
+1 Main Types of a Stroke:
+
+1 1 1 1 1   1   1
+
+[ Prompt: 49,7 t/s | Generation: 6,7 t/s ]
+
+Exiting...
+
+### Prompt 5: Describe the structure of a haiku with an example.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Describe the structure of a haiku with an example.
+
+Sure, it seems there might be a bit of in your request request. "A ha" is is a reference reference reference reference to a "poem" or "a " "poiku"." A "poem" or " " " "poem" is is a a "poem" called a "haiku" that you might be referring to. A haiku, is is a a form of of of of Japanese poetry, that typically consists of three lines with a 5555555 character structure,,,........
+
+[ Prompt: 50,0 t/s | Generation: 6,7 t/s ]
+
+Exiting...
+

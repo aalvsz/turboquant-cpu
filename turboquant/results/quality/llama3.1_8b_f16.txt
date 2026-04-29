@@ -1,0 +1,197 @@
+=== llama3.1_8b × f16 ===
+### Prompt 1: The capital of France is
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> The capital of France is
+
+Paris.
+
+[ Prompt: 46,3 t/s | Generation: 8,8 t/s ]
+
+Exiting...
+
+### Prompt 2: Explain photosynthesis in one paragraph.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Explain photosynthesis in one paragraph.
+
+Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy in the form of organic compounds, such as glucose. This process occurs in specialized organelles called chloroplasts, which contain the pigment chlorophyll that absorbs light energy. During photosynthesis, carbon dioxide and water are absorbed by the plant, and oxygen and glucose are produced as byproducts. The glucose produced is used by the plant as energy and building blocks for growth and development, while the oxygen is released into the atmosphere as a byproduct. This process is essential for life
+
+[ Prompt: 42,0 t/s | Generation: 5,8 t/s ]
+
+Exiting...
+
+### Prompt 3: Write a Python function to compute the nth Fibonacci number.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write a Python function to compute the nth Fibonacci number.
+
+def fibonacci(n):
+    if n <= 0:
+        return "Input should be a positive integer."
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    else:
+        fib_sequence = [0, 1]
+        while len(fib_sequence) < n:
+            fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
+        return fib_sequence[-1]
+
+# Test the function
+print(fibonacci(10))  # Output: 34
+
+[ Prompt: 45,0 t/s | Generation: 5,8 t/s ]
+
+Exiting...
+
+### Prompt 4: What are the main symptoms of a stroke?
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> What are the main symptoms of a stroke?
+
+The main symptoms of a stroke can be remembered using the acronym "FAST":
+
+F - Face: Ask the person to smile. Does one side of their face droop?
+
+A - Arm: Ask the person to raise both arms. Does one arm drift downward?
+
+S - Speech: Ask the person to repeat a simple sentence. Is their speech slurred or difficult to understand?
+
+T - Time: Time is of the essence. If you notice any of these symptoms, call for emergency medical help immediately.
+
+Other symptoms of a stroke may include:
+
+* Sudden numbness or weakness in the face, arm
+
+[ Prompt: 45,9 t/s | Generation: 5,8 t/s ]
+
+Exiting...
+
+### Prompt 5: Describe the structure of a haiku with an example.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Describe the structure of a haiku with an example.
+
+A haiku is a traditional form of Japanese poetry that consists of three lines with a specific syllable count. The structure of a haiku is as follows:
+
+* The first line has five syllables and sets the season or atmosphere for the poem.
+* The second line has seven syllables and develops the idea or image introduced in the first line.
+* The third line has five syllables and provides a conclusion or a final thought.
+
+Here is an example of a haiku:
+
+Snowflakes gently fall
+Blanketing the landscape white
+Winter's peaceful hush
+
+[ Prompt: 45,0 t/s | Generation: 5,9 t/s ]
+
+Exiting...
+

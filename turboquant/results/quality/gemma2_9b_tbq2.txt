@@ -1,0 +1,210 @@
+=== gemma2_9b × tbq2 ===
+### Prompt 1: The capital of France is
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> The capital of France is
+
+This is a bit of a trick question! 
+
+The capital of France is **Paris**.  
+
+
+[ Prompt: 24,5 t/s | Generation: 5,2 t/s ]
+
+Exiting...
+
+### Prompt 2: Explain photosynthesis in one paragraph.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Explain photosynthesis in one paragraph.
+
+Photosynthesis is the process by which green plants and some other organisms use sunlight, water, and carbon dioxide to create their own food in the form of glucose (a sugar). During this process, oxygen is released as a byproduct, which is essential for the survival of most living things.  
+
+
+[ Prompt: 27,5 t/s | Generation: 5,0 t/s ]
+
+Exiting...
+
+### Prompt 3: Write a Python function to compute the nth Fibonacci number.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write a Python function to compute the nth Fibonacci number.
+
+```python
+def fibonacci(n):
+  """
+  Computes the nth Fibonacci number.
+
+  Args:
+    n: An integer representing the desired Fibonacci number.
+
+  Returns:
+    The nth Fibonacci number.
+  """
+  if n <= 0:
+    return 0
+  elif n == 1:
+    return 1
+  else:
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# Example usage:
+print(fibonacci(5))  # Output: 5
+```
+
+**Explanation:**
+
+[ Prompt: 36,0 t/s | Generation: 4,9 t/s ]
+
+Exiting...
+
+### Prompt 4: What are the main symptoms of a stroke?
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> What are the main symptoms of a stroke?
+
+It's important to remember that **time is of the essence** when it comes to stroke treatment.  
+
+**Remember the acronym FAST:**
+
+* **F**ace: Is the person's face drooping on one side? Is it numb? Ask them to smile.
+* **A**rm: Is the person's arm weak or numb? Ask them to raise both arms. Is one arm drifting down?
+* **S**peech: Is the person's speech slurred? Are they able to speak at all? Ask them to repeat a simple sentence.
+*
+
+[ Prompt: 29,9 t/s | Generation: 4,9 t/s ]
+
+Exiting...
+
+### Prompt 5: Describe the structure of a haiku with an example.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : gemma-2-9b-it-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Describe the structure of a haiku with an example.
+
+A haiku is a three-line poem that follows a specific structure of syllables:
+
+* **Line 1:** 5 syllables
+* **Line 2:** 7 syllables
+* **Line 3:** 5 syllables
+
+This structure often creates a sense of pause or reflection, mirroring the way a moment in nature can be observed and contemplated.
+
+**Here's an example:**
+
+**An old silent pond...** (5 syllables)
+**A frog jumps into the pond—** (7 syllables)
+**Splash! Silence again.** (5 syllables)
+
+
+
+Let me know
+
+[ Prompt: 31,4 t/s | Generation: 4,9 t/s ]
+
+Exiting...
+

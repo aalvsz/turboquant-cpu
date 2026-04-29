@@ -1,0 +1,198 @@
+=== llama3.1_8b × tbq4 ===
+### Prompt 1: The capital of France is
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> The capital of France is
+
+The capital of France is Paris.
+
+[ Prompt: 49,2 t/s | Generation: 7,3 t/s ]
+
+Exiting...
+
+### Prompt 2: Explain photosynthesis in one paragraph.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Explain photosynthesis in one paragraph.
+
+Photosynthesis is the process by which plants, algae, and some bacteria convert light energy into chemical energy, such as glucose, which is then used to fuel the growth and development of the organism.
+
+[ Prompt: 47,0 t/s | Generation: 6,5 t/s ]
+
+Exiting...
+
+### Prompt 3: Write a Python function to compute the nth Fibonacci number.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write a Python function to compute the nth Fibonacci number.
+
+def nth_fibonacci(n):
+    # Initialize the Fibonacci number
+    fib_n = [0] * (n + 1)
+
+    # Compute the nth Fibonacci number
+    fib_n[1] = 1
+
+    # Compute the nth Fibonacci number
+    for i in range(2, n + 1):
+        fib_n[i] = (i - 1) * fib_n[i - 1]
+
+    # Return the nth Fibonacci number
+    return fib_n[n]
+
+# Test the function
+print(nth_fibonacci(10))
+
+[ Prompt: 46,2 t/s | Generation: 6,4 t/s ]
+
+Exiting...
+
+### Prompt 4: What are the main symptoms of a stroke?
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> What are the main symptoms of a stroke?
+
+The main symptoms of a stroke are:
+
+* Sudden weakness or numbness in the extremities (e.g. arm, leg, hand)
+* Sudden inability to perform tasks (e.g. walking, talking)
+* Sudden inability to perform tasks (e.g. walking, talking)
+
+These symptoms are often referred to as the "classic" symptoms of a stroke.
+
+* Sudden weakness or numbness in the extremities (e.g. arm, leg, hand)
+* Sudden inability to perform tasks (e.g. walking, talking)
+* Sudden inability to perform tasks (e
+
+[ Prompt: 43,5 t/s | Generation: 6,4 t/s ]
+
+Exiting...
+
+### Prompt 5: Describe the structure of a haiku with an example.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Describe the structure of a haiku with an example.
+
+A traditional haiku consists of three lines, with the first and second lines having five and seven syllables, respectively, and the third line having five syllables. The structure is as follows:
+
+*   The first line has five syllables and is the key subject of the haiku.
+*   The second line has seven syllables and is the key description of the subject.
+*   The third line has five syllables and is the key conclusion or action related to the subject.
+
+Here is an example of a haiku:
+
+*   Snowflakes
+*   Gentle
+*   Falling
+
+
+
+[ Prompt: 47,4 t/s | Generation: 6,4 t/s ]
+
+Exiting...
+

@@ -1,0 +1,460 @@
+=== llama3.1_8b × tbq2 ===
+### Prompt 1: The capital of France is
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> The capital of France is
+
+The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The capital of France is France. The
+
+[ Prompt: 46,6 t/s | Generation: 6,3 t/s ]
+
+Exiting...
+
+### Prompt 2: Explain photosynthesis in one paragraph.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Explain photosynthesis in one paragraph.
+
+Experior
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+assistant-
+
+
+
+[ Prompt: 44,5 t/s | Generation: 6,3 t/s ]
+
+Exiting...
+
+### Prompt 3: Write a Python function to compute the nth Fibonacci number.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write a Python function to compute the nth Fibonacci number.
+
+assistant
+
+assistant
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+The
+
+
+
+[ Prompt: 42,7 t/s | Generation: 6,3 t/s ]
+
+Exiting...
+
+### Prompt 4: What are the main symptoms of a stroke?
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> What are the main symptoms of a stroke?
+
+assistant
+
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant
+assistant-
+assistant
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+assistant-
+
+
+[ Prompt: 44,4 t/s | Generation: 6,3 t/s ]
+
+Exiting...
+
+### Prompt 5: Describe the structure of a haiku with an example.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Describe the structure of a haiku with an example.
+
+The tool with a haiku with an example.
+
+[ Prompt: 43,1 t/s | Generation: 7,0 t/s ]
+
+Exiting...
+

@@ -1,0 +1,36 @@
+| model                          |       size |     params | backend    | threads | type_k | type_v | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | -----: | -----: | -: | --------------: | -------------------: |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |    f16 |  1 |           pp512 |         45.16 ± 2.65 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |    f16 |  1 |           tg128 |          6.69 ± 0.04 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |    f16 |  1 |   pp512 @ d2048 |         37.51 ± 0.11 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |    f16 |  1 |   tg128 @ d2048 |          6.25 ± 0.01 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |    f16 |  1 |   pp512 @ d4096 |         32.56 ± 0.06 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |    f16 |  1 |   tg128 @ d4096 |          5.65 ± 0.03 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |    f16 |  1 |   pp512 @ d8192 |         24.48 ± 0.49 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |    f16 |  1 |   tg128 @ d8192 |          4.55 ± 0.02 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |   tbq4 |  1 |           pp512 |         46.28 ± 0.20 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |   tbq4 |  1 |           tg128 |          6.70 ± 0.02 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |   tbq4 |  1 |   pp512 @ d2048 |         34.09 ± 0.08 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |   tbq4 |  1 |   tg128 @ d2048 |          6.33 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |   tbq4 |  1 |   pp512 @ d4096 |         27.01 ± 0.06 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |   tbq4 |  1 |   tg128 @ d4096 |          5.98 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |   tbq4 |  1 |   pp512 @ d8192 |         18.01 ± 0.46 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |    f16 |   tbq4 |  1 |   tg128 @ d8192 |          5.08 ± 0.02 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |    f16 |  1 |           pp512 |         46.20 ± 0.06 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |    f16 |  1 |           tg128 |          6.67 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |    f16 |  1 |   pp512 @ d2048 |         34.63 ± 0.08 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |    f16 |  1 |   tg128 @ d2048 |          6.31 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |    f16 |  1 |   pp512 @ d4096 |         27.40 ± 0.27 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |    f16 |  1 |   tg128 @ d4096 |          5.97 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |    f16 |  1 |   pp512 @ d8192 |         18.92 ± 0.57 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |    f16 |  1 |   tg128 @ d8192 |          5.13 ± 0.02 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |           pp512 |         46.30 ± 0.20 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |           tg128 |          6.70 ± 0.02 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   pp512 @ d2048 |         36.31 ± 0.10 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d2048 |          6.34 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   pp512 @ d4096 |         29.81 ± 0.08 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d4096 |          6.08 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   pp512 @ d8192 |         21.74 ± 0.46 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d8192 |          5.58 ± 0.03 |
+
+build: a53c2d225 (7961)

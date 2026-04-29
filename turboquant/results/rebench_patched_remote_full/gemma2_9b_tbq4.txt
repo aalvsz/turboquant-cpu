@@ -1,0 +1,8 @@
+| model                          |       size |     params | backend    | threads | type_k | type_v | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | -----: | -----: | -: | --------------: | -------------------: |
+| gemma2 9B Q4_K - Medium        |   5.36 GiB |     9.24 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |           tg128 |          4.90 ± 0.02 |
+| gemma2 9B Q4_K - Medium        |   5.36 GiB |     9.24 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d2048 |          4.40 ± 0.00 |
+| gemma2 9B Q4_K - Medium        |   5.36 GiB |     9.24 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d4096 |          4.03 ± 0.00 |
+| gemma2 9B Q4_K - Medium        |   5.36 GiB |     9.24 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d8192 |          3.54 ± 0.01 |
+
+build: a53c2d225 (7961)

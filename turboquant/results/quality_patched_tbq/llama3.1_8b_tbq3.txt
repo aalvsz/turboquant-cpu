@@ -1,0 +1,247 @@
+=== llama3.1_8b × tbq3 ===
+### Prompt 1: The capital of France is
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> The capital of France is
+
+! (or
+    (function
+            - (and
+            - (if the
+            - (if the
+The 2
+            - (and
+            - (and
+            - (and
+    (and
+The, the [insert
+The function as
+    (function
+. (function
+. (and
+. (dis (  . . (but the... ... (name=" (function
+. (dis (  in the
+. (and
+. (and is a... ... (if the
+. (and
+. (dis (
+
+[ Prompt: 41.7 t/s | Generation: 6.2 t/s ]
+
+Exiting...
+
+### Prompt 2: Explain photosynthesis in one paragraph.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Explain photosynthesis in one paragraph.
+
+The  0. (and
+    (and
+            - (if (if the
+    (function
+            -  in. (and
+The  2
+. (and
+    (and
+. (but the. . . (but the [  in the
+. (but the. . . . . (but the. . . . . (but the. . . . . . . . . (but the
+. . . . . . . . (but the [1
+. . . . . (but the. . . . .
+
+[ Prompt: 40.8 t/s | Generation: 6.2 t/s ]
+
+Exiting...
+
+### Prompt 3: Write a Python function to compute the nth Fibonacci number.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write a Python function to compute the nth Fibonacci number.
+
+I
+    (function as a. (and
+            -  in (and
+The 2
+            - (and
+            - (and the original  2
+    (and
+The function. . . (function, the
+. . . (function, the
+. (and
+. . (and
+. . (but the
+. . (function, but not just for
+. (and
+. . (but the  was not only. . (but the. . (but the
+. . . . (but the. . . (but
+
+[ Prompt: 45.4 t/s | Generation: 6.2 t/s ]
+
+Exiting...
+
+### Prompt 4: What are the main symptoms of a stroke?
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> What are the main symptoms of a stroke?
+
+!-time is not
+    (function
+            -  in the
+    (function as
+    (if the
+    (if the
+            -  in the
+    (function
+The most of the
+    (function
+    (and
+    (if the
+            - (and thetime is not
+    (and
+The 2
+            - (and
+. (and
+. (but the  (function
+. (and
+. (and
+. (but the
+. (and the
+. (and is not
+. . .
+
+[ Prompt: 44.9 t/s | Generation: 6.1 t/s ]
+
+Exiting...
+
+### Prompt 5: Describe the structure of a haiku with an example.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Describe the structure of a haiku with an example.
+
+
+    (function as a
+            - (but the [insert
+    (and
+The function as
+            - (and
+    (function
+The  1
+    (and
+The  0
+. (and
+. (but the... (and
+. . . (but the... ... (and
+. . (but the   – (and
+. . . (but the
+. . . (but the. . . . (but the
+. . . (but the
+. . . . (but the. . . (but
+
+[ Prompt: 44.3 t/s | Generation: 6.2 t/s ]
+
+Exiting...
+

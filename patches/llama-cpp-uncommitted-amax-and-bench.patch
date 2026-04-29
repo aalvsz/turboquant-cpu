@@ -1,0 +1,70 @@
+diff --git a/ggml/src/ggml-turboquant.c b/ggml/src/ggml-turboquant.c
+index 096ea328f..a56df8397 100644
+--- a/ggml/src/ggml-turboquant.c
++++ b/ggml/src/ggml-turboquant.c
+@@ -30,7 +30,19 @@ static inline int tbq_nearest(float v, const float * b, int nb) {
+ }
+ 
+ // ---------------------------------------------------------------------------
+-// Block L2 norm
++// Per-block scale.
++//
++// Original TurboQuant uses a Walsh-Hadamard rotation to gaussianize the data,
++// then an L2-norm scale paired with Lloyd-Max-on-unit-sphere centroids. The
++// CPU port dropped the WHT for speed, so the Gaussian assumption is violated
++// by heavy-tailed K caches (e.g. Qwen 2.5's anchor-token outlier channels).
++// In those blocks the L2 norm is dominated by 1-2 large values, which (a)
++// clips the outliers to ~64% of their magnitude and (b) inflates the bulk
++// reconstruction by 1.5-6x. The amax-based scale keeps the largest |x| at
++// exactly the top centroid, preserving outliers with only a modest bulk-RMSE
++// cost on Gaussian blocks. See autoresearch/tbq4_outlier_test.c.
++//
++// TBQ2/TBQ3 still use the L2 path; only TBQ4 is patched.
+ // ---------------------------------------------------------------------------
+ static inline float tbq_norm(const float * x, int d) {
+     float s = 0.0f;
+@@ -38,6 +50,15 @@ static inline float tbq_norm(const float * x, int d) {
+     return sqrtf(s);
+ }
+ 
++static inline float tbq_norm_amax(const float * x, int d, float cmax) {
++    float m = 0.0f;
++    for (int i = 0; i < d; i++) {
++        float a = fabsf(x[i]);
++        if (a > m) m = a;
++    }
++    return m / cmax;
++}
++
+ // ---------------------------------------------------------------------------
+ // 2-bit pack/unpack (4 values per byte)
+ // ---------------------------------------------------------------------------
+@@ -124,7 +145,7 @@ void quantize_row_tbq4_ref(const float * GGML_RESTRICT x, block_tbq4 * GGML_REST
+     const int nb = k / QK_TBQ;
+     for (int i = 0; i < nb; i++) {
+         const float * src = x + i * QK_TBQ;
+-        float norm = tbq_norm(src, QK_TBQ);
++        float norm = tbq_norm_amax(src, QK_TBQ, tbq_centroids_4bit[15]);
+         y[i].d = GGML_FP32_TO_FP16(norm);
+         memset(y[i].qs, 0, sizeof(y[i].qs));
+         if (norm < 1e-10f) continue;
+diff --git a/tools/llama-bench/llama-bench.cpp b/tools/llama-bench/llama-bench.cpp
+index 7da6c3957..edadca37e 100644
+--- a/tools/llama-bench/llama-bench.cpp
++++ b/tools/llama-bench/llama-bench.cpp
+@@ -493,6 +493,15 @@ static ggml_type ggml_type_from_name(const std::string & s) {
+     if (s == "iq4_nl") {
+         return GGML_TYPE_IQ4_NL;
+     }
++    if (s == "tbq2") {
++        return GGML_TYPE_TBQ2;
++    }
++    if (s == "tbq3") {
++        return GGML_TYPE_TBQ3;
++    }
++    if (s == "tbq4") {
++        return GGML_TYPE_TBQ4;
++    }
+ 
+     return GGML_TYPE_COUNT;
+ }

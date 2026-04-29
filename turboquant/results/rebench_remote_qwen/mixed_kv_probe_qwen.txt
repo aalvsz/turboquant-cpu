@@ -1,0 +1,9 @@
+=== Summary from patched mixed-K/V probe on Qwen2.5-7B ===
+K=f16,  V=q4_0  -> coherent (Paris)
+K=q4_0, V=f16   -> degraded / repetitive
+K=f16,  V=tbq4  -> coherent (Paris)
+K=tbq4, V=f16   -> catastrophic gibberish
+K=q8_0, V=q4_0  -> coherent (Paris)
+K=q8_0, V=tbq4  -> coherent (Paris)
+K=q4_0, V=q8_0  -> degraded / repetitive
+K=tbq4, V=q8_0  -> catastrophic gibberish

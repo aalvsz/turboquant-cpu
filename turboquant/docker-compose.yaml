@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  project-dev:
+    build:
+      context: .
+      dockerfile: docker/dev.dockerfile
+    container_name: project-dev
+    volumes:
+      - .:/opt/project
+    command: /bin/bash

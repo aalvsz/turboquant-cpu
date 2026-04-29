@@ -1,0 +1,36 @@
+| model                          |       size |     params | backend    | threads | type_k | type_v | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | -----: | -----: | -: | --------------: | -------------------: |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |    f16 |  1 |           pp512 |         58.26 ± 0.18 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |    f16 |  1 |           tg128 |         12.39 ± 0.01 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |    f16 |  1 |   pp512 @ d2048 |         46.94 ± 0.11 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |    f16 |  1 |   tg128 @ d2048 |          8.79 ± 0.08 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |    f16 |  1 |   pp512 @ d4096 |         36.33 ± 0.08 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |    f16 |  1 |   tg128 @ d4096 |          6.08 ± 0.71 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |    f16 |  1 |   pp512 @ d8192 |         24.49 ± 1.01 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |    f16 |  1 |   tg128 @ d8192 |          3.83 ± 0.01 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |   tbq4 |  1 |           pp512 |         62.12 ± 0.21 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |   tbq4 |  1 |           tg128 |         12.41 ± 0.00 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |   tbq4 |  1 |   pp512 @ d2048 |         36.75 ± 0.04 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |   tbq4 |  1 |   tg128 @ d2048 |          9.72 ± 0.08 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |   tbq4 |  1 |   pp512 @ d4096 |         21.98 ± 0.04 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |   tbq4 |  1 |   tg128 @ d4096 |          7.67 ± 0.05 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |   tbq4 |  1 |   pp512 @ d8192 |          7.92 ± 0.01 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |    f16 |   tbq4 |  1 |   tg128 @ d8192 |          5.07 ± 0.03 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |    f16 |  1 |           pp512 |         56.31 ± 0.10 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |    f16 |  1 |           tg128 |         12.39 ± 0.00 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |    f16 |  1 |   pp512 @ d2048 |         34.10 ± 0.86 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |    f16 |  1 |   tg128 @ d2048 |          9.65 ± 0.09 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |    f16 |  1 |   pp512 @ d4096 |         20.88 ± 0.25 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |    f16 |  1 |   tg128 @ d4096 |          7.74 ± 0.05 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |    f16 |  1 |   pp512 @ d8192 |          8.49 ± 0.04 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |    f16 |  1 |   tg128 @ d8192 |          5.26 ± 0.03 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |           pp512 |         60.34 ± 0.09 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |           tg128 |         12.42 ± 0.02 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   pp512 @ d2048 |         36.04 ± 0.90 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d2048 |         10.70 ± 0.00 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   pp512 @ d4096 |         26.37 ± 0.43 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d4096 |          9.43 ± 0.08 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   pp512 @ d8192 |         16.97 ± 0.04 |
+| phi3 3B Q4_K - Medium          |   2.23 GiB |     3.82 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d8192 |          7.44 ± 0.05 |
+
+build: a53c2d225 (7961)

@@ -1,0 +1,7 @@
+CPU(s):                                  12
+On-line CPU(s) list:                     0-11
+Model name:                              12th Gen Intel(R) Core(TM) i5-12500
+Thread(s) per core:                      2
+Core(s) per socket:                      6
+Socket(s):                               1
+NUMA node0 CPU(s):                       0-11

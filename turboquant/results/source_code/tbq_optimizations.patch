@@ -1,0 +1,391 @@
+diff --git a/ggml/src/ggml-cpu/arch/x86/quants.c b/ggml/src/ggml-cpu/arch/x86/quants.c
+index e0911e700..6f9454649 100644
+--- a/ggml/src/ggml-cpu/arch/x86/quants.c
++++ b/ggml/src/ggml-cpu/arch/x86/quants.c
+@@ -865,7 +865,6 @@ void ggml_vec_dot_tbq4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const voi
+     // Load 16 int8 centroids into 128-bit register for vpshufb LUT
+     const __m128i centroids128 = _mm_loadu_si128((const __m128i *)tbq_centroids_i8_4bit);
+     const __m128i m4b = _mm_set1_epi8(0x0F);
+-    const __m256i mone = _mm256_set1_epi16(1);
+ 
+     __m256 accum1 = _mm256_setzero_ps();
+     __m256 accum2 = _mm256_setzero_ps();
+@@ -886,17 +885,16 @@ void ggml_vec_dot_tbq4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const voi
+             _mm_shuffle_epi8(centroids128, _mm_and_si128(_mm_srli_epi16(q4bits_2, 4), m4b)),
+             _mm_shuffle_epi8(centroids128, _mm_and_si128(q4bits_2, m4b)));
+ 
+-        // Multiply-add: centroid_i8 * q8_int8 → accumulate
+-        const __m256i p16_1 = mul_add_epi8(q4b_1, q8b_1);
+-        const __m256i p16_2 = mul_add_epi8(q4b_2, q8b_2);
+-        const __m256i p_1 = _mm256_madd_epi16(p16_1, mone);
+-        const __m256i p_2 = _mm256_madd_epi16(p16_2, mone);
++        // Multiply-add: centroid_i8 * q8_int8 → float
++        // Uses AVXVNNI DPBUSD when available (auto via mul_sum_i8_pairs_float)
++        const __m256 p_f1 = mul_sum_i8_pairs_float(q4b_1, q8b_1);
++        const __m256 p_f2 = mul_sum_i8_pairs_float(q4b_2, q8b_2);
+ 
+         // Scale: norm_x * d_y * dscale
+         const __m256 scale0 = _mm256_set1_ps(GGML_CPU_FP16_TO_FP32(x[ib + 0].d) * GGML_CPU_FP16_TO_FP32(y[ib + 0].d) * tbq_dscale_4bit);
+         const __m256 scale1 = _mm256_set1_ps(GGML_CPU_FP16_TO_FP32(x[ib + 1].d) * GGML_CPU_FP16_TO_FP32(y[ib + 1].d) * tbq_dscale_4bit);
+-        accum1 = _mm256_fmadd_ps(scale0, _mm256_cvtepi32_ps(p_1), accum1);
+-        accum2 = _mm256_fmadd_ps(scale1, _mm256_cvtepi32_ps(p_2), accum2);
++        accum1 = _mm256_fmadd_ps(scale0, p_f1, accum1);
++        accum2 = _mm256_fmadd_ps(scale1, p_f2, accum2);
+     }
+ 
+     sumf = hsum_float_8(_mm256_add_ps(accum1, accum2));
+@@ -960,51 +958,32 @@ void ggml_vec_dot_tbq3_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const voi
+         __m128i sum_lo = _mm_setzero_si128();
+         __m128i sum_hi = _mm_setzero_si128();
+ 
+-        // Process two 16-element halves
+         for (int half = 0; half < 2; ++half) {
+-            // --- ql expansion: 4 bytes → 16 2-bit values ---
+             const __m128i ql4 = _mm_cvtsi32_si128(*(const uint32_t *)&x[ib].ql[half * 4]);
+             const __m128i ql16 = _mm_shuffle_epi8(ql4, rep4_lo);
+-
+-            // 4 shift groups + mask
+             const __m128i g0 = _mm_and_si128(ql16, m3);
+             const __m128i g1 = _mm_and_si128(_mm_srli_epi16(ql16, 2), m3);
+             const __m128i g2 = _mm_and_si128(_mm_srli_epi16(ql16, 4), m3);
+             const __m128i g3 = _mm_and_si128(_mm_srli_epi16(ql16, 6), m3);
+-
+-            // Interleave: position k gets group (k%4)
+             const __m128i ab  = _mm_blendv_epi8(g0, g1, blend_1);
+             const __m128i abc = _mm_blendv_epi8(ab, g2, blend_2);
+             const __m128i lo  = _mm_blendv_epi8(abc, g3, blend_3);
+-
+-            // --- qh expansion: 2 bytes → 16 1-bit values → shifted to position 2 ---
+             const __m128i qh_lo = _mm_set1_epi8(x[ib].qh[half * 2]);
+             const __m128i qh_hi = _mm_set1_epi8(x[ib].qh[half * 2 + 1]);
+             const __m128i qh_sel = _mm_blendv_epi8(qh_lo, qh_hi, hi_sel);
+             const __m128i qh_and = _mm_and_si128(qh_sel, bitmask);
+             const __m128i qh_cmp = _mm_cmpeq_epi8(qh_and, bitmask);
+-            const __m128i hi     = _mm_and_si128(qh_cmp, m4);  // 0x04 or 0x00
+-
+-            // --- Combine lo|hi → 3-bit index, vpshufb centroid lookup ---
++            const __m128i hi     = _mm_and_si128(qh_cmp, m4);
+             const __m128i idx   = _mm_or_si128(lo, hi);
+             const __m128i cents = _mm_shuffle_epi8(centroids128, idx);
+-
+-            // --- Multiply centroids × Q8_0 values ---
+             const __m128i q8 = _mm_loadu_si128((const __m128i *)&y[ib].qs[half * 16]);
+-
+-            // Signed × signed via abs/sign trick (same as mul_sum_i8_pairs_float)
+             const __m128i ax = _mm_sign_epi8(cents, cents);
+             const __m128i sy = _mm_sign_epi8(q8, cents);
+             const __m128i dot16 = _mm_maddubs_epi16(ax, sy);
+-
+-            // Accumulate into per-half 32-bit sums
+-            if (half == 0)
+-                sum_lo = _mm_madd_epi16(dot16, mone16);
+-            else
+-                sum_hi = _mm_madd_epi16(dot16, mone16);
++            if (half == 0) sum_lo = _mm_madd_epi16(dot16, mone16);
++            else           sum_hi = _mm_madd_epi16(dot16, mone16);
+         }
+ 
+-        // Combine halves into 256-bit, convert to float, scale, accumulate
+         const __m256i sum32  = _mm256_setr_m128i(sum_lo, sum_hi);
+         const __m256  sumf32 = _mm256_cvtepi32_ps(sum32);
+         const __m256  d = _mm256_set1_ps(
+@@ -1029,7 +1008,116 @@ void ggml_vec_dot_tbq3_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const voi
+ }
+ 
+ void ggml_vec_dot_tbq2_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
+-    ggml_vec_dot_tbq2_q8_0_generic(n, s, bs, vx, bx, vy, by, nrc);
++    assert(nrc == 1);
++    UNUSED(nrc); UNUSED(bx); UNUSED(by); UNUSED(bs);
++    assert(n % QK_TBQ == 0);
++
++    const block_tbq2 * GGML_RESTRICT x = vx;
++    const block_q8_0 * GGML_RESTRICT y = vy;
++    const int nb = n / QK_TBQ;
++    int ib = 0;
++    float sumf = 0;
++
++#if defined(__AVX2__)
++    // 4-entry centroid LUT (only entries 0-3 used)
++    const __m128i centroids128 = _mm_set_epi8(
++        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
++        tbq_centroids_i8_2bit[3], tbq_centroids_i8_2bit[2],
++        tbq_centroids_i8_2bit[1], tbq_centroids_i8_2bit[0]);
++
++    // Shuffle mask: replicate each byte 4 times
++    const __m128i rep4_lo = _mm_setr_epi8(0,0,0,0, 1,1,1,1, 2,2,2,2, 3,3,3,3);
++    const __m128i m3      = _mm_set1_epi8(0x3);
++    const __m128i mone16  = _mm_set1_epi16(1);
++
++    // Blend masks for interleaving shift groups
++    const __m128i blend_1 = _mm_setr_epi8(0,(char)0xFF,0,0, 0,(char)0xFF,0,0,
++                                           0,(char)0xFF,0,0, 0,(char)0xFF,0,0);
++    const __m128i blend_2 = _mm_setr_epi8(0,0,(char)0xFF,0, 0,0,(char)0xFF,0,
++                                           0,0,(char)0xFF,0, 0,0,(char)0xFF,0);
++    const __m128i blend_3 = _mm_setr_epi8(0,0,0,(char)0xFF, 0,0,0,(char)0xFF,
++                                           0,0,0,(char)0xFF, 0,0,0,(char)0xFF);
++
++    __m256 acc1 = _mm256_setzero_ps();
++    __m256 acc2 = _mm256_setzero_ps();
++
++    // Helper macro: expand 2-bit ql for one block half, multiply with Q8, return i32 sum
++#define TBQ2_DOT_HALF(BLK, HALF) do { \
++        const __m128i ql4_  = _mm_cvtsi32_si128(*(const uint32_t *)&x[(BLK)].qs[(HALF) * 4]); \
++        const __m128i ql16_ = _mm_shuffle_epi8(ql4_, rep4_lo); \
++        const __m128i g0_ = _mm_and_si128(ql16_, m3); \
++        const __m128i g1_ = _mm_and_si128(_mm_srli_epi16(ql16_, 2), m3); \
++        const __m128i g2_ = _mm_and_si128(_mm_srli_epi16(ql16_, 4), m3); \
++        const __m128i g3_ = _mm_and_si128(_mm_srli_epi16(ql16_, 6), m3); \
++        const __m128i ab_  = _mm_blendv_epi8(g0_, g1_, blend_1); \
++        const __m128i abc_ = _mm_blendv_epi8(ab_, g2_, blend_2); \
++        const __m128i idx_ = _mm_blendv_epi8(abc_, g3_, blend_3); \
++        const __m128i cents_ = _mm_shuffle_epi8(centroids128, idx_); \
++        const __m128i q8_ = _mm_loadu_si128((const __m128i *)&y[(BLK)].qs[(HALF) * 16]); \
++        const __m128i ax_ = _mm_sign_epi8(cents_, cents_); \
++        const __m128i sy_ = _mm_sign_epi8(q8_, cents_); \
++        half_sum = _mm_madd_epi16(_mm_maddubs_epi16(ax_, sy_), mone16); \
++    } while(0)
++
++    // 2-block unrolled main loop
++    for (; ib + 1 < nb; ib += 2) {
++        __m128i half_sum;
++
++        TBQ2_DOT_HALF(ib + 0, 0); __m128i sum_lo_1 = half_sum;
++        TBQ2_DOT_HALF(ib + 0, 1); __m128i sum_hi_1 = half_sum;
++        TBQ2_DOT_HALF(ib + 1, 0); __m128i sum_lo_2 = half_sum;
++        TBQ2_DOT_HALF(ib + 1, 1); __m128i sum_hi_2 = half_sum;
++
++        const __m256 d1 = _mm256_set1_ps(
++            GGML_CPU_FP16_TO_FP32(x[ib+0].d) * GGML_CPU_FP16_TO_FP32(y[ib+0].d) * tbq_dscale_2bit);
++        const __m256 d2 = _mm256_set1_ps(
++            GGML_CPU_FP16_TO_FP32(x[ib+1].d) * GGML_CPU_FP16_TO_FP32(y[ib+1].d) * tbq_dscale_2bit);
++
++        acc1 = _mm256_fmadd_ps(d1, _mm256_cvtepi32_ps(_mm256_setr_m128i(sum_lo_1, sum_hi_1)), acc1);
++        acc2 = _mm256_fmadd_ps(d2, _mm256_cvtepi32_ps(_mm256_setr_m128i(sum_lo_2, sum_hi_2)), acc2);
++    }
++
++#undef TBQ2_DOT_HALF
++
++    // 1-block tail
++    for (; ib < nb; ++ib) {
++        __m128i sum_lo = _mm_setzero_si128();
++        __m128i sum_hi = _mm_setzero_si128();
++        for (int half = 0; half < 2; ++half) {
++            const __m128i ql4  = _mm_cvtsi32_si128(*(const uint32_t *)&x[ib].qs[half * 4]);
++            const __m128i ql16 = _mm_shuffle_epi8(ql4, rep4_lo);
++            const __m128i g0 = _mm_and_si128(ql16, m3);
++            const __m128i g1 = _mm_and_si128(_mm_srli_epi16(ql16, 2), m3);
++            const __m128i g2 = _mm_and_si128(_mm_srli_epi16(ql16, 4), m3);
++            const __m128i g3 = _mm_and_si128(_mm_srli_epi16(ql16, 6), m3);
++            __m128i ab  = _mm_blendv_epi8(g0, g1, blend_1);
++            __m128i abc = _mm_blendv_epi8(ab, g2, blend_2);
++            __m128i idx = _mm_blendv_epi8(abc, g3, blend_3);
++            const __m128i cents = _mm_shuffle_epi8(centroids128, idx);
++            const __m128i q8 = _mm_loadu_si128((const __m128i *)&y[ib].qs[half * 16]);
++            const __m128i ax = _mm_sign_epi8(cents, cents);
++            const __m128i sy = _mm_sign_epi8(q8, cents);
++            const __m128i dot16 = _mm_maddubs_epi16(ax, sy);
++            if (half == 0) sum_lo = _mm_madd_epi16(dot16, mone16);
++            else           sum_hi = _mm_madd_epi16(dot16, mone16);
++        }
++        acc1 = _mm256_fmadd_ps(
++            _mm256_set1_ps(GGML_CPU_FP16_TO_FP32(x[ib].d) * GGML_CPU_FP16_TO_FP32(y[ib].d) * tbq_dscale_2bit),
++            _mm256_cvtepi32_ps(_mm256_setr_m128i(sum_lo, sum_hi)), acc1);
++    }
++
++    sumf = hsum_float_8(_mm256_add_ps(acc1, acc2));
++#endif
++
++    // Scalar tail / non-AVX2 fallback
++    for (; ib < nb; ++ib) {
++        int sumi = 0;
++        for (int j = 0; j < QK_TBQ; ++j) {
++            sumi += (int)tbq_centroids_i8_2bit[(x[ib].qs[j >> 2] >> ((j & 3) << 1)) & 0x3] * (int)y[ib].qs[j];
++        }
++        sumf += (float)sumi * GGML_CPU_FP16_TO_FP32(x[ib].d) * GGML_CPU_FP16_TO_FP32(y[ib].d) * tbq_dscale_2bit;
++    }
++    *s = sumf;
+ }
+ 
+ void ggml_vec_dot_q5_0_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const void * GGML_RESTRICT vx, size_t bx, const void * GGML_RESTRICT vy, size_t by, int nrc) {
+diff --git a/ggml/src/ggml-cpu/quants.c b/ggml/src/ggml-cpu/quants.c
+index 3ac87ceec..558eb9c3a 100644
+--- a/ggml/src/ggml-cpu/quants.c
++++ b/ggml/src/ggml-cpu/quants.c
+@@ -73,6 +73,33 @@ void quantize_row_tbq4(const float * GGML_RESTRICT x, void * GGML_RESTRICT y, in
+ void ggml_vec_mad_tbq2(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RESTRICT vx, float scale) {
+     const block_tbq2 * GGML_RESTRICT x = vx;
+     const int nb = n / QK_TBQ;
++#if defined(__AVX2__)
++    // Float centroid LUT (only 4 entries used, rest zero for safety)
++    const __m256 centroids_f = _mm256_set_ps(
++        0.0f, 0.0f, 0.0f, 0.0f,
++        tbq_centroids_2bit[3], tbq_centroids_2bit[2],
++        tbq_centroids_2bit[1], tbq_centroids_2bit[0]);
++    const __m256i shifts = _mm256_setr_epi32(0, 2, 4, 6, 8, 10, 12, 14);
++    const __m256i m3 = _mm256_set1_epi32(3);
++
++    for (int i = 0; i < nb; i++) {
++        float * out = VKQ32 + i * QK_TBQ;
++        const __m256 scalev = _mm256_set1_ps(GGML_CPU_FP16_TO_FP32(x[i].d) * scale);
++
++        // Load 8 bytes of qs (32 × 2-bit values packed)
++        const uint64_t qs = *(const uint64_t *)x[i].qs;
++
++        // Process 4 chunks of 8 values each (each chunk = 2 bytes = 16 bits)
++        for (int chunk = 0; chunk < 4; chunk++) {
++            const uint32_t bytes2 = (uint32_t)((qs >> (chunk * 16)) & 0xFFFF);
++            const __m256i b = _mm256_set1_epi32(bytes2);
++            const __m256i idx = _mm256_and_si256(_mm256_srlv_epi32(b, shifts), m3);
++            const __m256 c = _mm256_permutevar8x32_ps(centroids_f, idx);
++            float * o = out + chunk * 8;
++            _mm256_storeu_ps(o, _mm256_fmadd_ps(scalev, c, _mm256_loadu_ps(o)));
++        }
++    }
++#else
+     for (int i = 0; i < nb; i++) {
+         const float s = GGML_CPU_FP16_TO_FP32(x[i].d) * scale;
+         float sc[4];
+@@ -81,11 +108,58 @@ void ggml_vec_mad_tbq2(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RES
+         for (int j = 0; j < QK_TBQ; j++)
+             out[j] += sc[(x[i].qs[j >> 2] >> ((j & 3) << 1)) & 0x3];
+     }
++#endif
+ }
+ 
+ void ggml_vec_mad_tbq3(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RESTRICT vx, float scale) {
+     const block_tbq3 * GGML_RESTRICT x = vx;
+     const int nb = n / QK_TBQ;
++#if defined(__AVX2__)
++    // Float centroid LUT (8 entries)
++    const __m256 centroids_f = _mm256_set_ps(
++        tbq_centroids_3bit[7], tbq_centroids_3bit[6],
++        tbq_centroids_3bit[5], tbq_centroids_3bit[4],
++        tbq_centroids_3bit[3], tbq_centroids_3bit[2],
++        tbq_centroids_3bit[1], tbq_centroids_3bit[0]);
++
++    for (int i = 0; i < nb; i++) {
++        float * out = VKQ32 + i * QK_TBQ;
++        const __m256 scalev = _mm256_set1_ps(GGML_CPU_FP16_TO_FP32(x[i].d) * scale);
++
++        // Load ql (8 bytes) and qh (4 bytes)
++        const uint64_t ql = *(const uint64_t *)x[i].ql;
++        const uint32_t qh = *(const uint32_t *)x[i].qh;
++
++        // Process 4 chunks of 8 values each
++        // ql: each chunk uses 16 bits (2 bytes), shifts [0,2,4,6,8,10,12,14] of the 16-bit value
++        // qh: each chunk uses 8 bits (1 byte), shifts [0,1,2,3,4,5,6,7] of the 8-bit value
++        const __m256i ql_shifts = _mm256_setr_epi32(0, 2, 4, 6, 8, 10, 12, 14);
++        const __m256i qh_shifts = _mm256_setr_epi32(0, 1, 2, 3, 4, 5, 6, 7);
++        const __m256i m3_32 = _mm256_set1_epi32(3);
++        const __m256i m1_32 = _mm256_set1_epi32(1);
++
++        for (int chunk = 0; chunk < 4; chunk++) {
++            // ql: 16 bits containing 8 × 2-bit
++            const uint32_t ql_bytes = (ql >> (chunk * 16)) & 0xFFFF;
++            const __m256i ql_b = _mm256_set1_epi32(ql_bytes);
++            const __m256i lo = _mm256_and_si256(_mm256_srlv_epi32(ql_b, ql_shifts), m3_32);
++
++            // qh: 8 bits containing 8 × 1-bit
++            const uint32_t qh_bytes = (qh >> (chunk * 8)) & 0xFF;
++            const __m256i qh_b = _mm256_set1_epi32(qh_bytes);
++            const __m256i hi_bit = _mm256_and_si256(_mm256_srlv_epi32(qh_b, qh_shifts), m1_32);
++
++            // Combine: idx = lo | (hi << 2)
++            const __m256i hi_shifted = _mm256_slli_epi32(hi_bit, 2);
++            const __m256i idx = _mm256_or_si256(lo, hi_shifted);
++
++            // Float lookup + FMA
++            const __m256 c = _mm256_permutevar8x32_ps(centroids_f, idx);
++            float * o = out + chunk * 8;
++            _mm256_storeu_ps(o, _mm256_fmadd_ps(scalev, c, _mm256_loadu_ps(o)));
++        }
++    }
++#else
+     for (int i = 0; i < nb; i++) {
+         const float s = GGML_CPU_FP16_TO_FP32(x[i].d) * scale;
+         float sc[8];
+@@ -97,22 +171,50 @@ void ggml_vec_mad_tbq3(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RES
+             out[j] += sc[lo | (hi << 2)];
+         }
+     }
++#endif
+ }
+ 
+ void ggml_vec_mad_tbq4(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RESTRICT vx, float scale) {
+     const block_tbq4 * GGML_RESTRICT x = vx;
+     const int nb = n / QK_TBQ;
++#if defined(__AVX2__)
++    const __m128i centroids128 = _mm_loadu_si128((const __m128i *)tbq_centroids_i8_4bit);
++    const __m128i m4b = _mm_set1_epi8(0x0F);
++
++    for (int i = 0; i < nb; i++) {
++        float * out = VKQ32 + i * QK_TBQ;
++        const __m128i qbits = _mm_loadu_si128((const __m128i *)x[i].qs);
++        const __m128i qlo = _mm_and_si128(qbits, m4b);
++        const __m128i qhi = _mm_and_si128(_mm_srli_epi16(qbits, 4), m4b);
++        const __m256 scalev = _mm256_set1_ps(GGML_CPU_FP16_TO_FP32(x[i].d) * scale * tbq_dscale_4bit);
++
++        {
++            const __m128i cbytes = _mm_shuffle_epi8(centroids128, qlo);
++            const __m256 f0 = _mm256_cvtepi32_ps(_mm256_cvtepi8_epi32(cbytes));
++            const __m256 f1 = _mm256_cvtepi32_ps(_mm256_cvtepi8_epi32(_mm_srli_si128(cbytes, 8)));
++            _mm256_storeu_ps(out + 0, _mm256_fmadd_ps(scalev, f0, _mm256_loadu_ps(out + 0)));
++            _mm256_storeu_ps(out + 8, _mm256_fmadd_ps(scalev, f1, _mm256_loadu_ps(out + 8)));
++        }
++        {
++            const __m128i cbytes = _mm_shuffle_epi8(centroids128, qhi);
++            const __m256 f0 = _mm256_cvtepi32_ps(_mm256_cvtepi8_epi32(cbytes));
++            const __m256 f1 = _mm256_cvtepi32_ps(_mm256_cvtepi8_epi32(_mm_srli_si128(cbytes, 8)));
++            _mm256_storeu_ps(out + 16, _mm256_fmadd_ps(scalev, f0, _mm256_loadu_ps(out + 16)));
++            _mm256_storeu_ps(out + 24, _mm256_fmadd_ps(scalev, f1, _mm256_loadu_ps(out + 24)));
++        }
++    }
++#else
+     for (int i = 0; i < nb; i++) {
+         const float s = GGML_CPU_FP16_TO_FP32(x[i].d) * scale;
+         float sc[16];
+         for (int k = 0; k < 16; k++) sc[k] = tbq_centroids_4bit[k] * s;
+         float * out = VKQ32 + i * QK_TBQ;
+-        // Half-split packing: low nibble = first half, high nibble = second half
+         for (int j = 0; j < QK_TBQ / 2; j++) {
+             out[j]              += sc[x[i].qs[j] & 0xF];
+             out[j + QK_TBQ / 2] += sc[x[i].qs[j] >> 4];
+         }
+     }
++#endif
+ }
+ 
+ //
+diff --git a/tests/test-backend-ops.cpp b/tests/test-backend-ops.cpp
+index fbe23037c..a1038cb36 100644
+--- a/tests/test-backend-ops.cpp
++++ b/tests/test-backend-ops.cpp
+@@ -8480,6 +8480,8 @@ static std::vector<std::unique_ptr<test_case>> make_test_cases_perf() {
+ 
+     test_cases.emplace_back(new test_flash_attn_ext(64, 64, 8, {8, 1}, 7680, 1, true, false, 0, 0, GGML_PREC_F32, GGML_TYPE_F16));
+     test_cases.emplace_back(new test_flash_attn_ext(64, 64, 8, {8, 1}, 7680, 4, true, false, 0, 0, GGML_PREC_F32, GGML_TYPE_F16));
++    test_cases.emplace_back(new test_flash_attn_ext(64, 64, 8, {8, 1}, 7680, 1, true, false, 0, 0, GGML_PREC_F32, GGML_TYPE_TBQ4));
++    test_cases.emplace_back(new test_flash_attn_ext(64, 64, 8, {8, 1}, 7680, 4, true, false, 0, 0, GGML_PREC_F32, GGML_TYPE_TBQ4));
+ 
+     for (int kv : { 4096, 8192, 16384, }) {
+         for (int hs : { 64, 128, }) {
+diff --git a/tools/llama-bench/llama-bench.cpp b/tools/llama-bench/llama-bench.cpp
+index 7da6c3957..edadca37e 100644
+--- a/tools/llama-bench/llama-bench.cpp
++++ b/tools/llama-bench/llama-bench.cpp
+@@ -493,6 +493,15 @@ static ggml_type ggml_type_from_name(const std::string & s) {
+     if (s == "iq4_nl") {
+         return GGML_TYPE_IQ4_NL;
+     }
++    if (s == "tbq2") {
++        return GGML_TYPE_TBQ2;
++    }
++    if (s == "tbq3") {
++        return GGML_TYPE_TBQ3;
++    }
++    if (s == "tbq4") {
++        return GGML_TYPE_TBQ4;
++    }
+ 
+     return GGML_TYPE_COUNT;
+ }

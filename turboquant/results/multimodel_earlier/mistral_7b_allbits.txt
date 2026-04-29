@@ -1,0 +1,52 @@
+| model                          |       size |     params | backend    | threads | type_k | type_v | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | -----: | -----: | -: | --------------: | -------------------: |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |    f16 |  1 |           tg128 |          0.35 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |    f16 |  1 |   tg128 @ d4096 |          0.36 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |    f16 |  1 |   tg128 @ d8192 |          0.35 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |   tbq4 |  1 |           tg128 |          0.36 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |   tbq4 |  1 |   tg128 @ d4096 |          0.36 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |   tbq4 |  1 |   tg128 @ d8192 |          0.35 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |   tbq3 |  1 |           tg128 |          0.36 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |   tbq3 |  1 |   tg128 @ d4096 |          0.33 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |   tbq3 |  1 |   tg128 @ d8192 |          0.30 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |   tbq2 |  1 |           tg128 |          0.36 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |   tbq2 |  1 |   tg128 @ d4096 |          0.35 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |    f16 |   tbq2 |  1 |   tg128 @ d8192 |          0.32 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |    f16 |  1 |           tg128 |          0.36 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |    f16 |  1 |   tg128 @ d4096 |          0.36 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |    f16 |  1 |   tg128 @ d8192 |          0.33 ± 0.02 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |           tg128 |          0.36 ± 0.02 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d4096 |          0.36 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |   tbq4 |  1 |   tg128 @ d8192 |          0.35 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |   tbq3 |  1 |           tg128 |          4.94 ± 2.55 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |   tbq3 |  1 |   tg128 @ d4096 |          3.62 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |   tbq3 |  1 |   tg128 @ d8192 |          2.48 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |   tbq2 |  1 |           tg128 |          6.72 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |   tbq2 |  1 |   tg128 @ d4096 |          4.43 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq4 |   tbq2 |  1 |   tg128 @ d8192 |          3.29 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |    f16 |  1 |           tg128 |          6.74 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |    f16 |  1 |   tg128 @ d4096 |          5.12 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |    f16 |  1 |   tg128 @ d8192 |          3.92 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |   tbq4 |  1 |           tg128 |          6.74 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |   tbq4 |  1 |   tg128 @ d4096 |          5.58 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |   tbq4 |  1 |   tg128 @ d8192 |          4.70 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |   tbq3 |  1 |           tg128 |          6.69 ± 0.05 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |   tbq3 |  1 |   tg128 @ d4096 |          3.50 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |   tbq3 |  1 |   tg128 @ d8192 |          2.37 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |   tbq2 |  1 |           tg128 |          6.73 ± 0.04 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |   tbq2 |  1 |   tg128 @ d4096 |          4.25 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq3 |   tbq2 |  1 |   tg128 @ d8192 |          3.10 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |    f16 |  1 |           tg128 |          6.73 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |    f16 |  1 |   tg128 @ d4096 |          4.73 ± 0.02 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |    f16 |  1 |   tg128 @ d8192 |          3.53 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |   tbq4 |  1 |           tg128 |          6.74 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |   tbq4 |  1 |   tg128 @ d4096 |          5.17 ± 0.03 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |   tbq4 |  1 |   tg128 @ d8192 |          4.17 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |   tbq3 |  1 |           tg128 |          6.65 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |   tbq3 |  1 |   tg128 @ d4096 |          3.28 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |   tbq3 |  1 |   tg128 @ d8192 |          2.18 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |   tbq2 |  1 |           tg128 |          6.69 ± 0.00 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |   tbq2 |  1 |   tg128 @ d4096 |          3.97 ± 0.01 |
+| llama 7B Q4_K - Medium         |   4.07 GiB |     7.25 B | CPU        |      12 |   tbq2 |   tbq2 |  1 |   tg128 @ d8192 |          2.82 ± 0.01 |
+
+build: a53c2d225 (7961)

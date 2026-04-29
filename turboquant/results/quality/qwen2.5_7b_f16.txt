@@ -1,0 +1,193 @@
+=== qwen2.5_7b × f16 ===
+### Prompt 1: The capital of France is
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> The capital of France is
+
+The capital of France is Paris.
+
+[ Prompt: 50,4 t/s | Generation: 7,7 t/s ]
+
+Exiting...
+
+### Prompt 2: Explain photosynthesis in one paragraph.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Explain photosynthesis in one paragraph.
+
+Photosynthesis is a process used by plants, algae, and some bacteria to convert light energy, usually from the sun, into chemical energy stored in glucose. This process primarily occurs in the chloroplasts of plant cells, where chlorophyll captures sunlight. Carbon dioxide and water are absorbed from the environment and, through a series of biochemical reactions, are converted into glucose and oxygen. The overall equation for photosynthesis can be simplified as 6CO₂ + 6H₂O + light energy → C₆H₁₂O₆ + 6O₂, where carbon dioxide and water
+
+[ Prompt: 45,5 t/s | Generation: 6,8 t/s ]
+
+Exiting...
+
+### Prompt 3: Write a Python function to compute the nth Fibonacci number.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write a Python function to compute the nth Fibonacci number.
+
+Certainly! Below is a Python function to compute the nth Fibonacci number using an iterative approach. This method is efficient and avoids the potential stack overflow issues that can arise with recursive solutions for large values of `n`.
+
+```python
+def fibonacci(n):
+    if n <= 0:
+        return "Input should be a positive integer."
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    
+    a, b = 0, 1
+    for _ in range(2, n):
+        a, b = b, a +
+
+[ Prompt: 44,9 t/s | Generation: 6,8 t/s ]
+
+Exiting...
+
+### Prompt 4: What are the main symptoms of a stroke?
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> What are the main symptoms of a stroke?
+
+The main symptoms of a stroke can be remembered using the acronym F.A.S.T., which stands for:
+
+- **F**ace Drooping: One side of the face may droop or be weaker than the other.
+- **A**rm Weakness: One arm may be weak or numb, and the person may be unable to raise both arms.
+- **S**peech Difficulty: Speech may be slurred, or the person may have trouble speaking or be hard to understand.
+- **T**ime to Call Emergency Services: If you observe any of these symptoms, it's important to call
+
+[ Prompt: 45,5 t/s | Generation: 6,8 t/s ]
+
+Exiting...
+
+### Prompt 5: Describe the structure of a haiku with an example.
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7961-a53c2d225
+model      : Qwen2.5-7B-Instruct-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Describe the structure of a haiku with an example.
+
+A haiku is a form of Japanese poetry that traditionally consists of three lines with a specific syllable pattern and often focuses on nature or seasonal events. The structure of a haiku is as follows:
+
+1. **5 syllables in the first line**
+2. **7 syllables in the second line**
+3. **5 syllables in the third line**
+
+Here is an example of a haiku:
+
+```
+Autumn leaves falling,
+Crisp air fills the evening,
+Silence wraps the night.
+```
+
+In this example, the first line has 5 syllables, the second
+
+[ Prompt: 46,4 t/s | Generation: 6,8 t/s ]
+
+Exiting...
+

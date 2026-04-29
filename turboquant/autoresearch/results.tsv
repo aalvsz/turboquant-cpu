@@ -1,0 +1,4 @@
+experiment	tbq2_d8192	tbq3_d8192	tbq4_d8192	f16_d8192	status	description
+baseline	4.55	3.69	10.31	7.53	keep	current state before optimization loop
+exp1_srlv_vecmad	4.53	3.71	10.68	7.52	discard	AVX2 srlv_epi32 vec_mad_tbq2/3 — no speedup vs scalar, bottleneck is memory pattern not compute
+exp2_predequant	4.49	3.69	10.62	7.35	discard	Pre-dequantize V tile once per KV_TILE — no speedup, reverted

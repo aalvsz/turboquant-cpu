@@ -1,0 +1,5 @@
+model,setting,tps_8192,quality
+llama3.1_8b,q8_0/q4_0,4.29,0.498
+llama3.1_8b,q8_0/tbq4,4.21,0.533
+qwen2.5_7b,q8_0/q4_0,5.37,0.654
+qwen2.5_7b,q8_0/tbq4,5.11,0.687

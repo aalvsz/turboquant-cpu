@@ -1,0 +1,8 @@
+| model                          |       size |     params | backend    | threads | type_k | type_v | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | -----: | -----: | -: | --------------: | -------------------: |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq3 |   tbq3 |  1 |           tg128 |          6.63 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq3 |   tbq3 |  1 |   tg128 @ d2048 |          6.06 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq3 |   tbq3 |  1 |   tg128 @ d4096 |          5.60 ± 0.00 |
+| qwen2 7B Q4_K - Medium         |   4.36 GiB |     7.62 B | CPU        |      12 |   tbq3 |   tbq3 |  1 |   tg128 @ d8192 |          4.88 ± 0.02 |
+
+build: a53c2d225 (7961)
