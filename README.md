@@ -5,9 +5,8 @@ tree used for the benchmarks.
 
 ## Contents
 
-- `llama.cpp/` - full `llama.cpp` source snapshot with TurboQuant CPU changes,
-  copied from `/home/ubuntu/llama.cpp`. Generated `build/` artifacts are not
-  included.
+- `llama.cpp/` - full `llama.cpp` source snapshot with TurboQuant CPU changes.
+  Generated `build/` artifacts are not included.
 - `turboquant/` - research notes, scripts, plots, and raw results for the
   TurboQuant CPU benchmark work. The nested `autoresearch` checkout is flattened
   into normal source files.
@@ -37,6 +36,6 @@ Example hybrid KV benchmark:
 
 ## Notes
 
-The benchmark scripts in `turboquant/autoresearch/` keep the original worker and
-model paths used during the research run. The model files are not included
-because they are large external GGUF artifacts.
+The benchmark scripts in `turboquant/autoresearch/` use configurable worker and
+model paths. The model files are not included because they are large external
+GGUF artifacts.

@@ -4,10 +4,16 @@
 
 set -e
 
-WORKER=10.15.1.154
-BENCH=/home/ubuntu/llama.cpp/build/bin/llama-bench
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 TURBOQUANT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+LLAMA_CPP_DIR="${LLAMA_CPP_DIR:-$REPO_ROOT/llama.cpp}"
+REMOTE_LLAMA_CPP_DIR="${REMOTE_LLAMA_CPP_DIR:-$LLAMA_CPP_DIR}"
+MODEL_DIR="${MODEL_DIR:-$HOME/models/llm}"
+WORKER_HOST="${WORKER_HOST:-10.15.1.154}"
+WORKER_USER="${WORKER_USER:-}"
+WORKER="${WORKER_USER:+$WORKER_USER@}$WORKER_HOST"
+BENCH="${BENCH:-$REMOTE_LLAMA_CPP_DIR/build/bin/llama-bench}"
 # Allow resuming an existing dir via env var
 RDIR=${RDIR:-"$TURBOQUANT_DIR/results/comprehensive_$(date +%Y%m%d_%H%M%S)"}
 mkdir -p "$RDIR"
@@ -17,17 +23,17 @@ echo "Results dir: $RDIR"
 # Models: native Llama 3.1, Qwen 2.5, Gemma 2, Llama 4 Scout (MoE)
 declare -A MODELS
 MODELS=(
-    ["llama3.1_8b"]="/home/ubuntu/models/llm/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
-    ["qwen2.5_7b"]="/home/ubuntu/models/llm/Qwen2.5-7B-Instruct-Q4_K_M.gguf"
-    ["gemma2_9b"]="/home/ubuntu/models/llm/gemma-2-9b-it-Q4_K_M.gguf"
-    ["llama4_scout_17b"]="/home/ubuntu/models/llm/Q4_K_M/Llama-4-Scout-17B-16E-Instruct-Q4_K_M-00001-of-00002.gguf"
+    ["llama3.1_8b"]="$MODEL_DIR/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
+    ["qwen2.5_7b"]="$MODEL_DIR/Qwen2.5-7B-Instruct-Q4_K_M.gguf"
+    ["gemma2_9b"]="$MODEL_DIR/gemma-2-9b-it-Q4_K_M.gguf"
+    ["llama4_scout_17b"]="$MODEL_DIR/Q4_K_M/Llama-4-Scout-17B-16E-Instruct-Q4_K_M-00001-of-00002.gguf"
 )
 
 KV_TYPES=(f16 q8_0 q4_0 tbq4 tbq3 tbq2)
 DEPTHS=(0 2048 4096 8192)
 
 # Ensure no other benchmarks are running
-ssh ubuntu@$WORKER "pkill -f '/home/ubuntu/llama.cpp/build/bin/llama-bench' 2>/dev/null; sleep 2" || true
+ssh "$WORKER" "pkill -f '$BENCH' 2>/dev/null; sleep 2" || true
 
 for model in "${!MODELS[@]}"; do
     path="${MODELS[$model]}"
@@ -36,7 +42,7 @@ for model in "${!MODELS[@]}"; do
     echo "========================="
 
     # Skip if model file not available
-    if ! ssh ubuntu@$WORKER "test -f '$path'" 2>/dev/null; then
+    if ! ssh "$WORKER" "test -f '$path'" 2>/dev/null; then
         echo "  [skip - model file not found on worker]"
         continue
     fi
@@ -55,10 +61,10 @@ for model in "${!MODELS[@]}"; do
         depths_str=$(IFS=,; echo "${DEPTHS[*]}")
 
         # Wait for any running llama-bench process (pidof avoids matching grep/pgrep itself)
-        ssh ubuntu@$WORKER "while pidof -x llama-bench >/dev/null 2>&1; do sleep 5; done" 2>/dev/null
+        ssh "$WORKER" "while pidof -x llama-bench >/dev/null 2>&1; do sleep 5; done" 2>/dev/null
 
         # tg128 only (pp is secondary) - much faster
-        ssh ubuntu@$WORKER "$BENCH -m '$path' -ctk $kv -ctv $kv -t 12 -p 0 -n 128 -r 2 -fa 1 -d $depths_str 2>&1" > "$out"
+        ssh "$WORKER" "'$BENCH' -m '$path' -ctk $kv -ctv $kv -t 12 -p 0 -n 128 -r 2 -fa 1 -d $depths_str 2>&1" > "$out"
         grep -E "tg|pp" "$out" | head
     done
 done

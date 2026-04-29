@@ -257,7 +257,7 @@ than the current path on this hardware. Out of scope for this fix.
   Build & run: `cc -O2 -Wall tbq4_outlier_test.c -o tbq4_test -lm && ./tbq4_test`.
 - Quality eval script (clean+amax): `autoresearch/eval_quality_clean_amax.sh`
   (TODO move from /tmp).
-- Worker raw outputs: `10.15.1.154:/home/ubuntu/turboquant_runs/quality_clean_amax_20260427/`.
+- Worker raw outputs: external run archive `quality_clean_amax_20260427/`.
 - Cosine aggregator: `autoresearch/analyze_quality_patched.py`.
 - Apply procedure on a fresh clone:
   ```bash

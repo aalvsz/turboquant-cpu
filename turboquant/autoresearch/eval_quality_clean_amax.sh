@@ -1,13 +1,14 @@
 #!/bin/bash
 set -u
-LDIR=/home/ubuntu/llama_amax_clean/bin
-OUT=/home/ubuntu/turboquant_runs/quality_clean_amax_20260427
+MODEL_DIR="${MODEL_DIR:-$HOME/models/llm}"
+LDIR="${LDIR:-$HOME/llama_amax_clean/bin}"
+OUT="${OUT:-$HOME/turboquant_runs/quality_clean_amax_20260427}"
 mkdir -p "$OUT"
 NAMES=(llama3.1_8b qwen2.5_7b gemma2_9b)
 PATHS=(
-    /home/ubuntu/models/llm/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf
-    /home/ubuntu/models/llm/Qwen2.5-7B-Instruct-Q4_K_M.gguf
-    /home/ubuntu/models/llm/gemma-2-9b-it-Q4_K_M.gguf
+    "$MODEL_DIR/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
+    "$MODEL_DIR/Qwen2.5-7B-Instruct-Q4_K_M.gguf"
+    "$MODEL_DIR/gemma-2-9b-it-Q4_K_M.gguf"
 )
 CFG=(
     "f16 f16 f16"

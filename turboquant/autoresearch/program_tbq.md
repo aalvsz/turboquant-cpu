@@ -7,12 +7,12 @@ Adapted from karpathy/autoresearch for TBQ KV cache kernel optimization on CPU.
 1. **Run tag**: `tbq-apr12`
 2. **Branch**: Work directly on the current worktree
 3. **Code to modify**: TBQ SIMD kernels in llama.cpp:
-   - `/home/ubuntu/llama.cpp/ggml/src/ggml-cpu/quants.c` — vec_mad_{tbq2,tbq3,tbq4}, quantize_row_{tbq2,tbq3,tbq4}
-   - `/home/ubuntu/llama.cpp/ggml/src/ggml-cpu/arch/x86/quants.c` — vec_dot_{tbq2,tbq3,tbq4}_q8_0
-   - `/home/ubuntu/llama.cpp/ggml/src/ggml-turboquant.h` — centroid tables, block structs
-4. **Build command**: `cd /home/ubuntu/llama.cpp && /home/ubuntu/.local/bin/cmake --build build -j$(nproc)`
-5. **Deploy**: `scp build/bin/llama-bench ubuntu@10.15.1.154:/home/ubuntu/llama.cpp/build/bin/`
-6. **Worker**: 10.15.1.154 (Intel i5-12500, 12 threads, AVX2 + AVXVNNI, 32GB DDR5)
+   - `$LLAMA_CPP_DIR/ggml/src/ggml-cpu/quants.c` — vec_mad_{tbq2,tbq3,tbq4}, quantize_row_{tbq2,tbq3,tbq4}
+   - `$LLAMA_CPP_DIR/ggml/src/ggml-cpu/arch/x86/quants.c` — vec_dot_{tbq2,tbq3,tbq4}_q8_0
+   - `$LLAMA_CPP_DIR/ggml/src/ggml-turboquant.h` — centroid tables, block structs
+4. **Build command**: `cmake --build "$LLAMA_CPP_DIR/build" -j$(nproc)`
+5. **Deploy**: `scp "$LLAMA_CPP_DIR/build/bin/llama-bench" "$WORKER:$REMOTE_LLAMA_CPP_DIR/build/bin/"`
+6. **Worker**: configurable via `WORKER`, `WORKER_HOST`, and `WORKER_USER` (tested on Intel i5-12500, 12 threads, AVX2 + AVXVNNI, 32GB DDR5)
 
 ## The Goal
 
@@ -71,16 +71,16 @@ TBQ3 has 2.5x more instructions than TBQ4 but only reads 25% less data (12B vs 1
 
 Quick sanity (each config ~10-30s):
 ```bash
-ssh ubuntu@10.15.1.154 "/home/ubuntu/llama.cpp/build/bin/llama-bench \
-  -m /home/ubuntu/models/llm/reasoning_gilda_Q4KM.gguf \
+ssh "$WORKER" "$REMOTE_LLAMA_CPP_DIR/build/bin/llama-bench \
+  -m $MODEL_DIR/reasoning_gilda_Q4KM.gguf \
   -ctk tbq3 -ctv tbq3 -t 12 -p 0 -n 32 -r 1 -fa 1 -d 8192"
 ```
 
 Full comparison (matching types only):
 ```bash
 for kv in f16 tbq4 tbq3 tbq2; do
-  ssh ubuntu@10.15.1.154 "/home/ubuntu/llama.cpp/build/bin/llama-bench \
-    -m /home/ubuntu/models/llm/reasoning_gilda_Q4KM.gguf \
+  ssh "$WORKER" "$REMOTE_LLAMA_CPP_DIR/build/bin/llama-bench \
+    -m $MODEL_DIR/reasoning_gilda_Q4KM.gguf \
     -ctk $kv -ctv $kv -t 12 -p 0 -n 32 -r 2 -fa 1 -d 8192" | grep tg
 done
 ```
@@ -88,9 +88,9 @@ done
 ## Models for Final Evaluation
 
 After optimization, run the full comparison on:
-1. Gilda 3.2B (Llama family): `/home/ubuntu/models/llm/reasoning_gilda_Q4KM.gguf`
-2. Qwen2.5 7B (Qwen family): `/home/ubuntu/models/llm/Qwen2.5-7B-Instruct-Q4_K_M.gguf`
-3. Gemma 2 9B (Gemma family): `/home/ubuntu/models/llm/gemma-2-9b-it-Q4_K_M.gguf`
+1. Gilda 3.2B (Llama family): `$MODEL_DIR/reasoning_gilda_Q4KM.gguf`
+2. Qwen2.5 7B (Qwen family): `$MODEL_DIR/Qwen2.5-7B-Instruct-Q4_K_M.gguf`
+3. Gemma 2 9B (Gemma family): `$MODEL_DIR/gemma-2-9b-it-Q4_K_M.gguf`
 
 KV types to compare: f16, q8_0, q4_0, tbq4, tbq3, tbq2
 Depths: 0, 2048, 4096, 8192
@@ -103,9 +103,9 @@ LOOP FOREVER:
 1. Read the current vec_mad code for the target TBQ type
 2. Identify the bottleneck (instruction count, data movement, dependency chain)
 3. Implement an optimization idea
-4. Build: `cd /home/ubuntu/llama.cpp && /home/ubuntu/.local/bin/cmake --build build -j$(nproc) 2>&1 | tail -3`
-5. Deploy: `scp build/bin/llama-bench ubuntu@10.15.1.154:/home/ubuntu/llama.cpp/build/bin/`
-6. Benchmark TBQ3 at d=8192: `ssh ubuntu@10.15.1.154 "llama-bench ... -ctk tbq3 -ctv tbq3 -d 8192"`
+4. Build: `cmake --build "$LLAMA_CPP_DIR/build" -j$(nproc) 2>&1 | tail -3`
+5. Deploy: `scp "$LLAMA_CPP_DIR/build/bin/llama-bench" "$WORKER:$REMOTE_LLAMA_CPP_DIR/build/bin/"`
+6. Benchmark TBQ3 at d=8192: `ssh "$WORKER" "llama-bench ... -ctk tbq3 -ctv tbq3 -d 8192"`
 7. Record result in results.tsv
 8. If faster → keep the change (git commit)
 9. If slower or same → revert (git checkout -- file)

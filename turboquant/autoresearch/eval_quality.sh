@@ -4,19 +4,25 @@
 
 set -e
 
-WORKER=10.15.1.154
-CLI=/home/ubuntu/llama.cpp/build/bin/llama-cli
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 TURBOQUANT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+LLAMA_CPP_DIR="${LLAMA_CPP_DIR:-$REPO_ROOT/llama.cpp}"
+REMOTE_LLAMA_CPP_DIR="${REMOTE_LLAMA_CPP_DIR:-$LLAMA_CPP_DIR}"
+MODEL_DIR="${MODEL_DIR:-$HOME/models/llm}"
+WORKER_HOST="${WORKER_HOST:-10.15.1.154}"
+WORKER_USER="${WORKER_USER:-}"
+WORKER="${WORKER_USER:+$WORKER_USER@}$WORKER_HOST"
+CLI="${CLI:-$REMOTE_LLAMA_CPP_DIR/build/bin/llama-cli}"
 OUT_DIR="$TURBOQUANT_DIR/results/quality_$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$OUT_DIR"
 
 declare -A MODELS
 MODELS=(
-    ["llama3.1_8b"]="/home/ubuntu/models/llm/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
-    ["qwen2.5_7b"]="/home/ubuntu/models/llm/Qwen2.5-7B-Instruct-Q4_K_M.gguf"
-    ["gemma2_9b"]="/home/ubuntu/models/llm/gemma-2-9b-it-Q4_K_M.gguf"
-    ["llama4_scout_17b"]="/home/ubuntu/models/llm/Llama-4-Scout-17B-16E-Instruct-Q4_K_M.gguf"
+    ["llama3.1_8b"]="$MODEL_DIR/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
+    ["qwen2.5_7b"]="$MODEL_DIR/Qwen2.5-7B-Instruct-Q4_K_M.gguf"
+    ["gemma2_9b"]="$MODEL_DIR/gemma-2-9b-it-Q4_K_M.gguf"
+    ["llama4_scout_17b"]="$MODEL_DIR/Llama-4-Scout-17B-16E-Instruct-Q4_K_M.gguf"
 )
 
 KV_TYPES=(f16 q8_0 q4_0 tbq4 tbq3 tbq2)
@@ -32,7 +38,7 @@ PROMPTS=(
 for model in "${!MODELS[@]}"; do
     path="${MODELS[$model]}"
     # Skip missing models (e.g., if Scout download failed)
-    if ! ssh ubuntu@$WORKER "test -f '$path'" 2>/dev/null; then
+    if ! ssh "$WORKER" "test -f '$path'" 2>/dev/null; then
         echo "[$model] SKIP - model file not found on worker"
         continue
     fi
@@ -47,7 +53,7 @@ for model in "${!MODELS[@]}"; do
         for i in "${!PROMPTS[@]}"; do
             prompt="${PROMPTS[$i]}"
             echo "### Prompt $((i+1)): $prompt" >> "$out"
-            ssh ubuntu@$WORKER "$CLI -m '$path' --cache-type-k $kv --cache-type-v $kv --flash-attn on -p '$prompt' -n 120 -t 12 -c 1024 --temp 0 --top-k 1 --single-turn --simple-io --log-disable --no-display-prompt 2>/dev/null" >> "$out" 2>&1 || echo "[FAILED]" >> "$out"
+            ssh "$WORKER" "'$CLI' -m '$path' --cache-type-k $kv --cache-type-v $kv --flash-attn on -p '$prompt' -n 120 -t 12 -c 1024 --temp 0 --top-k 1 --single-turn --simple-io --log-disable --no-display-prompt 2>/dev/null" >> "$out" 2>&1 || echo "[FAILED]" >> "$out"
             echo "" >> "$out"
         done
         echo "[$model × $kv] done"

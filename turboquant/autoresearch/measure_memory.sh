@@ -4,17 +4,23 @@
 
 set -e
 
-WORKER=10.15.1.154
-BENCH=/home/ubuntu/llama.cpp/build/bin/llama-bench
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 TURBOQUANT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+LLAMA_CPP_DIR="${LLAMA_CPP_DIR:-$REPO_ROOT/llama.cpp}"
+REMOTE_LLAMA_CPP_DIR="${REMOTE_LLAMA_CPP_DIR:-$LLAMA_CPP_DIR}"
+MODEL_DIR="${MODEL_DIR:-$HOME/models/llm}"
+WORKER_HOST="${WORKER_HOST:-10.15.1.154}"
+WORKER_USER="${WORKER_USER:-}"
+WORKER="${WORKER_USER:+$WORKER_USER@}$WORKER_HOST"
+CLI="${CLI:-$REMOTE_LLAMA_CPP_DIR/build/bin/llama-cli}"
 OUT="$TURBOQUANT_DIR/results/memory_$(date +%Y%m%d_%H%M%S).tsv"
 
 declare -A MODELS
 MODELS=(
-    ["gilda_3.2b"]="/home/ubuntu/models/llm/reasoning_gilda_Q4KM.gguf"
-    ["qwen2.5_7b"]="/home/ubuntu/models/llm/Qwen2.5-7B-Instruct-Q4_K_M.gguf"
-    ["gemma2_9b"]="/home/ubuntu/models/llm/gemma-2-9b-it-Q4_K_M.gguf"
+    ["gilda_3.2b"]="$MODEL_DIR/reasoning_gilda_Q4KM.gguf"
+    ["qwen2.5_7b"]="$MODEL_DIR/Qwen2.5-7B-Instruct-Q4_K_M.gguf"
+    ["gemma2_9b"]="$MODEL_DIR/gemma-2-9b-it-Q4_K_M.gguf"
 )
 
 KV_TYPES=(f16 q8_0 q4_0 tbq4 tbq3 tbq2)
@@ -26,17 +32,17 @@ for model in "${!MODELS[@]}"; do
     for kv in "${KV_TYPES[@]}"; do
         # Start llama-cli with a short prompt, let it load, measure memory
         # Use --ctx-size 8192 so we see KV cache allocations
-        ssh ubuntu@$WORKER "pidof llama-cli >/dev/null && pkill -9 llama-cli; sleep 1" 2>/dev/null || true
+        ssh "$WORKER" "pidof llama-cli >/dev/null && pkill -9 llama-cli; sleep 1" 2>/dev/null || true
 
         # Run llama-cli briefly to allocate the cache
-        mem_info=$(ssh ubuntu@$WORKER "timeout 30 /home/ubuntu/llama.cpp/build/bin/llama-cli -m '$path' \
+        mem_info=$(ssh "$WORKER" "timeout 30 '$CLI' -m '$path' \
             --cache-type-k $kv --cache-type-v $kv --flash-attn on \
             -p 'hi' -n 1 -t 12 -c 8192 --single-turn --simple-io --log-disable 2>&1 \
             | grep -E 'KV self size|kv_self|context' | head -5" 2>&1 || echo "failed")
 
         # Get process RSS max during run
         # Simpler: re-run and capture rss at the end via /proc
-        rss_mb=$(ssh ubuntu@$WORKER "timeout 60 /home/ubuntu/llama.cpp/build/bin/llama-cli -m '$path' \
+        rss_mb=$(ssh "$WORKER" "timeout 60 '$CLI' -m '$path' \
             --cache-type-k $kv --cache-type-v $kv --flash-attn on \
             -p 'hi' -n 1 -t 12 -c 8192 --single-turn --simple-io --log-disable 2>&1 \
             | grep 'peak memory' | head -1 | grep -oE '[0-9]+(\.[0-9]+)?' | head -1" 2>&1 || echo "0")
