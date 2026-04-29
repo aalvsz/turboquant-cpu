@@ -48,6 +48,9 @@ struct llama_hparams {
     uint32_t n_rot;
     uint32_t n_embd_head_k; // dimension of keys (d_k). d_q is assumed to be the same, but there are n_head q heads, and only n_head_kv k-v heads
     uint32_t n_embd_head_v; // dimension of values (d_v) aka n_embd_head
+    uint32_t n_rot_swa         = 0;
+    uint32_t n_embd_head_k_swa = 0;
+    uint32_t n_embd_head_v_swa = 0;
     uint32_t n_expert = 0;
     uint32_t n_expert_used = 0;
     uint32_t n_rel_attn_bkts = 0;
@@ -179,6 +182,9 @@ struct llama_hparams {
     uint32_t laurel_rank  = 64;
     uint32_t n_embd_altup = 256;
 
+    // gemma4 per-layer embeddings
+    uint32_t n_embd_per_layer = 0;
+
     // needed for sentence-transformers dense layers
     uint32_t dense_2_feat_in  = 0;  // in_features of the 2_Dense
     uint32_t dense_2_feat_out = 0;  // out_features of the 2_Dense
@@ -234,6 +240,11 @@ struct llama_hparams {
     uint32_t n_ff(uint32_t il = 0) const;
 
     uint32_t n_gqa(uint32_t il = 0) const;
+
+    uint32_t n_rot_layer(uint32_t il = 0) const;
+
+    uint32_t n_embd_head_k_layer(uint32_t il = 0) const;
+    uint32_t n_embd_head_v_layer(uint32_t il = 0) const;
 
     // dimension of main + auxiliary input embeddings
     uint32_t n_embd_inp() const;

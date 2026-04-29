@@ -119,6 +119,8 @@ void ggml_vec_dot_tbq4_q8_0(int n, float * GGML_RESTRICT s, size_t bs, const voi
 //   VKQ32[d] += dequant(v_data)[d] * scale,  for d = 0..n-1
 // Single-pass: reads quantized V, accumulates directly into VKQ32.
 // Avoids the intermediate F32 dequant buffer that the default path uses.
+// The x86 TBQ4 fast path uses the same int8 centroid approximation as the
+// TBQ4 K-dot path; non-AVX2 fallback uses the float centroid table.
 void ggml_vec_mad_tbq2(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RESTRICT vx, float scale);
 void ggml_vec_mad_tbq3(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RESTRICT vx, float scale);
 void ggml_vec_mad_tbq4(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RESTRICT vx, float scale);

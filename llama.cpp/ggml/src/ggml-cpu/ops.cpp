@@ -8682,8 +8682,13 @@ static void ggml_compute_forward_flash_attn_ext_f16(
     // When use_ref is set, force the vec-only reference implementation (no tiling, no KV-chunking)
     const bool use_ref = params->use_ref;
 
+    const ggml_type k_vec_dot_type = ggml_get_type_traits_cpu(k->type)->vec_dot_type;
+    const bool kv_has_vec_path =
+        ggml_get_type_traits_cpu(k->type)->vec_dot &&
+        ggml_get_type_traits_cpu(k_vec_dot_type)->from_float &&
+        (v->type == GGML_TYPE_F32 || ggml_get_type_traits(v->type)->to_float);
     const bool kv_is_f32_or_f16 = (k->type == GGML_TYPE_F32 || k->type == GGML_TYPE_F16);
-    const bool use_split_kv_path = !use_ref && (neq1 == 1 && neq3 == 1) && kv_is_f32_or_f16 && (k->type == v->type) && q->type == GGML_TYPE_F32 && nek1 >= 512;
+    const bool use_split_kv_path = !use_ref && (neq1 == 1 && neq3 == 1) && kv_has_vec_path && (k->type == v->type) && q->type == GGML_TYPE_F32 && nek1 >= 512;
 
     if (use_split_kv_path) {
         const int64_t chunk_size = (nek1 + nth - 1) / nth;

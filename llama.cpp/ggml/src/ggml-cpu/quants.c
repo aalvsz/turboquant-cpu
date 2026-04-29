@@ -102,6 +102,44 @@ void ggml_vec_mad_tbq3(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RES
 void ggml_vec_mad_tbq4(int n, float * GGML_RESTRICT VKQ32, const void * GGML_RESTRICT vx, float scale) {
     const block_tbq4 * GGML_RESTRICT x = vx;
     const int nb = n / QK_TBQ;
+
+#if defined(__AVX2__)
+    // Use the existing int8 centroid approximation to avoid AVX2 gathers in
+    // the hot V-cache accumulation loop.
+    const __m128i centroids128 = _mm_loadu_si128((const __m128i *)tbq_centroids_i8_4bit);
+    const __m128i m4b = _mm_set1_epi8(0x0F);
+
+    for (int i = 0; i < nb; i++) {
+        const float s = GGML_CPU_FP16_TO_FP32(x[i].d) * scale * tbq_dscale_4bit;
+        const __m256 vscale = _mm256_set1_ps(s);
+        const __m128i qbits = _mm_loadu_si128((const __m128i *)x[i].qs);
+
+        const __m128i lo_idx = _mm_and_si128(qbits, m4b);
+        const __m128i hi_idx = _mm_and_si128(_mm_srli_epi16(qbits, 4), m4b);
+        const __m128i lo_c = _mm_shuffle_epi8(centroids128, lo_idx);
+        const __m128i hi_c = _mm_shuffle_epi8(centroids128, hi_idx);
+
+        float * out = VKQ32 + i * QK_TBQ;
+
+        __m256 acc = _mm256_loadu_ps(out + 0);
+        __m256 val = _mm256_cvtepi32_ps(_mm256_cvtepi8_epi32(lo_c));
+        _mm256_storeu_ps(out + 0, _mm256_add_ps(acc, _mm256_mul_ps(val, vscale)));
+
+        acc = _mm256_loadu_ps(out + 8);
+        val = _mm256_cvtepi32_ps(_mm256_cvtepi8_epi32(_mm_srli_si128(lo_c, 8)));
+        _mm256_storeu_ps(out + 8, _mm256_add_ps(acc, _mm256_mul_ps(val, vscale)));
+
+        acc = _mm256_loadu_ps(out + 16);
+        val = _mm256_cvtepi32_ps(_mm256_cvtepi8_epi32(hi_c));
+        _mm256_storeu_ps(out + 16, _mm256_add_ps(acc, _mm256_mul_ps(val, vscale)));
+
+        acc = _mm256_loadu_ps(out + 24);
+        val = _mm256_cvtepi32_ps(_mm256_cvtepi8_epi32(_mm_srli_si128(hi_c, 8)));
+        _mm256_storeu_ps(out + 24, _mm256_add_ps(acc, _mm256_mul_ps(val, vscale)));
+    }
+    return;
+#endif
+
     for (int i = 0; i < nb; i++) {
         const float s = GGML_CPU_FP16_TO_FP32(x[i].d) * scale;
         float sc[16];

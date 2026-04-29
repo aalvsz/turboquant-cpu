@@ -411,6 +411,9 @@ struct llama_layer {
     struct ggml_tensor * ffn_act_beta    = nullptr;
     struct ggml_tensor * ffn_act_eps     = nullptr;
 
+    // gemma4 layer output scale
+    struct ggml_tensor * out_scale = nullptr;
+
     struct llama_layer_posnet posnet;
 
     struct llama_layer_convnext convnext;
