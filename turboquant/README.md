@@ -64,6 +64,12 @@ Benchmark and quality-evaluation scripts are in `autoresearch/`. They assume the
 modified `llama.cpp` binaries have been built and that the referenced GGUF model
 files exist locally or on the configured worker.
 
+## Recent Findings
+
+- [Gemma 4 E4B CPU decode findings](GEMMA4_E4B_CPU_FINDINGS.md) - local x86
+  benchmark showing TBQ4 long-context decode speedups versus F16, Q8_0, and
+  Q4_0 after the Gemma 4 and split-KV decode updates.
+
 ## Modules
 
 - `autoresearch/` - benchmark, plotting, and quality-analysis utilities.

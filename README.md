@@ -39,3 +39,8 @@ Example hybrid KV benchmark:
 The benchmark scripts in `turboquant/autoresearch/` use configurable worker and
 model paths. The model files are not included because they are large external
 GGUF artifacts.
+
+Recent sanitized benchmark findings:
+
+- `turboquant/GEMMA4_E4B_CPU_FINDINGS.md` - Gemma 4 E4B CPU decode results for
+  F16, Q8_0, Q4_0, and TBQ4 KV cache types.
