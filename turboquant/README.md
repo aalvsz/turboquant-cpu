@@ -69,6 +69,11 @@ files exist locally or on the configured worker.
 - [Gemma 4 E4B CPU decode findings](GEMMA4_E4B_CPU_FINDINGS.md) - local x86
   benchmark showing TBQ4 long-context decode speedups versus F16, Q8_0, and
   Q4_0 after the Gemma 4 and split-KV decode updates.
+- [Paperization plan](PAPERIZATION.md) - benchmark, perplexity, deterministic
+  generation, GPT-5.5 LLM-as-judge, ablation, and artifact checklist for a
+  publishable systems paper.
+- [ARM replication plan](ARM_REPLICATION.md) - CPU-only replication matrix for
+  Linux ARM and Apple Silicon.
 
 ## Modules
 

@@ -1,0 +1,49 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b3-fd44c01
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Describe the structure of a haiku with an example.
+
+## The Structure of a Haiku
+
+A haiku is a traditional form of Japanese poetry. Its defining characteristic is its **strict, yet simple, structure** based on syllable counting.
+
+The fundamental structure of a haiku is:
+
+**Three phrases (or lines) with a 5, 7, 5 syllable pattern.**
+
+* **Line 1:** 5 syllables
+* **Line 2:** 7 syllables
+* **Line 3:** 5 syllables
+
+**Total Syllables:** 17
+
+### Key Characteristics:
+
+1. **Syllable
+
+Exiting...
+
+--- STDERR ---
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions

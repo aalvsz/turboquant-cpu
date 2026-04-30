@@ -1,0 +1,43 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b3-fd44c01
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write a Python function to compute the nth Fibonacci number.
+
+Here are a few ways to write a Python function to compute the $n$-th Fibonacci number, depending on the trade-offs you want (simplicity, efficiency, or handling very large numbers).
+
+### 1. Iterative Approach (Most Recommended for General Use)
+
+This method uses a loop and is the most efficient for standard inputs because it avoids the overhead of recursion and redundant calculations.
+
+```python
+def fibonacci_iterative(n):
+    """
+    Computes the nth Fibonacci number using an iterative approach.
+    F(0) = 0, F
+
+Exiting...
+
+--- STDERR ---
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions

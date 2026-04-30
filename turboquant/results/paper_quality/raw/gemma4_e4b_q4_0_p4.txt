@@ -1,0 +1,45 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b3-fd44c01
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> What are the main symptoms of a stroke?
+
+It is **crucial to know the signs of a stroke immediately** because **time is brain**. Quick recognition and immediate action can save a life and minimize long-term damage.
+
+The most common and easiest way to remember the signs is using the acronym **F.A.S.T.**
+
+---
+
+## 🧠 F.A.S.T. - The Key Signs of Stroke
+
+**F - Face Drooping:**
+*   Ask the person to smile.
+*   Does one side of the face droop or look uneven?
+
+**A - Arm Weakness:**
+
+Exiting...
+
+--- STDERR ---
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions

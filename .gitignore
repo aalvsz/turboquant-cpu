@@ -25,3 +25,8 @@ checkpoints/
 tmp/
 scratch/
 *.log
+.codex
+
+# Downloaded eval datasets.
+llama.cpp/wikitext-2-raw/
+llama.cpp/wikitext-2-raw-v1.zip

@@ -43,4 +43,8 @@ GGUF artifacts.
 Recent sanitized benchmark findings:
 
 - `turboquant/GEMMA4_E4B_CPU_FINDINGS.md` - Gemma 4 E4B CPU decode results for
-  F16, Q8_0, Q4_0, and TBQ4 KV cache types.
+  F16, Q8_0, Q4_0, and TBQ4 KV cache types, plus preliminary Gemma 4
+  perplexity and deterministic prompt-quality follow-up.
+- `turboquant/PAPERIZATION.md` - paper-grade benchmark, quality, GPT-5.5
+  judge, ablation, and artifact plan.
+- `turboquant/ARM_REPLICATION.md` - later ARM CPU replication protocol.

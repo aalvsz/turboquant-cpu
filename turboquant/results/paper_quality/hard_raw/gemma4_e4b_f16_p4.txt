@@ -1,0 +1,36 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b3-fd44c01
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write exactly four bullet points. Each bullet must start with one of these labels in this order: Risk, Evidence, Mitigation, Next. Topic: using a fast K/V quantization result in a paper.
+
+* **Risk:** Quantization errors in fast K/V lookups could lead to significant degradation in model accuracy and performance.
+* **Evidence:** The paper demonstrates that the proposed quantization scheme maintains high fidelity during the K/V matrix operations compared to standard floating-point implementations.
+* **Mitigation:** Implementing dynamic range scaling during the quantization process helps to minimize the impact of outlier values on the resulting quantized weights.
+* **Next:** Further investigation is required to assess the latency trade-offs when deploying this quantized K/V mechanism on various hardware architectures.
+
+Exiting...
+
+--- STDERR ---
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
