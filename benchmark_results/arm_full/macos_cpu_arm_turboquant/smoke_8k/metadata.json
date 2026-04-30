@@ -1,0 +1,49 @@
+{
+  "timestamp_unix": 1777582119.183933,
+  "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "processor": "arm",
+  "python": "3.14.4 (main, Apr  7 2026, 13:13:20) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "uname": "Darwin ander-alvarez-JDFW43X342 25.3.0 Darwin Kernel Version 25.3.0: Wed Jan 28 20:51:28 PST 2026; root:xnu-12377.91.3~2/RELEASE_ARM64_T6041 arm64",
+  "lscpu": "unavailable: [Errno 2] No such file or directory: 'lscpu'",
+  "bench_bin": "llama.cpp/build-arm-turboquant/bin/llama-bench",
+  "models": {
+    "gemma4_e4b": "/Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf"
+  },
+  "configs": [
+    {
+      "type_k": "f16",
+      "type_v": "f16",
+      "tag": "f16"
+    },
+    {
+      "type_k": "q8_0",
+      "type_v": "q8_0",
+      "tag": "q8_0"
+    },
+    {
+      "type_k": "q4_0",
+      "type_v": "q4_0",
+      "tag": "q4_0"
+    },
+    {
+      "type_k": "tbq4",
+      "type_v": "tbq4",
+      "tag": "tbq4"
+    },
+    {
+      "type_k": "q8_0",
+      "type_v": "tbq4",
+      "tag": "q8_0_tbq4"
+    }
+  ],
+  "depths": "8192",
+  "threads_list": [
+    6
+  ],
+  "n_prompt": 0,
+  "n_gen": 16,
+  "repetitions": 1,
+  "flash_attention": "1",
+  "gpu_layers": 0
+}

@@ -1,0 +1,36 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Write exactly four bullet points. Each bullet must start with one of these labels in this order: Risk, Evidence, Mitigation, Next. Topic: using a fast K/V quantization result in a paper.
+
+* **Risk:** Quantization errors in fast K/V matrices could lead to significant performance degradation or accuracy loss during inference.
+* **Evidence:** The paper demonstrates that the quantization scheme maintains a high level of accuracy compared to the full-precision baseline across various tasks.
+* **Mitigation:** Implementing dynamic quantization strategies can further reduce the bit-width while monitoring the resulting accuracy drop in real-time.
+* **Next:** Future work should explore the impact of different quantization bit-widths on latency and throughput in production environments.
+
+Exiting...
+
+--- STDERR ---
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions

@@ -1,0 +1,35 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> A friend suddenly has one-sided arm weakness and slurred speech but says they want to sleep it off. Respond in two short paragraphs: first explain what to do now, then explain why.
+
+**Call emergency services immediately.** Do not wait for your friend to sleep it off. Tell the operator you suspect a stroke.
+
+This is a medical emergency. Sudden weakness on one side of the body and slurred speech are classic signs of a stroke, which requires immediate medical intervention to minimize brain damage. Time is critical when treating a stroke.
+
+Exiting...
+
+--- STDERR ---
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions

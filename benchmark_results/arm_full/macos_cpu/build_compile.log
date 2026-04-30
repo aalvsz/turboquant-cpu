@@ -1,0 +1,735 @@
+$ cmake --build /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/build-macos-cpu --target llama-cli llama-bench llama-perplexity -j 14
+
+--- STDOUT ---
+[  0%] Built target build_info
+[  0%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o
+[  1%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o
+[  1%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o
+[  1%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/gguf.cpp.o
+[  3%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o
+[  3%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o
+[  3%] Built target cpp-httplib
+[  3%] Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-turboquant.c.o
+[  3%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml.cpp.o
+[  3%] Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o
+[  3%] Linking CXX shared library ../../bin/libggml-base.dylib
+[  3%] Built target ggml-base
+[  3%] Linking CXX shared library ../../../bin/libggml-blas.dylib
+[  3%] Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/quants.c.o
+[  5%] Built target ggml-blas
+[  7%] Linking CXX shared library ../../bin/libggml-cpu.dylib
+[ 13%] Built target ggml-cpu
+[ 15%] Building CXX object ggml/src/CMakeFiles/ggml.dir/ggml-backend-dl.cpp.o
+[ 15%] Building CXX object ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o
+[ 15%] Linking CXX shared library ../../bin/libggml.dylib
+[ 15%] Built target ggml
+[ 15%] Building CXX object src/CMakeFiles/llama.dir/llama.cpp.o
+[ 15%] Building CXX object src/CMakeFiles/llama.dir/llama-arch.cpp.o
+[ 15%] Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache-iswa.cpp.o
+[ 15%] Building CXX object src/CMakeFiles/llama.dir/llama-impl.cpp.o
+[ 16%] Building CXX object src/CMakeFiles/llama.dir/llama-batch.cpp.o
+[ 16%] Building CXX object src/CMakeFiles/llama.dir/llama-hparams.cpp.o
+[ 16%] Building CXX object src/CMakeFiles/llama.dir/llama-io.cpp.o
+[ 16%] Building CXX object src/CMakeFiles/llama.dir/llama-chat.cpp.o
+[ 16%] Building CXX object src/CMakeFiles/llama.dir/llama-grammar.cpp.o
+[ 18%] Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache.cpp.o
+[ 20%] Building CXX object src/CMakeFiles/llama.dir/llama-graph.cpp.o
+[ 20%] Building CXX object src/CMakeFiles/llama.dir/llama-adapter.cpp.o
+[ 20%] Building CXX object src/CMakeFiles/llama.dir/llama-cparams.cpp.o
+[ 20%] Building CXX object src/CMakeFiles/llama.dir/llama-context.cpp.o
+[ 20%] Building CXX object src/CMakeFiles/llama.dir/llama-memory.cpp.o
+[ 20%] Building CXX object src/CMakeFiles/llama.dir/llama-memory-hybrid.cpp.o
+[ 22%] Building CXX object src/CMakeFiles/llama.dir/llama-memory-hybrid-iswa.cpp.o
+[ 22%] Building CXX object src/CMakeFiles/llama.dir/llama-memory-recurrent.cpp.o
+[ 22%] Building CXX object src/CMakeFiles/llama.dir/llama-mmap.cpp.o
+[ 22%] Building CXX object src/CMakeFiles/llama.dir/llama-model-loader.cpp.o
+[ 24%] Building CXX object src/CMakeFiles/llama.dir/llama-model-saver.cpp.o
+[ 24%] Building CXX object src/CMakeFiles/llama.dir/llama-model.cpp.o
+[ 24%] Building CXX object src/CMakeFiles/llama.dir/llama-quant.cpp.o
+[ 24%] Building CXX object src/CMakeFiles/llama.dir/llama-sampling.cpp.o
+[ 24%] Building CXX object src/CMakeFiles/llama.dir/llama-vocab.cpp.o
+[ 26%] Building CXX object src/CMakeFiles/llama.dir/unicode-data.cpp.o
+[ 26%] Building CXX object src/CMakeFiles/llama.dir/unicode.cpp.o
+[ 26%] Building CXX object src/CMakeFiles/llama.dir/models/afmoe.cpp.o
+[ 26%] Building CXX object src/CMakeFiles/llama.dir/models/apertus.cpp.o
+[ 28%] Building CXX object src/CMakeFiles/llama.dir/models/arcee.cpp.o
+[ 28%] Building CXX object src/CMakeFiles/llama.dir/models/arctic.cpp.o
+[ 28%] Building CXX object src/CMakeFiles/llama.dir/models/arwkv7.cpp.o
+[ 28%] Building CXX object src/CMakeFiles/llama.dir/models/baichuan.cpp.o
+[ 30%] Building CXX object src/CMakeFiles/llama.dir/models/bailingmoe.cpp.o
+[ 30%] Building CXX object src/CMakeFiles/llama.dir/models/bailingmoe2.cpp.o
+[ 30%] Building CXX object src/CMakeFiles/llama.dir/models/bert.cpp.o
+[ 30%] Building CXX object src/CMakeFiles/llama.dir/models/bitnet.cpp.o
+[ 32%] Building CXX object src/CMakeFiles/llama.dir/models/bloom.cpp.o
+[ 32%] Building CXX object src/CMakeFiles/llama.dir/models/chameleon.cpp.o
+[ 32%] Building CXX object src/CMakeFiles/llama.dir/models/chatglm.cpp.o
+[ 32%] Building CXX object src/CMakeFiles/llama.dir/models/codeshell.cpp.o
+[ 32%] Building CXX object src/CMakeFiles/llama.dir/models/cogvlm.cpp.o
+[ 33%] Building CXX object src/CMakeFiles/llama.dir/models/cohere2-iswa.cpp.o
+[ 33%] Building CXX object src/CMakeFiles/llama.dir/models/command-r.cpp.o
+[ 33%] Building CXX object src/CMakeFiles/llama.dir/models/dbrx.cpp.o
+[ 33%] Building CXX object src/CMakeFiles/llama.dir/models/deci.cpp.o
+[ 35%] Building CXX object src/CMakeFiles/llama.dir/models/deepseek.cpp.o
+[ 35%] Building CXX object src/CMakeFiles/llama.dir/models/deepseek2.cpp.o
+[ 35%] Building CXX object src/CMakeFiles/llama.dir/models/dots1.cpp.o
+[ 35%] Building CXX object src/CMakeFiles/llama.dir/models/dream.cpp.o
+[ 37%] Building CXX object src/CMakeFiles/llama.dir/models/ernie4-5-moe.cpp.o
+[ 37%] Building CXX object src/CMakeFiles/llama.dir/models/ernie4-5.cpp.o
+[ 37%] Building CXX object src/CMakeFiles/llama.dir/models/exaone.cpp.o
+[ 37%] Building CXX object src/CMakeFiles/llama.dir/models/exaone4.cpp.o
+[ 39%] Building CXX object src/CMakeFiles/llama.dir/models/exaone-moe.cpp.o
+[ 39%] Building CXX object src/CMakeFiles/llama.dir/models/falcon-h1.cpp.o
+[ 39%] Building CXX object src/CMakeFiles/llama.dir/models/falcon.cpp.o
+[ 39%] Building CXX object src/CMakeFiles/llama.dir/models/gemma-embedding.cpp.o
+[ 39%] Building CXX object src/CMakeFiles/llama.dir/models/gemma.cpp.o
+[ 41%] Building CXX object src/CMakeFiles/llama.dir/models/gemma2-iswa.cpp.o
+[ 41%] Building CXX object src/CMakeFiles/llama.dir/models/gemma3.cpp.o
+[ 41%] Building CXX object src/CMakeFiles/llama.dir/models/gemma3n-iswa.cpp.o
+[ 41%] Building CXX object src/CMakeFiles/llama.dir/models/gemma4-iswa.cpp.o
+[ 43%] Building CXX object src/CMakeFiles/llama.dir/models/glm4-moe.cpp.o
+[ 43%] Building CXX object src/CMakeFiles/llama.dir/models/glm4.cpp.o
+[ 43%] Building CXX object src/CMakeFiles/llama.dir/models/gpt2.cpp.o
+[ 43%] Building CXX object src/CMakeFiles/llama.dir/models/gptneox.cpp.o
+[ 45%] Building CXX object src/CMakeFiles/llama.dir/models/granite-hybrid.cpp.o
+[ 45%] Building CXX object src/CMakeFiles/llama.dir/models/granite.cpp.o
+[ 45%] Building CXX object src/CMakeFiles/llama.dir/models/grok.cpp.o
+[ 45%] Building CXX object src/CMakeFiles/llama.dir/models/grovemoe.cpp.o
+[ 47%] Building CXX object src/CMakeFiles/llama.dir/models/hunyuan-dense.cpp.o
+[ 47%] Building CXX object src/CMakeFiles/llama.dir/models/hunyuan-moe.cpp.o
+[ 47%] Building CXX object src/CMakeFiles/llama.dir/models/internlm2.cpp.o
+[ 47%] Building CXX object src/CMakeFiles/llama.dir/models/jais.cpp.o
+[ 47%] Building CXX object src/CMakeFiles/llama.dir/models/jamba.cpp.o
+[ 49%] Building CXX object src/CMakeFiles/llama.dir/models/lfm2.cpp.o
+[ 49%] Building CXX object src/CMakeFiles/llama.dir/models/llada-moe.cpp.o
+[ 49%] Building CXX object src/CMakeFiles/llama.dir/models/llada.cpp.o
+[ 49%] Building CXX object src/CMakeFiles/llama.dir/models/llama-iswa.cpp.o
+[ 50%] Building CXX object src/CMakeFiles/llama.dir/models/llama.cpp.o
+[ 50%] Building CXX object src/CMakeFiles/llama.dir/models/maincoder.cpp.o
+[ 50%] Building CXX object src/CMakeFiles/llama.dir/models/mamba.cpp.o
+[ 50%] Building CXX object src/CMakeFiles/llama.dir/models/mimo2-iswa.cpp.o
+[ 52%] Building CXX object src/CMakeFiles/llama.dir/models/minicpm3.cpp.o
+[ 52%] Building CXX object src/CMakeFiles/llama.dir/models/minimax-m2.cpp.o
+[ 52%] Building CXX object src/CMakeFiles/llama.dir/models/modern-bert.cpp.o
+[ 52%] Building CXX object src/CMakeFiles/llama.dir/models/mpt.cpp.o
+[ 54%] Building CXX object src/CMakeFiles/llama.dir/models/nemotron-h.cpp.o
+[ 54%] Building CXX object src/CMakeFiles/llama.dir/models/nemotron.cpp.o
+[ 54%] Building CXX object src/CMakeFiles/llama.dir/models/neo-bert.cpp.o
+[ 54%] Building CXX object src/CMakeFiles/llama.dir/models/olmo.cpp.o
+[ 54%] Building CXX object src/CMakeFiles/llama.dir/models/olmo2.cpp.o
+[ 56%] Building CXX object src/CMakeFiles/llama.dir/models/olmoe.cpp.o
+[ 56%] Building CXX object src/CMakeFiles/llama.dir/models/openai-moe-iswa.cpp.o
+[ 56%] Building CXX object src/CMakeFiles/llama.dir/models/openelm.cpp.o
+[ 56%] Building CXX object src/CMakeFiles/llama.dir/models/orion.cpp.o
+[ 58%] Building CXX object src/CMakeFiles/llama.dir/models/pangu-embedded.cpp.o
+[ 58%] Building CXX object src/CMakeFiles/llama.dir/models/phi2.cpp.o
+[ 58%] Building CXX object src/CMakeFiles/llama.dir/models/phi3.cpp.o
+[ 58%] Building CXX object src/CMakeFiles/llama.dir/models/plamo.cpp.o
+[ 60%] Building CXX object src/CMakeFiles/llama.dir/models/plamo2.cpp.o
+[ 60%] Building CXX object src/CMakeFiles/llama.dir/models/plamo3.cpp.o
+[ 60%] Building CXX object src/CMakeFiles/llama.dir/models/plm.cpp.o
+[ 60%] Building CXX object src/CMakeFiles/llama.dir/models/qwen.cpp.o
+[ 62%] Building CXX object src/CMakeFiles/llama.dir/models/qwen2.cpp.o
+[ 62%] Building CXX object src/CMakeFiles/llama.dir/models/qwen2moe.cpp.o
+[ 62%] Building CXX object src/CMakeFiles/llama.dir/models/qwen2vl.cpp.o
+[ 62%] Building CXX object src/CMakeFiles/llama.dir/models/qwen3.cpp.o
+[ 62%] Building CXX object src/CMakeFiles/llama.dir/models/qwen3vl.cpp.o
+[ 64%] Building CXX object src/CMakeFiles/llama.dir/models/qwen3vl-moe.cpp.o
+[ 64%] Building CXX object src/CMakeFiles/llama.dir/models/qwen3moe.cpp.o
+[ 64%] Building CXX object src/CMakeFiles/llama.dir/models/qwen3next.cpp.o
+[ 64%] Building CXX object src/CMakeFiles/llama.dir/models/refact.cpp.o
+[ 66%] Building CXX object src/CMakeFiles/llama.dir/models/rnd1.cpp.o
+[ 66%] Building CXX object src/CMakeFiles/llama.dir/models/rwkv6-base.cpp.o
+[ 66%] Building CXX object src/CMakeFiles/llama.dir/models/rwkv6.cpp.o
+[ 66%] Building CXX object src/CMakeFiles/llama.dir/models/rwkv6qwen2.cpp.o
+[ 67%] Building CXX object src/CMakeFiles/llama.dir/models/rwkv7-base.cpp.o
+[ 67%] Building CXX object src/CMakeFiles/llama.dir/models/rwkv7.cpp.o
+[ 67%] Building CXX object src/CMakeFiles/llama.dir/models/seed-oss.cpp.o
+[ 67%] Building CXX object src/CMakeFiles/llama.dir/models/smallthinker.cpp.o
+[ 69%] Building CXX object src/CMakeFiles/llama.dir/models/smollm3.cpp.o
+[ 69%] Building CXX object src/CMakeFiles/llama.dir/models/stablelm.cpp.o
+[ 69%] Building CXX object src/CMakeFiles/llama.dir/models/starcoder.cpp.o
+[ 69%] Building CXX object src/CMakeFiles/llama.dir/models/starcoder2.cpp.o
+[ 69%] Building CXX object src/CMakeFiles/llama.dir/models/t5-dec.cpp.o
+[ 71%] Building CXX object src/CMakeFiles/llama.dir/models/t5-enc.cpp.o
+[ 71%] Building CXX object src/CMakeFiles/llama.dir/models/wavtokenizer-dec.cpp.o
+[ 71%] Building CXX object src/CMakeFiles/llama.dir/models/xverse.cpp.o
+[ 71%] Building CXX object src/CMakeFiles/llama.dir/models/mistral3.cpp.o
+[ 73%] Building CXX object src/CMakeFiles/llama.dir/models/graph-context-mamba.cpp.o
+[ 73%] Linking CXX shared library ../bin/libllama.dylib
+[ 73%] Built target llama
+[ 73%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/mtmd.cpp.o
+[ 73%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/llama4.cpp.o
+[ 75%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/glm4v.cpp.o
+[ 77%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/llava.cpp.o
+[ 77%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/internvl.cpp.o
+[ 77%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/cogvlm.cpp.o
+[ 77%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/kimivl.cpp.o
+[ 77%] Building CXX object common/CMakeFiles/common.dir/arg.cpp.o
+[ 79%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/mtmd-helper.cpp.o
+[ 79%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/pixtral.cpp.o
+[ 79%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/minicpmv.cpp.o
+[ 79%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/conformer.cpp.o
+[ 79%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/mtmd-audio.cpp.o
+[ 79%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/clip.cpp.o
+[ 79%] Building CXX object common/CMakeFiles/common.dir/chat-parser.cpp.o
+[ 79%] Building CXX object common/CMakeFiles/common.dir/chat-parser-xml-toolcall.cpp.o
+[ 79%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/qwen2vl.cpp.o
+[ 81%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/qwen3vl.cpp.o
+[ 81%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/siglip.cpp.o
+[ 81%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/whisper-enc.cpp.o
+[ 81%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/mobilenetv5.cpp.o
+[ 81%] Building CXX object tools/mtmd/CMakeFiles/mtmd.dir/models/youtuvl.cpp.o
+[ 83%] Building CXX object common/CMakeFiles/common.dir/chat-peg-parser.cpp.o
+[ 83%] Building CXX object common/CMakeFiles/common.dir/chat.cpp.o
+[ 83%] Building CXX object common/CMakeFiles/common.dir/common.cpp.o
+[ 83%] Building CXX object common/CMakeFiles/common.dir/console.cpp.o
+[ 84%] Building CXX object common/CMakeFiles/common.dir/debug.cpp.o
+[ 84%] Building CXX object common/CMakeFiles/common.dir/download.cpp.o
+[ 84%] Building CXX object common/CMakeFiles/common.dir/json-partial.cpp.o
+[ 84%] Building CXX object common/CMakeFiles/common.dir/json-schema-to-grammar.cpp.o
+[ 86%] Building CXX object common/CMakeFiles/common.dir/llguidance.cpp.o
+[ 86%] Building CXX object common/CMakeFiles/common.dir/log.cpp.o
+[ 86%] Building CXX object common/CMakeFiles/common.dir/ngram-cache.cpp.o
+[ 86%] Building CXX object common/CMakeFiles/common.dir/ngram-map.cpp.o
+[ 88%] Building CXX object common/CMakeFiles/common.dir/ngram-mod.cpp.o
+[ 88%] Building CXX object common/CMakeFiles/common.dir/peg-parser.cpp.o
+[ 88%] Building CXX object common/CMakeFiles/common.dir/preset.cpp.o
+[ 88%] Building CXX object common/CMakeFiles/common.dir/regex-partial.cpp.o
+[ 88%] Building CXX object common/CMakeFiles/common.dir/sampling.cpp.o
+[ 90%] Building CXX object common/CMakeFiles/common.dir/speculative.cpp.o
+[ 90%] Building CXX object common/CMakeFiles/common.dir/unicode.cpp.o
+[ 90%] Building CXX object common/CMakeFiles/common.dir/jinja/lexer.cpp.o
+[ 90%] Building CXX object common/CMakeFiles/common.dir/jinja/parser.cpp.o
+[ 92%] Building CXX object common/CMakeFiles/common.dir/jinja/runtime.cpp.o
+[ 92%] Building CXX object common/CMakeFiles/common.dir/jinja/value.cpp.o
+[ 92%] Building CXX object common/CMakeFiles/common.dir/jinja/string.cpp.o
+[ 92%] Building CXX object common/CMakeFiles/common.dir/jinja/caps.cpp.o
+[ 94%] Building CXX object common/CMakeFiles/common.dir/__/license.cpp.o
+[ 96%] Linking CXX shared library ../../bin/libmtmd.dylib
+[ 96%] Built target mtmd
+[ 96%] Linking CXX static library libcommon.a
+[ 96%] Built target common
+[ 96%] Building CXX object tools/server/CMakeFiles/server-context.dir/server-task.cpp.o
+[ 96%] Building CXX object tools/server/CMakeFiles/server-context.dir/server-queue.cpp.o
+[ 96%] Building CXX object tools/server/CMakeFiles/server-context.dir/server-common.cpp.o
+[ 98%] Building CXX object tools/server/CMakeFiles/server-context.dir/server-context.cpp.o
+[ 98%] Linking CXX static library libserver-context.a
+[ 98%] Built target server-context
+[100%] Building CXX object tools/cli/CMakeFiles/llama-cli.dir/cli.cpp.o
+[100%] Linking CXX executable ../../bin/llama-cli
+[100%] Built target llama-cli
+[  0%] Built target build_info
+[  0%] Built target cpp-httplib
+[  4%] Built target ggml-base
+[  6%] Built target ggml-blas
+[ 15%] Built target ggml-cpu
+[ 17%] Built target ggml
+[ 84%] Built target llama
+[100%] Built target common
+[100%] Building CXX object tools/llama-bench/CMakeFiles/llama-bench.dir/llama-bench.cpp.o
+[100%] Linking CXX executable ../../bin/llama-bench
+[100%] Built target llama-bench
+[  0%] Built target build_info
+[  0%] Built target cpp-httplib
+[  4%] Built target ggml-base
+[  6%] Built target ggml-blas
+[ 14%] Built target ggml-cpu
+[ 17%] Built target ggml
+[ 82%] Built target llama
+[ 97%] Built target common
+[100%] Building CXX object tools/perplexity/CMakeFiles/llama-perplexity.dir/perplexity.cpp.o
+[100%] Linking CXX executable ../../bin/llama-perplexity
+[100%] Built target llama-perplexity
+
+
+--- STDERR ---
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/chat.cpp:10:
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/parser.h:4:
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:4:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:130:21: warning: function 'as_int' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  130 |     virtual int64_t as_int() const { throw std::runtime_error(type() + " is not an int value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:131:20: warning: function 'as_float' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  131 |     virtual double as_float() const { throw std::runtime_error(type() + " is not a float value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:132:20: warning: function 'as_string' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  132 |     virtual string as_string() const { throw std::runtime_error(type() + " is not a string value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:133:18: warning: function 'as_bool' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  133 |     virtual bool as_bool() const { throw std::runtime_error(type() + " is not a bool value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:134:40: warning: function 'as_array' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  134 |     virtual const std::vector<value> & as_array() const { throw std::runtime_error(type() + " is not an array value"); }
+      |                                        ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:135:58: warning: function 'as_ordered_object' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  135 |     virtual const std::vector<std::pair<value, value>> & as_ordered_object() const { throw std::runtime_error(type() + " is not an object value"); }
+      |                                                          ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:136:19: warning: function 'invoke' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  136 |     virtual value invoke(const func_args &) const { throw std::runtime_error(type() + " is not a function value"); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:139:35: warning: function 'get_builtins' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  139 |     virtual const func_builtins & get_builtins() const {
+      |                                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:143:18: warning: function 'has_key' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  143 |     virtual bool has_key(const value &) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:144:18: warning: function 'insert' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  144 |     virtual void insert(const value & /* key */, const value & /* val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:145:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  145 |     virtual value & at(const value & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:146:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     virtual value & at(const value & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:147:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  147 |     virtual value & at(const std::string & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:148:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  148 |     virtual value & at(const std::string & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:149:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  149 |     virtual value & at(int64_t /* idx */, value & /* default_val */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:150:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  150 |     virtual value & at(int64_t /* idx */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/chat.cpp:10:
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/parser.h:4:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:110:19: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  110 |     virtual value execute_impl(context &) { throw std::runtime_error("cannot exec " + type()); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:146:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:198:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  198 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:212:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  212 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:504:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  504 |     value execute_impl(context &) override {
+      |           ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/common.cpp:8:
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/common.h:8:
+In file included from /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/set:1519:
+In file included from /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/functional:601:
+In file included from /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/vector:363:
+In file included from /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/locale:203:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale_dir/wstring_convert.h:179:1: warning: 'wstring_convert<std::codecvt_utf8<char32_t>, char32_t>' is deprecated [-Wdeprecated-declarations]
+  179 | wstring_convert<_Codecvt, _Elem, _WideAlloc, _ByteAlloc>::to_bytes(const _Elem* __frm, const _Elem* __frm_end) {
+      | ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale_dir/wstring_convert.h:83:12: note: in instantiation of member function 'std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t>::to_bytes' requested here
+   83 |     return to_bytes(__wstr.data(), __wstr.data() + __wstr.size());
+      |            ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/common.cpp:732:52: note: in instantiation of member function 'std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t>::to_bytes' requested here
+  732 |         std::string filename_reencoded = converter.to_bytes(filename_utf32);
+      |                                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale_dir/wstring_convert.h:34:7: note: 'wstring_convert<std::codecvt_utf8<char32_t>, char32_t>' has been explicitly marked deprecated here
+   34 | class _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
+      |       ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__config:581:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  581 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__config:554:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  554 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+1 warning generated.
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/lexer.cpp:2:
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:4:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:130:21: warning: function 'as_int' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  130 |     virtual int64_t as_int() const { throw std::runtime_error(type() + " is not an int value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:131:20: warning: function 'as_float' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  131 |     virtual double as_float() const { throw std::runtime_error(type() + " is not a float value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:132:20: warning: function 'as_string' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  132 |     virtual string as_string() const { throw std::runtime_error(type() + " is not a string value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:133:18: warning: function 'as_bool' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  133 |     virtual bool as_bool() const { throw std::runtime_error(type() + " is not a bool value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:134:40: warning: function 'as_array' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  134 |     virtual const std::vector<value> & as_array() const { throw std::runtime_error(type() + " is not an array value"); }
+      |                                        ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:135:58: warning: function 'as_ordered_object' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  135 |     virtual const std::vector<std::pair<value, value>> & as_ordered_object() const { throw std::runtime_error(type() + " is not an object value"); }
+      |                                                          ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:136:19: warning: function 'invoke' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  136 |     virtual value invoke(const func_args &) const { throw std::runtime_error(type() + " is not a function value"); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:139:35: warning: function 'get_builtins' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  139 |     virtual const func_builtins & get_builtins() const {
+      |                                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:143:18: warning: function 'has_key' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  143 |     virtual bool has_key(const value &) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:144:18: warning: function 'insert' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  144 |     virtual void insert(const value & /* key */, const value & /* val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:145:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  145 |     virtual value & at(const value & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:146:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     virtual value & at(const value & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:147:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  147 |     virtual value & at(const std::string & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:148:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  148 |     virtual value & at(const std::string & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:149:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  149 |     virtual value & at(int64_t /* idx */, value & /* default_val */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:150:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  150 |     virtual value & at(int64_t /* idx */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/lexer.cpp:2:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:110:19: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  110 |     virtual value execute_impl(context &) { throw std::runtime_error("cannot exec " + type()); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:146:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:198:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  198 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:212:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  212 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:504:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  504 |     value execute_impl(context &) override {
+      |           ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/parser.cpp:2:
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:4:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:130:21: warning: function 'as_int' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  130 |     virtual int64_t as_int() const { throw std::runtime_error(type() + " is not an int value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:131:20: warning: function 'as_float' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  131 |     virtual double as_float() const { throw std::runtime_error(type() + " is not a float value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:132:20: warning: function 'as_string' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  132 |     virtual string as_string() const { throw std::runtime_error(type() + " is not a string value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:133:18: warning: function 'as_bool' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  133 |     virtual bool as_bool() const { throw std::runtime_error(type() + " is not a bool value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:134:40: warning: function 'as_array' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  134 |     virtual const std::vector<value> & as_array() const { throw std::runtime_error(type() + " is not an array value"); }
+      |                                        ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:135:58: warning: function 'as_ordered_object' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  135 |     virtual const std::vector<std::pair<value, value>> & as_ordered_object() const { throw std::runtime_error(type() + " is not an object value"); }
+      |                                                          ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:136:19: warning: function 'invoke' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  136 |     virtual value invoke(const func_args &) const { throw std::runtime_error(type() + " is not a function value"); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:139:35: warning: function 'get_builtins' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  139 |     virtual const func_builtins & get_builtins() const {
+      |                                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:143:18: warning: function 'has_key' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  143 |     virtual bool has_key(const value &) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:144:18: warning: function 'insert' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  144 |     virtual void insert(const value & /* key */, const value & /* val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:145:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  145 |     virtual value & at(const value & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:146:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     virtual value & at(const value & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:147:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  147 |     virtual value & at(const std::string & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:148:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  148 |     virtual value & at(const std::string & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:149:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  149 |     virtual value & at(int64_t /* idx */, value & /* default_val */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:150:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  150 |     virtual value & at(int64_t /* idx */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/parser.cpp:2:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:110:19: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  110 |     virtual value execute_impl(context &) { throw std::runtime_error("cannot exec " + type()); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:146:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:198:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  198 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:212:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  212 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:504:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  504 |     value execute_impl(context &) override {
+      |           ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.cpp:2:
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:4:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:130:21: warning: function 'as_int' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  130 |     virtual int64_t as_int() const { throw std::runtime_error(type() + " is not an int value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:131:20: warning: function 'as_float' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  131 |     virtual double as_float() const { throw std::runtime_error(type() + " is not a float value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:132:20: warning: function 'as_string' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  132 |     virtual string as_string() const { throw std::runtime_error(type() + " is not a string value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:133:18: warning: function 'as_bool' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  133 |     virtual bool as_bool() const { throw std::runtime_error(type() + " is not a bool value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:134:40: warning: function 'as_array' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  134 |     virtual const std::vector<value> & as_array() const { throw std::runtime_error(type() + " is not an array value"); }
+      |                                        ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:135:58: warning: function 'as_ordered_object' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  135 |     virtual const std::vector<std::pair<value, value>> & as_ordered_object() const { throw std::runtime_error(type() + " is not an object value"); }
+      |                                                          ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:136:19: warning: function 'invoke' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  136 |     virtual value invoke(const func_args &) const { throw std::runtime_error(type() + " is not a function value"); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:139:35: warning: function 'get_builtins' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  139 |     virtual const func_builtins & get_builtins() const {
+      |                                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:143:18: warning: function 'has_key' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  143 |     virtual bool has_key(const value &) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:144:18: warning: function 'insert' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  144 |     virtual void insert(const value & /* key */, const value & /* val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:145:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  145 |     virtual value & at(const value & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:146:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     virtual value & at(const value & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:147:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  147 |     virtual value & at(const std::string & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:148:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  148 |     virtual value & at(const std::string & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:149:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  149 |     virtual value & at(int64_t /* idx */, value & /* default_val */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:150:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  150 |     virtual value & at(int64_t /* idx */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.cpp:1:
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:4:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:130:21: warning: function 'as_int' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  130 |     virtual int64_t as_int() const { throw std::runtime_error(type() + " is not an int value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:131:20: warning: function 'as_float' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  131 |     virtual double as_float() const { throw std::runtime_error(type() + " is not a float value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:132:20: warning: function 'as_string' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  132 |     virtual string as_string() const { throw std::runtime_error(type() + " is not a string value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:133:18: warning: function 'as_bool' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  133 |     virtual bool as_bool() const { throw std::runtime_error(type() + " is not a bool value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:134:40: warning: function 'as_array' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  134 |     virtual const std::vector<value> & as_array() const { throw std::runtime_error(type() + " is not an array value"); }
+      |                                        ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:135:58: warning: function 'as_ordered_object' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  135 |     virtual const std::vector<std::pair<value, value>> & as_ordered_object() const { throw std::runtime_error(type() + " is not an object value"); }
+      |                                                          ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:136:19: warning: function 'invoke' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  136 |     virtual value invoke(const func_args &) const { throw std::runtime_error(type() + " is not a function value"); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:139:35: warning: function 'get_builtins' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  139 |     virtual const func_builtins & get_builtins() const {
+      |                                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:143:18: warning: function 'has_key' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  143 |     virtual bool has_key(const value &) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:144:18: warning: function 'insert' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  144 |     virtual void insert(const value & /* key */, const value & /* val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:145:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  145 |     virtual value & at(const value & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:146:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     virtual value & at(const value & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:147:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  147 |     virtual value & at(const std::string & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:148:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  148 |     virtual value & at(const std::string & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:149:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  149 |     virtual value & at(int64_t /* idx */, value & /* default_val */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:150:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  150 |     virtual value & at(int64_t /* idx */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.cpp:2:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:110:19: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  110 |     virtual value execute_impl(context &) { throw std::runtime_error("cannot exec " + type()); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:146:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:198:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  198 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:212:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  212 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:504:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  504 |     value execute_impl(context &) override {
+      |           ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.cpp:1:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:110:19: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  110 |     virtual value execute_impl(context &) { throw std::runtime_error("cannot exec " + type()); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:146:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:198:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  198 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:212:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  212 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:504:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  504 |     value execute_impl(context &) override {
+      |           ^
+21 warnings generated.
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/string.cpp:2:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:130:21: warning: function 'as_int' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  130 |     virtual int64_t as_int() const { throw std::runtime_error(type() + " is not an int value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:131:20: warning: function 'as_float' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  131 |     virtual double as_float() const { throw std::runtime_error(type() + " is not a float value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:132:20: warning: function 'as_string' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  132 |     virtual string as_string() const { throw std::runtime_error(type() + " is not a string value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:133:18: warning: function 'as_bool' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  133 |     virtual bool as_bool() const { throw std::runtime_error(type() + " is not a bool value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:134:40: warning: function 'as_array' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  134 |     virtual const std::vector<value> & as_array() const { throw std::runtime_error(type() + " is not an array value"); }
+      |                                        ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:135:58: warning: function 'as_ordered_object' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  135 |     virtual const std::vector<std::pair<value, value>> & as_ordered_object() const { throw std::runtime_error(type() + " is not an object value"); }
+      |                                                          ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:136:19: warning: function 'invoke' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  136 |     virtual value invoke(const func_args &) const { throw std::runtime_error(type() + " is not a function value"); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:139:35: warning: function 'get_builtins' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  139 |     virtual const func_builtins & get_builtins() const {
+      |                                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:143:18: warning: function 'has_key' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  143 |     virtual bool has_key(const value &) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:144:18: warning: function 'insert' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  144 |     virtual void insert(const value & /* key */, const value & /* val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:145:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  145 |     virtual value & at(const value & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:146:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     virtual value & at(const value & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:147:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  147 |     virtual value & at(const std::string & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:148:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  148 |     virtual value & at(const std::string & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:149:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  149 |     virtual value & at(int64_t /* idx */, value & /* default_val */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/./jinja/value.h:150:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  150 |     virtual value & at(int64_t /* idx */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.cpp:718:20: warning: function 'operator()' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  718 |         {"indent", [](const func_args &) -> value {
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.cpp:721:18: warning: function 'operator()' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  721 |         {"join", [](const func_args &) -> value {
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.cpp:947:20: warning: function 'operator()' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  947 |         {"unique", [](const func_args &) -> value {
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.cpp:1041:18: warning: function 'operator()' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+ 1041 |         {"join", [](const func_args &) -> value {
+      |                  ^
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/caps.cpp:1:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:130:21: warning: function 'as_int' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  130 |     virtual int64_t as_int() const { throw std::runtime_error(type() + " is not an int value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:131:20: warning: function 'as_float' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  131 |     virtual double as_float() const { throw std::runtime_error(type() + " is not a float value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:132:20: warning: function 'as_string' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  132 |     virtual string as_string() const { throw std::runtime_error(type() + " is not a string value"); }
+      |                    ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:133:18: warning: function 'as_bool' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  133 |     virtual bool as_bool() const { throw std::runtime_error(type() + " is not a bool value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:134:40: warning: function 'as_array' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  134 |     virtual const std::vector<value> & as_array() const { throw std::runtime_error(type() + " is not an array value"); }
+      |                                        ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:135:58: warning: function 'as_ordered_object' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  135 |     virtual const std::vector<std::pair<value, value>> & as_ordered_object() const { throw std::runtime_error(type() + " is not an object value"); }
+      |                                                          ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:136:19: warning: function 'invoke' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  136 |     virtual value invoke(const func_args &) const { throw std::runtime_error(type() + " is not a function value"); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:139:35: warning: function 'get_builtins' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  139 |     virtual const func_builtins & get_builtins() const {
+      |                                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:143:18: warning: function 'has_key' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  143 |     virtual bool has_key(const value &) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:144:18: warning: function 'insert' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  144 |     virtual void insert(const value & /* key */, const value & /* val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                  ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:145:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  145 |     virtual value & at(const value & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:146:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     virtual value & at(const value & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:147:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  147 |     virtual value & at(const std::string & /* key */, value & /* default_val */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:148:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  148 |     virtual value & at(const std::string & /* key */) { throw std::runtime_error(type() + " is not an object value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:149:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  149 |     virtual value & at(int64_t /* idx */, value & /* default_val */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/value.h:150:21: warning: function 'at' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  150 |     virtual value & at(int64_t /* idx */) { throw std::runtime_error(type() + " is not an array value"); }
+      |                     ^
+16 warnings generated.
+In file included from /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/caps.cpp:2:
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:110:19: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  110 |     virtual value execute_impl(context &) { throw std::runtime_error("cannot exec " + type()); }
+      |                   ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:146:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  146 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:198:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  198 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:212:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  212 |     value execute_impl(context &) override {
+      |           ^
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/common/jinja/runtime.h:504:11: warning: function 'execute_impl' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+  504 |     value execute_impl(context &) override {
+      |           ^
+21 warnings generated.
+21 warnings generated.
+21 warnings generated.
+25 warnings generated.
+21 warnings generated.

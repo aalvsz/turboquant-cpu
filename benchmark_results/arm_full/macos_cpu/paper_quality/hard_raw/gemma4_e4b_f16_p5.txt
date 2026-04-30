@@ -1,0 +1,34 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Summarize this paragraph in exactly 35 to 45 words:
+TBQ4 improved long-context decode speed for Gemma 4 E4B on one Intel desktop CPU. However, the initial quality set used only five simple prompts and a short generation budget, making it hard to detect subtle degradation. The result is encouraging but not sufficient for a broad paper claim.
+
+TBQ4 enhanced long-context decoding speed for Gemma 4E4B on Intel desktop CPUs. However, the initial quality tests were limited to five simple prompts and a short generation budget. This restricted scope makes it difficult to confirm subtle performance degradation, meaning the results are promising but not yet strong enough for a broad paper claim.
+
+Exiting...
+
+--- STDERR ---
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions

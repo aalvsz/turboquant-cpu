@@ -1,0 +1,11 @@
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 turboquant/autoresearch/paper_perplexity_matrix.py --perplexity-bin /Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/build-macos-cpu/bin/llama-perplexity --model gemma4_e4b=/Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf --dataset wikitext-2-raw/wiki.test.raw --threads 6 --ctx-size 512 --chunks 20 --output-dir /Users/ander.alvarez/dev/perso/turboquant-cpu/turboquant/results/macos_cpu/paper_ppl/gemma4_e4b_cpu_ppl20
+
+--- STDOUT ---
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/build-macos-cpu/bin/llama-perplexity -m /Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf -f wikitext-2-raw/wiki.test.raw -t 6 -c 512 --chunks 20 -ctk f16 -ctv f16 -fa on -ngl 0
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/build-macos-cpu/bin/llama-perplexity -m /Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf -f wikitext-2-raw/wiki.test.raw -t 6 -c 512 --chunks 20 -ctk q8_0 -ctv q8_0 -fa on -ngl 0
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/build-macos-cpu/bin/llama-perplexity -m /Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf -f wikitext-2-raw/wiki.test.raw -t 6 -c 512 --chunks 20 -ctk q4_0 -ctv q4_0 -fa on -ngl 0
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/build-macos-cpu/bin/llama-perplexity -m /Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf -f wikitext-2-raw/wiki.test.raw -t 6 -c 512 --chunks 20 -ctk tbq4 -ctv tbq4 -fa on -ngl 0
+/Users/ander.alvarez/dev/perso/turboquant-cpu/llama.cpp/build-macos-cpu/bin/llama-perplexity -m /Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf -f wikitext-2-raw/wiki.test.raw -t 6 -c 512 --chunks 20 -ctk q8_0 -ctv tbq4 -fa on -ngl 0
+
+
+--- STDERR ---
