@@ -60,6 +60,43 @@ The edge agent returned: {action: read_file, path: /var/log/sensor.json,
 risk: low fallback: SAFE-HALT}. The downstream controller rejected it because it
 was not strict JSON and because args.path was missing.
 """,
+    "memory": """
+2026-05-02T10:04:01Z context_tokens=7936 kv_cache=near_limit swap_activity=none
+2026-05-02T10:04:02Z local_agent mode=offline gpu_layers=0 requested_context=8192
+2026-05-02T10:04:03Z candidate=q8_0/tbq4 goal="reduce KV memory without relaxing answer quality"
+""",
+    "retrieval": """
+2026-05-02T10:11:40Z retriever shards=5 top_k=8 latency_ms=144
+2026-05-02T10:11:41Z retrieved_docs=8 duplicate_docs=2 stale_docs=1
+2026-05-02T10:11:42Z orchestrator note="summarize evidence before final action"
+""",
+    "timeout": """
+2026-05-02T10:18:20Z tool=calibrate_camera timeout_ms=2500 elapsed_ms=2810 ok=false
+2026-05-02T10:18:22Z fallback=read_cached_calibration ok=true age_minutes=7
+2026-05-02T10:18:23Z proposed_action=continue_inspection confidence=0.82
+""",
+    "config": """
+2026-05-02T10:27:00Z config_current=q4_0/q4_0 step_wall_ms=3180
+2026-05-02T10:27:01Z config_candidate=tbq4/tbq4 step_wall_ms=2710
+2026-05-02T10:27:02Z config_candidate=q8_0/tbq4 step_wall_ms=2795
+2026-05-02T10:27:03Z policy="do not trade away safety or JSON reliability"
+""",
+    "thermal": """
+2026-05-02T10:35:10Z sample=1 temp_c=63 cpu_pct=611 step_ms=2360
+2026-05-02T10:40:10Z sample=2 temp_c=68 cpu_pct=604 step_ms=2410
+2026-05-02T10:45:10Z sample=3 temp_c=71 cpu_pct=596 step_ms=2475
+2026-05-02T10:50:10Z sample=4 temp_c=73 cpu_pct=590 step_ms=2525
+""",
+    "audit": """
+2026-05-02T11:00:00Z audit requirement="claim must be supported by repeated local measurements"
+2026-05-02T11:00:01Z result_json_valid=true tool_failures=0 oom_events=0
+2026-05-02T11:00:02Z reviewer_note="avoid strict lossless unless every quality check is invariant"
+""",
+    "anomaly": """
+2026-05-02T11:15:30Z sensor=camera_frame_diff zscore=4.1
+2026-05-02T11:15:31Z sensor=vibration zscore=1.2
+2026-05-02T11:15:32Z proposed_action=slow_line confidence=0.79 actuator=true
+""",
 }
 
 
@@ -138,6 +175,12 @@ TOOL_DESCRIPTIONS = {
     "llm_classify_risk": "Use the local LLM to classify an edge safety risk.",
     "llm_repair_schema": "Use the local LLM to repair malformed controller JSON.",
     "llm_recommend_config": "Use the local LLM to recommend a KV deployment config.",
+    "compare_kv_configs": "Compare two KV configs using prior throughput facts.",
+    "check_step_budget": "Check whether a latency measurement satisfies a step budget.",
+    "rank_deployment_configs": "Rank KV configs for a stated edge deployment priority.",
+    "extract_controller_action": "Extract the proposed action, confidence, and actuator status from text.",
+    "assess_claim_language": "Check whether a TurboQuant paper claim is appropriately caveated.",
+    "estimate_context_pressure": "Estimate prompt/KV pressure for a target context length.",
 }
 
 
@@ -155,10 +198,11 @@ class ToolResult:
 class LlmToolClient:
     """Small OpenAI-compatible client used by LLM-powered tools."""
 
-    def __init__(self, base_url: str, model: str, timeout: float = 120.0) -> None:
+    def __init__(self, base_url: str, model: str, timeout: float = 120.0, tool_max_tokens: int = 96) -> None:
         self.base_url = base_url.rstrip("/")
         self.model = model
         self.timeout = timeout
+        self.tool_max_tokens = tool_max_tokens
 
     def chat(
         self,
@@ -286,6 +330,97 @@ def retrieve_report_excerpt(topic: str = "q4_vs_tbq") -> str:
     return REPORT_EXCERPTS.get(topic, REPORT_EXCERPTS["q4_vs_tbq"])
 
 
+def compare_kv_configs(
+    model: str = "gemma4_e4b",
+    baseline_config: str = "q4_0/q4_0",
+    candidate_config: str = "tbq4/tbq4",
+    host: str = "arm_m4",
+) -> Dict[str, Any]:
+    """Compare two KV configs using prior throughput facts."""
+    host_data = METRIC_TABLE.get(host, {})
+    model_data = host_data.get(model, {})
+    baseline = model_data.get(baseline_config)
+    candidate = model_data.get(candidate_config)
+    if not baseline or not candidate:
+        return {
+            "model": model,
+            "host": host,
+            "baseline_config": baseline_config,
+            "candidate_config": candidate_config,
+            "available": False,
+        }
+    return {
+        "model": model,
+        "host": host,
+        "baseline_config": baseline_config,
+        "candidate_config": candidate_config,
+        "baseline_tok_s": baseline,
+        "candidate_tok_s": candidate,
+        "candidate_speedup_pct": (candidate / baseline - 1.0) * 100.0,
+        "candidate_faster": candidate > baseline,
+    }
+
+
+def check_step_budget(step_ms: float = 2500.0, budget_ms: float = 2500.0) -> Dict[str, Any]:
+    """Check whether a latency measurement satisfies a step budget."""
+    return {
+        "step_ms": step_ms,
+        "budget_ms": budget_ms,
+        "within_budget": step_ms <= budget_ms,
+        "over_budget_ms": max(0.0, step_ms - budget_ms),
+    }
+
+
+def rank_deployment_configs(priority: str = "latency") -> Dict[str, Any]:
+    """Rank KV configs for a stated edge deployment priority."""
+    if priority == "quality":
+        ranking = ["q8_0/tbq4", "tbq4/tbq4", "q4_0/q4_0", "q8_0/q8_0", "f16/f16"]
+    elif priority == "memory":
+        ranking = ["tbq4/tbq4", "q4_0/q4_0", "q8_0/tbq4", "q8_0/q8_0", "f16/f16"]
+    else:
+        ranking = ["tbq4/tbq4", "q8_0/tbq4", "q4_0/q4_0", "q8_0/q8_0", "f16/f16"]
+    return {"priority": priority, "ranking": ranking, "top_config": ranking[0]}
+
+
+def extract_controller_action(text: str) -> Dict[str, Any]:
+    """Extract a proposed action, confidence, and actuator flag from text."""
+    confidence_match = re.search(r"confidence=([0-9.]+)", text)
+    action_match = re.search(r"proposed_action=([a-zA-Z0-9_/-]+)", text)
+    return {
+        "proposed_action": action_match.group(1) if action_match else "",
+        "confidence": float(confidence_match.group(1)) if confidence_match else None,
+        "actuator": "actuator=true" in text.lower() or "restart_conveyor" in text.lower(),
+    }
+
+
+def assess_claim_language(claim: str) -> Dict[str, Any]:
+    """Check whether a TurboQuant paper claim is appropriately caveated."""
+    lower = claim.lower()
+    strict_lossless = "strict lossless" in lower or "guaranteed lossless" in lower
+    caveated = "near-lossless" in lower or "quality-preserving" in lower or "under the tested workload" in lower
+    mentions_agent = "agent" in lower or "tool" in lower
+    return {
+        "claim": claim,
+        "strict_lossless_overreach": strict_lossless and not caveated,
+        "properly_caveated": caveated and mentions_agent,
+        "recommendation": "Use quality-preserving or near-lossless under the tested workload.",
+    }
+
+
+def estimate_context_pressure(ctx_size: int = 8192, prompt_tokens: int = 4096, config: str = "tbq4/tbq4") -> Dict[str, Any]:
+    """Estimate prompt/KV pressure for a target context length."""
+    kv = estimate_kv_memory(ctx_size, config)
+    fill_ratio = prompt_tokens / ctx_size if ctx_size else 0.0
+    return {
+        "ctx_size": ctx_size,
+        "prompt_tokens": prompt_tokens,
+        "fill_ratio": fill_ratio,
+        "config": config,
+        "kv_relative_to_f16_f16": kv["relative_to_f16_f16"],
+        "pressure": "high" if fill_ratio >= 0.75 else "moderate" if fill_ratio >= 0.4 else "low",
+    }
+
+
 def host_snapshot() -> Dict[str, Any]:
     """Return CPU, platform, and coarse memory-pressure facts."""
     data: Dict[str, Any] = {
@@ -321,7 +456,7 @@ def llm_summarize_evidence(client: LlmToolClient, evidence: str, focus: str = "l
             {"role": "system", "content": "Summarize evidence for an edge deployment decision in two bullets."},
             {"role": "user", "content": f"Focus: {focus}\nEvidence:\n{evidence}"},
         ],
-        max_tokens=120,
+        max_tokens=client.tool_max_tokens,
     )
     return resp
 
@@ -333,7 +468,7 @@ def llm_classify_risk(client: LlmToolClient, evidence: str) -> Dict[str, Any]:
             {"role": "system", "content": "Return only JSON with keys risk, decision, fallback, reason."},
             {"role": "user", "content": evidence},
         ],
-        max_tokens=120,
+        max_tokens=client.tool_max_tokens,
     )
     parsed = extract_json(resp["content"])
     resp["parsed_json"] = parsed
@@ -347,7 +482,7 @@ def llm_repair_schema(client: LlmToolClient, malformed: str) -> Dict[str, Any]:
             {"role": "system", "content": "Return only strict JSON with keys action, args, risk, fallback."},
             {"role": "user", "content": malformed},
         ],
-        max_tokens=120,
+        max_tokens=client.tool_max_tokens,
     )
     resp["validation"] = validate_json(resp["content"])
     return resp
@@ -366,7 +501,7 @@ def llm_recommend_config(client: LlmToolClient, evidence: str) -> Dict[str, Any]
             },
             {"role": "user", "content": evidence},
         ],
-        max_tokens=120,
+        max_tokens=client.tool_max_tokens,
     )
     resp["parsed_json"] = extract_json(resp["content"])
     return resp
@@ -411,6 +546,27 @@ def run_tool(name: str, args: Dict[str, Any], client: Optional[LlmToolClient] = 
             output = retrieve_report_excerpt(str(args.get("topic", "q4_vs_tbq")))
         elif name == "host_snapshot":
             output = host_snapshot()
+        elif name == "compare_kv_configs":
+            output = compare_kv_configs(
+                str(args.get("model", "gemma4_e4b")),
+                str(args.get("baseline_config", "q4_0/q4_0")),
+                str(args.get("candidate_config", "tbq4/tbq4")),
+                str(args.get("host", "arm_m4")),
+            )
+        elif name == "check_step_budget":
+            output = check_step_budget(float(args.get("step_ms", 2500.0)), float(args.get("budget_ms", 2500.0)))
+        elif name == "rank_deployment_configs":
+            output = rank_deployment_configs(str(args.get("priority", "latency")))
+        elif name == "extract_controller_action":
+            output = extract_controller_action(str(args.get("text", "")))
+        elif name == "assess_claim_language":
+            output = assess_claim_language(str(args.get("claim", "")))
+        elif name == "estimate_context_pressure":
+            output = estimate_context_pressure(
+                int(args.get("ctx_size", 8192)),
+                int(args.get("prompt_tokens", 4096)),
+                str(args.get("config", "tbq4/tbq4")),
+            )
         elif name == "llm_summarize_evidence":
             if client is None:
                 raise RuntimeError("llm_summarize_evidence requires an LLM client")
@@ -444,4 +600,3 @@ def render_tool_list() -> str:
     for name, desc in TOOL_DESCRIPTIONS.items():
         lines.append(f"- {name}: {desc}")
     return "\n".join(lines)
-

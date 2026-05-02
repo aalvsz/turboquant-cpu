@@ -1,0 +1,39 @@
+{
+  "content": "The user's message is unclear..",
+  "elapsed_sec": 1.2912984709255397,
+  "prompt_tokens": 24,
+  "completion_tokens": 8,
+  "raw": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The user's message is unclear.."
+        }
+      }
+    ],
+    "created": 1777727281,
+    "model": "qwen35_4b",
+    "system_fingerprint": "b3-fd44c01",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 8,
+      "prompt_tokens": 24,
+      "total_tokens": 32
+    },
+    "id": "chatcmpl-mTSNVw2g89iNnvwqv53CrcQT4RnQp1Jx",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 24,
+      "prompt_ms": 409.356,
+      "prompt_per_token_ms": 17.0565,
+      "prompt_per_second": 58.628675285081925,
+      "predicted_n": 8,
+      "predicted_ms": 878.317,
+      "predicted_per_token_ms": 109.789625,
+      "predicted_per_second": 9.108328769681107
+    }
+  }
+}

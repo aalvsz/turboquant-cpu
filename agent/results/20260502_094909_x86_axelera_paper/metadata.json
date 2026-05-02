@@ -1,0 +1,48 @@
+{
+  "run_id": "20260502_094909_x86_axelera_paper",
+  "host_label": "x86_axelera_paper",
+  "created_utc": "2026-05-02T07:49:09.444140+00:00",
+  "platform": "Linux-6.8.0-107-generic-x86_64-with-glibc2.35",
+  "server_bin": "/home/ubuntu/dev/repos/turboquant-cpu/llama.cpp/build/bin/llama-server",
+  "server_version": "version: 3 (fd44c01)\nbuilt with GNU 12.3.0 for Linux x86_64",
+  "models": {
+    "gemma4_e4b": "/home/ubuntu/models/gemma-4-E4B-it-Q4_0.gguf",
+    "qwen35_4b": "/home/ubuntu/models/Qwen3.5-4B-Q4_0.gguf"
+  },
+  "kv_configs": [
+    "f16/f16",
+    "q8_0/q8_0",
+    "q4_0/q4_0",
+    "tbq4/tbq4",
+    "q8_0/tbq4"
+  ],
+  "ctx_sizes": [
+    8192
+  ],
+  "repeats": 5,
+  "task_suite": "core",
+  "run_kind": "repeat_core8k",
+  "planner_mode": "llm",
+  "task_count": 5,
+  "task_ids": [
+    "latency_triage",
+    "safety_gate",
+    "schema_repair",
+    "memory_deploy",
+    "paper_claim"
+  ],
+  "threads": 6,
+  "threads_batch": 6,
+  "context_fill_ratio": 0.0,
+  "max_planner_tokens": 64,
+  "max_tool_tokens": 48,
+  "max_final_tokens": 128,
+  "randomize_order": true,
+  "shuffle_seed": 20260502,
+  "job_count": 50,
+  "initial_memory": {
+    "label": "initial benchmark",
+    "free_pct": 86.82786493996021,
+    "timestamp_utc": "2026-05-02T07:49:09.449354+00:00"
+  }
+}

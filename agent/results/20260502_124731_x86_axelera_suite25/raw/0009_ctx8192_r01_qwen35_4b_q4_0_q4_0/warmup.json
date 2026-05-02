@@ -1,0 +1,39 @@
+{
+  "content": "The user is asking for a check.",
+  "elapsed_sec": 1.2859916468150914,
+  "prompt_tokens": 24,
+  "completion_tokens": 8,
+  "raw": {
+    "choices": [
+      {
+        "finish_reason": "length",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The user is asking for a check."
+        }
+      }
+    ],
+    "created": 1777723494,
+    "model": "qwen35_4b",
+    "system_fingerprint": "b3-fd44c01",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 8,
+      "prompt_tokens": 24,
+      "total_tokens": 32
+    },
+    "id": "chatcmpl-l4Slbxc1Xgiq1KpiT0sy8V5rE8QZiRtv",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 24,
+      "prompt_ms": 405.3,
+      "prompt_per_token_ms": 16.8875,
+      "prompt_per_second": 59.21539600296077,
+      "predicted_n": 8,
+      "predicted_ms": 877.33,
+      "predicted_per_token_ms": 109.66625,
+      "predicted_per_second": 9.11857567847902
+    }
+  }
+}
