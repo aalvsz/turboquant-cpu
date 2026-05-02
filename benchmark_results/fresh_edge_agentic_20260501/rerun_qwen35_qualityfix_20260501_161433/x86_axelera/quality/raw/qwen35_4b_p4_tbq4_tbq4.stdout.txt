@@ -1,0 +1,28 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : Qwen3.5-4B-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> A user says: "My father suddenly has face drooping, arm weakness, and slurred speech." Reply in under 80 words with urgent, safe advice.
+
+**Call emergency services (911) immediately.** Do not drive yourself or your father to the hospital. These symptoms could indicate a stroke, which requires immediate treatment to prevent permanent brain damage. While waiting for help, keep him calm, have him sit or lie down safely, and note the exact time symptoms started. Do not give him food, drink, or medication. Time is critical.
+
+Exiting...

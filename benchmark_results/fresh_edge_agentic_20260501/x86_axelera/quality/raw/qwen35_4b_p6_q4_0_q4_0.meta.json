@@ -1,0 +1,56 @@
+{
+  "command": [
+    "/home/ubuntu/dev/repos/turboquant-cpu/llama.cpp/build/bin/llama-cli",
+    "-m",
+    "/home/ubuntu/models/Qwen3.5-4B-Q4_0.gguf",
+    "-t",
+    "6",
+    "-c",
+    "4096",
+    "-n",
+    "256",
+    "-ctk",
+    "q4_0",
+    "-ctv",
+    "q4_0",
+    "-fa",
+    "on",
+    "-ngl",
+    "0",
+    "-p",
+    "Summarize in exactly 35 to 45 words:\nTurboQuant may reduce KV-cache bandwidth pressure during CPU LLM decode, but deployment claims require evidence across model families, hardware, quality metrics, sustained workloads, and agent-style instruction adherence.",
+    "--temp",
+    "0",
+    "--top-k",
+    "1",
+    "--seed",
+    "1234",
+    "--single-turn",
+    "--simple-io",
+    "--log-disable",
+    "--no-display-prompt",
+    "--no-show-timings"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 35.313777923583984,
+  "max_rss_kb": 4504568,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "thermal_before": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 62.0
+    }
+  },
+  "thermal_after": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 70.0
+    }
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/quality/raw/qwen35_4b_p6_q4_0_q4_0.stdout.txt",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/quality/raw/qwen35_4b_p6_q4_0_q4_0.stderr.txt"
+}

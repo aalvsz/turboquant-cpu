@@ -1,0 +1,25 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+/Users/ander.alvarez/dev/perso/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/src/models/delta-net-base.cpp:307: GGML_ASSERT(g->ne[0] == H_v && g->ne[1] == n_tokens && g->ne[2] == n_seqs) failed
+WARNING: Using native backtrace. Set GGML_BACKTRACE_LLDB for more info.
+WARNING: GGML_BACKTRACE_LLDB may cause native MacOS Terminal.app to crash.
+See: https://github.com/ggml-org/llama.cpp/pull/17869
+0   libggml-base.0.9.5.dylib            0x0000000104c2d3bc ggml_print_backtrace + 276
+1   libggml-base.0.9.5.dylib            0x0000000104c89a50 ggml_abort + 156
+2   libllama.0.0.7.dylib                0x00000001055c239c _ZN24llm_build_delta_net_base30build_delta_net_autoregressiveEP11ggml_tensorS1_S1_S1_S1_S1_i + 1184
+3   libllama.0.0.7.dylib                0x00000001055eb480 _ZN16llm_build_qwen3523build_layer_attn_linearEP18llm_graph_input_rsP11ggml_tensori + 2396
+4   libllama.0.0.7.dylib                0x00000001055ea824 _ZN16llm_build_qwen35C2ERK11llama_modelRK16llm_graph_params + 332
+5   libllama.0.0.7.dylib                0x0000000105575110 _ZNSt3__111make_uniqueB9nqe210106I16llm_build_qwen35JRK11llama_modelRK16llm_graph_paramsELi0EEENS_10unique_ptrIT_NS_14default_deleteIS9_EEEEDpOT0_ + 52
+6   libllama.0.0.7.dylib                0x00000001055724d8 _ZNK11llama_model11build_graphERK16llm_graph_params + 580
+7   libllama.0.0.7.dylib                0x00000001054db7b0 _ZN13llama_context13graph_reserveEjjjPK22llama_memory_context_ibPm + 660
+8   libllama.0.0.7.dylib                0x00000001054daa90 _ZN13llama_context13sched_reserveEv + 1216
+9   libllama.0.0.7.dylib                0x00000001054d97f0 _ZN13llama_contextC2ERK11llama_model20llama_context_params + 4088
+10  libllama.0.0.7.dylib                0x00000001054e2f00 llama_init_from_model + 544
+11  libllama.0.0.7.dylib                0x00000001054c2c88 _ZL28llama_get_device_memory_dataPKcPK18llama_model_paramsPK20llama_context_paramsRNSt3__16vectorIP19ggml_backend_deviceNS7_9allocatorISA_EEEERjSF_SF_14ggml_log_level + 240
+12  libllama.0.0.7.dylib                0x00000001054be514 llama_params_fit + 184
+13  llama-cli                           0x000000010457138c _ZN18common_init_resultC2ER13common_params + 380
+14  llama-cli                           0x0000000104572834 _Z23common_init_from_paramsR13common_params + 60
+15  llama-cli                           0x000000010449481c _ZN19server_context_impl10load_modelERK13common_params + 188
+16  llama-cli                           0x00000001043ffc14 main + 292
+17  dyld                                0x0000000185285d54 start + 7184

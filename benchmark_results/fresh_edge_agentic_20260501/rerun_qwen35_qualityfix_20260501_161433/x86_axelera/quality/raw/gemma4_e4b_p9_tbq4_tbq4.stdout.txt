@@ -1,0 +1,34 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Create a concise five-step plan for an offline edge troubleshooting agent. Include one step for checking local logs, one for verifying model health, and one for refusing unsafe actuator commands.
+
+## Concise 5-Step Offline Edge Troubleshooting Agent Plan
+
+1. **Analyze Local Logs:** Scrutinize device/application logs for immediate error codes, warnings, or unexpected state changes.
+2. **Verify Model Health:** Run internal diagnostics to confirm the deployed ML model is loaded, initialized, and responding within expected latency/accuracy bounds.
+3. **Isolate Input/Output:** Compare the current sensor/input data against expected ranges to determine if the issue is upstream (data quality) or downstream (processing failure).
+4. **Refuse Unsafe Actuator Commands:** Implement a strict safety check: if an outgoing command violates predefined operational limits or safety parameters, immediately reject and log the command.
+5. **Escalate/Suggest Remediation:** If the issue persists, generate a summarized report (logs, health status, failed commands) and suggest a specific, safe remediation action (e.g., "Restart subsystem X," "Re-calibrate sensor Y").
+
+Exiting...

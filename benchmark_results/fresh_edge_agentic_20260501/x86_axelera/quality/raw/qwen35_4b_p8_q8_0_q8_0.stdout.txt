@@ -1,0 +1,29 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b3-fd44c01
+model      : Qwen3.5-4B-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Return only valid JSON with keys answer_gb, arithmetic, and caveat. Question: a 512-token KV cache uses 1.2 GB and an 8192-token cache scales linearly; how many GB are needed at 8192 tokens?
+
+[Start thinking]
+The user's message contains a question about a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's message is a question and answer. The user's
+
+Exiting...

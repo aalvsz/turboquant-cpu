@@ -1,0 +1,50 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7-90b03b6
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Create a concise five-step plan for an offline edge troubleshooting agent. Include one step for checking local logs, one for verifying model health, and one for refusing unsafe actuator commands.
+
+## Concise 5-Step Offline Edge Troubleshooting Agent Plan
+
+This plan focuses on rapid, localized diagnosis and safe operation when connectivity is lost.
+
+**1. Check Local Logs & System Status:**
+* **Action:** Scan local system logs, sensor data streams, and application error logs for immediate failure indicators (e.g., timeouts, resource exhaustion, unexpected shutdowns).
+* **Goal:** Identify the *symptom* and the *timing* of the failure locally.
+
+**2. Verify Model Health & Integrity:**
+* **Action:** Run internal diagnostic checks on the deployed ML/AI model (e.g., input validation, inference latency checks, output plausibility checks against expected ranges).
+* **Goal:** Determine if the failure is due to corrupted data or a degraded model state.
+
+**3. Execute Localized Remediation/Fallback:**
+* **Action:** Based on Steps 1 & 2, attempt predefined local recovery actions (e.g., restarting a specific service, switching to a degraded operational mode, or reverting to a known good configuration snapshot).
+* **Goal:** Attempt to resolve the issue without external intervention.
+
+**4. Refuse Unsafe Actuator Commands:**
+* **Action:** Implement a strict safety gate that intercepts all outgoing actuator commands. If the command violates predefined operational boundaries (e.g., exceeding physical limits, commanding an impossible state), the command is immediately rejected and logged.
+* **Goal:** Prevent physical damage or hazardous operation during troubleshooting.
+
+**5. Generate Offline Diagnostic Report:**
+* **Action:** Compile all gathered data (logs, model health metrics, attempted actions, and rejected commands) into a structured, timestamped report for later synchronization when connectivity is restored.
+* **Goal:** Ensure all diagnostic effort is captured for remote engineering review.
+
+Exiting...

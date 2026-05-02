@@ -1,0 +1,45 @@
+{
+  "command": [
+    "/home/ubuntu/dev/repos/turboquant-cpu/llama.cpp/build/bin/llama-perplexity",
+    "-m",
+    "/home/ubuntu/models/gemma-4-E4B-it-Q4_0.gguf",
+    "-f",
+    "benchmark_results/fresh_edge_agentic_20260501/shared/wikitext-2-raw/wiki.test.raw",
+    "-t",
+    "6",
+    "-c",
+    "512",
+    "--chunks",
+    "20",
+    "-ctk",
+    "f16",
+    "-ctv",
+    "f16",
+    "-fa",
+    "on",
+    "-ngl",
+    "0"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 158.37587594985962,
+  "max_rss_kb": 9034212,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "thermal_before": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 63.0
+    }
+  },
+  "thermal_after": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 65.0
+    }
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/ppl/raw/gemma4_e4b_t6_f16_f16.stdout.txt",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/ppl/raw/gemma4_e4b_t6_f16_f16.stderr.txt"
+}

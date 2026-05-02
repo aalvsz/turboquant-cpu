@@ -1,0 +1,34 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7-90b03b6
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Create a concise five-step plan for an offline edge troubleshooting agent. Include one step for checking local logs, one for verifying model health, and one for refusing unsafe actuator commands.
+
+## Concise 5-Step Offline Edge Troubleshooting Agent Plan
+
+1. **Analyze Local Logs:** Scrutinize the device's local operational logs for immediate error codes, resource warnings, or unexpected state changes.
+2. **Verify Model Health:** Run internal diagnostics to confirm the deployed AI/ML model is functioning correctly (e.g., input parsing, output generation, latency checks).
+3. **Isolate Input/Output:** Systematically test the data pipeline: feed known good inputs and observe the resulting outputs to pinpoint where the failure occurs.
+4. **Refuse Unsafe Actuator Commands:** Implement a strict validation layer to intercept and reject any command attempting to execute an action deemed unsafe or outside predefined operational boundaries.
+5. **Escalate/Report:** If local diagnostics fail to resolve the issue, package the relevant logs and health metrics for remote human review.
+
+Exiting...

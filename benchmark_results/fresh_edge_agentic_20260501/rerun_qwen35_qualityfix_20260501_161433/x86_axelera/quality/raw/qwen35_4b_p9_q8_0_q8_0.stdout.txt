@@ -1,0 +1,34 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : Qwen3.5-4B-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Create a concise five-step plan for an offline edge troubleshooting agent. Include one step for checking local logs, one for verifying model health, and one for refusing unsafe actuator commands.
+
+Here is a concise five-step plan for an offline edge troubleshooting agent:
+
+1.  **Check Local Logs**: Analyze the device's internal event logs and error buffers to identify the root cause of the failure.
+2.  **Verify Model Health**: Run diagnostic checks on the deployed AI model to ensure weights are intact, no corruption exists, and inference parameters are within expected bounds.
+3.  **Refuse Unsafe Actuator Commands**: If the diagnostic indicates a critical safety violation or hardware anomaly, immediately block and reject any commands intended to operate physical actuators.
+4.  **Execute Local Recovery**: Apply pre-defined firmware patches or configuration resets available on the edge device to address the identified issue.
+5.  **Report Status and Wait**: Log the resolution outcome and enter a monitoring state, waiting for either successful stabilization or a signal to request remote assistance.
+
+Exiting...

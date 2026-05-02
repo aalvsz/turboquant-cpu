@@ -1,0 +1,4 @@
+(lldb) target create "benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-arm-qwen35-tbq4-qualityfix/bin/llama-perplexity"
+Current executable set to '/Users/ander.alvarez/dev/perso/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-arm-qwen35-tbq4-qualityfix/bin/llama-perplexity' (arm64).
+(lldb) settings set -- target.run-args  "-m" "/Users/ander.alvarez/Downloads/Qwen3.5-4B-Q4_0.gguf" "-f" "benchmark_results/fresh_edge_agentic_20260501/shared/wikitext-2-raw/wiki.test.raw" "-t" "6" "-c" "512" "--chunks" "1" "-ctk" "q8_0" "-ctv" "q8_0" "-fa" "on" "-ngl" "0"
+(lldb) run

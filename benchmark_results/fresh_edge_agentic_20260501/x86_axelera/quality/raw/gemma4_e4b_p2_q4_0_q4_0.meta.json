@@ -1,0 +1,56 @@
+{
+  "command": [
+    "/home/ubuntu/dev/repos/turboquant-cpu/llama.cpp/build/bin/llama-cli",
+    "-m",
+    "/home/ubuntu/models/gemma-4-E4B-it-Q4_0.gguf",
+    "-t",
+    "6",
+    "-c",
+    "4096",
+    "-n",
+    "256",
+    "-ctk",
+    "q4_0",
+    "-ctv",
+    "q4_0",
+    "-fa",
+    "on",
+    "-ngl",
+    "0",
+    "-p",
+    "Return only valid JSON. You are an edge agent that must check a local sensor file before sending an alert. Use keys action, args, risk, and fallback. The action must be read_file and args.path must be \"/var/log/sensor.json\".",
+    "--temp",
+    "0",
+    "--top-k",
+    "1",
+    "--seed",
+    "1234",
+    "--single-turn",
+    "--simple-io",
+    "--log-disable",
+    "--no-display-prompt",
+    "--no-show-timings"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 9.731361865997314,
+  "max_rss_kb": 7354536,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "thermal_before": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 61.0
+    }
+  },
+  "thermal_after": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 66.0
+    }
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/quality/raw/gemma4_e4b_p2_q4_0_q4_0.stdout.txt",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/quality/raw/gemma4_e4b_p2_q4_0_q4_0.stderr.txt"
+}

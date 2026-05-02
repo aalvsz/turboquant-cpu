@@ -1,0 +1,28 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> A CPU benchmark reports 7.07 tokens/s for F16 KV and 9.19 tokens/s for TBQ4 KV at 8K context. In exactly three sentences, compute the percent speedup, state whether speed alone proves quality is preserved, and name one additional evaluation needed.
+
+The speedup from F16K to TBQ4K is approximately $1.11$ times, calculated as $(9.19 / 7.07) \times 100\%$. Speed alone does not prove quality is preserved, as performance metrics like perplexity or accuracy are required. An additional evaluation needed is a comprehensive quality assessment using a standardized benchmark dataset.
+
+Exiting...

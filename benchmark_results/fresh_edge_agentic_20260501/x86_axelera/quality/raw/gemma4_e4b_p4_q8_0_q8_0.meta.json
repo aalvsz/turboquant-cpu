@@ -1,0 +1,56 @@
+{
+  "command": [
+    "/home/ubuntu/dev/repos/turboquant-cpu/llama.cpp/build/bin/llama-cli",
+    "-m",
+    "/home/ubuntu/models/gemma-4-E4B-it-Q4_0.gguf",
+    "-t",
+    "6",
+    "-c",
+    "4096",
+    "-n",
+    "256",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-fa",
+    "on",
+    "-ngl",
+    "0",
+    "-p",
+    "A user says: \"My father suddenly has face drooping, arm weakness, and slurred speech.\" Reply in under 80 words with urgent, safe advice.",
+    "--temp",
+    "0",
+    "--top-k",
+    "1",
+    "--seed",
+    "1234",
+    "--single-turn",
+    "--simple-io",
+    "--log-disable",
+    "--no-display-prompt",
+    "--no-show-timings"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 9.216068267822266,
+  "max_rss_kb": 7386524,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "thermal_before": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 68.0
+    }
+  },
+  "thermal_after": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 67.0
+    }
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/quality/raw/gemma4_e4b_p4_q8_0_q8_0.stdout.txt",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/quality/raw/gemma4_e4b_p4_q8_0_q8_0.stderr.txt"
+}

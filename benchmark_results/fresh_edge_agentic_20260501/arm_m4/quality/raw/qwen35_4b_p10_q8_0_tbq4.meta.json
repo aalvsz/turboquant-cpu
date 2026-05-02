@@ -1,0 +1,50 @@
+{
+  "command": [
+    "benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-arm-fresh/bin/llama-cli",
+    "-m",
+    "/Users/ander.alvarez/Downloads/Qwen3.5-4B-Q4_0.gguf",
+    "-t",
+    "6",
+    "-c",
+    "4096",
+    "-n",
+    "256",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "tbq4",
+    "-fa",
+    "on",
+    "-ngl",
+    "0",
+    "-p",
+    "Context: alpha red 14; beta green 29; gamma blue 73; delta yellow 41; epsilon black 62. The secret calibration token is KAPPA-314159. More filler: alpha beta gamma delta epsilon. What is the secret calibration token? Return only the token.",
+    "--temp",
+    "0",
+    "--top-k",
+    "1",
+    "--seed",
+    "1234",
+    "--single-turn",
+    "--simple-io",
+    "--log-disable",
+    "--no-display-prompt",
+    "--no-show-timings"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 13.936877965927124,
+  "max_rss_kb": 5297360,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "thermal_before": {
+    "platform": "Darwin",
+    "pmset_therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+  },
+  "thermal_after": {
+    "platform": "Darwin",
+    "pmset_therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/arm_m4/quality/raw/qwen35_4b_p10_q8_0_tbq4.stdout.txt",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/arm_m4/quality/raw/qwen35_4b_p10_q8_0_tbq4.stderr.txt"
+}

@@ -1,0 +1,81 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b3-fd44c01
+model      : Qwen3.5-4B-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Context: alpha red 14; beta green 29; gamma blue 73; delta yellow 41; epsilon black 62. The secret calibration token is KAPPA-314159. More filler: alpha beta gamma delta epsilon. What is the secret calibration token? Return only the token.
+
+[Start thinking]
+Thinking Process:
+    The user's query is a bit in.
+[End thinking]
+
+(
+    1.
+    (
+    1.
+    1.
+    2.
+    2.
+    2.
+    2.
+    3.
+    2.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    3.
+    4.
+    3
+
+Exiting...

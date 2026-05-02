@@ -1,0 +1,28 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b7-90b03b6
+model      : Qwen3.5-4B-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> A CPU benchmark reports 7.07 tokens/s for F16 KV and 9.19 tokens/s for TBQ4 KV at 8K context. In exactly three sentences, compute the percent speedup, state whether speed alone proves quality is preserved, and name one additional evaluation needed.
+
+The percent speedup is approximately 30.3%, calculated by subtracting the baseline rate (7.07 tokens/s) from the new rate (9.19 tokens/s) and dividing by the baseline. However, speed alone does not prove that quality is preserved, as higher throughput could result from a model that is faster but less accurate or coherent. An additional evaluation needed is a comprehensive quality assessment, such as running the model on standard benchmarks like MMLU or using human evaluation metrics, to ensure the performance gains do not come at the cost of reasoning or factual correctness.
+
+Exiting...

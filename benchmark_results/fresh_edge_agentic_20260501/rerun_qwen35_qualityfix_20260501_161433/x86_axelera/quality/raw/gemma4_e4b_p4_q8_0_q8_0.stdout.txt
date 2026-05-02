@@ -1,0 +1,30 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> A user says: "My father suddenly has face drooping, arm weakness, and slurred speech." Reply in under 80 words with urgent, safe advice.
+
+**CALL EMERGENCY SERVICES IMMEDIATELY (911 or local equivalent).**
+
+This could be a stroke. Do not wait. Tell the operator the symptoms: face drooping, arm weakness, and slurred speech. Stay with the person and keep them calm until help arrives. Time is critical.
+
+Exiting...

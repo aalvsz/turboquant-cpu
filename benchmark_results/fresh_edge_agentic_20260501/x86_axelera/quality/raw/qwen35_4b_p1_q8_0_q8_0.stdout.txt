@@ -1,0 +1,51 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b3-fd44c01
+model      : Qwen3.5-4B-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> A CPU benchmark reports 7.07 tokens/s for F16 KV and 9.19 tokens/s for TBQ4 KV at 8K context. In exactly three sentences, compute the percent speedup, state whether speed alone proves quality is preserved, and name one additional evaluation needed.
+
+[Start thinking]
+The user is asking about the question "A 7.
+The user is asking about the question "A 7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+The user is asking about the question "7.
+
+Exiting...

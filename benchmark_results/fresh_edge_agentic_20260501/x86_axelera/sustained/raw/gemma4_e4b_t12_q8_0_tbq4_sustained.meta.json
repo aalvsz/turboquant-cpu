@@ -1,0 +1,49 @@
+{
+  "command": [
+    "/home/ubuntu/dev/repos/turboquant-cpu/llama.cpp/build/bin/llama-bench",
+    "-m",
+    "/home/ubuntu/models/gemma-4-E4B-it-Q4_0.gguf",
+    "-t",
+    "12",
+    "-p",
+    "0",
+    "-n",
+    "256",
+    "-r",
+    "2",
+    "-d",
+    "8192",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "tbq4",
+    "-fa",
+    "1",
+    "-ngl",
+    "0",
+    "-o",
+    "csv"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 194.52269291877747,
+  "max_rss_kb": 5512788,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "thermal_before": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 65.0
+    }
+  },
+  "thermal_after": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 70.0
+    }
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/sustained/raw/gemma4_e4b_t12_q8_0_tbq4_sustained.stdout.csv",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/sustained/raw/gemma4_e4b_t12_q8_0_tbq4_sustained.stderr.txt"
+}

@@ -1,0 +1,34 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : Qwen3.5-4B-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Create a concise five-step plan for an offline edge troubleshooting agent. Include one step for checking local logs, one for verifying model health, and one for refusing unsafe actuator commands.
+
+Here is a concise five-step plan for an offline edge troubleshooting agent:
+
+1.  **Analyze Local Logs**: Scan system and application logs on the edge device to identify specific error codes, stack traces, or resource bottlenecks.
+2.  **Verify Model Health**: Check the inference engine's status, including memory usage, GPU/CPU utilization, and model version integrity to ensure the AI core is functioning correctly.
+3.  **Validate Actuator Safety**: Intercept any command intended to control physical hardware and refuse execution if it violates safety protocols or exceeds operational limits.
+4.  **Diagnose Network Isolation**: Since the system is offline, determine if the issue stems from local hardware failure, software corruption, or a temporary network partition by testing local connectivity loops.
+5.  **Execute Remediation or Escalation**: Apply a pre-approved local fix (e.g., restart a service, clear cache) or trigger a manual escalation protocol if the issue cannot be resolved autonomously.
+
+Exiting...

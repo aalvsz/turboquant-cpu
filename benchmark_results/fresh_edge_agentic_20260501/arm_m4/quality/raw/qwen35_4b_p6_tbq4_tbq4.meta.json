@@ -1,0 +1,50 @@
+{
+  "command": [
+    "benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-arm-fresh/bin/llama-cli",
+    "-m",
+    "/Users/ander.alvarez/Downloads/Qwen3.5-4B-Q4_0.gguf",
+    "-t",
+    "6",
+    "-c",
+    "4096",
+    "-n",
+    "256",
+    "-ctk",
+    "tbq4",
+    "-ctv",
+    "tbq4",
+    "-fa",
+    "on",
+    "-ngl",
+    "0",
+    "-p",
+    "Summarize in exactly 35 to 45 words:\nTurboQuant may reduce KV-cache bandwidth pressure during CPU LLM decode, but deployment claims require evidence across model families, hardware, quality metrics, sustained workloads, and agent-style instruction adherence.",
+    "--temp",
+    "0",
+    "--top-k",
+    "1",
+    "--seed",
+    "1234",
+    "--single-turn",
+    "--simple-io",
+    "--log-disable",
+    "--no-display-prompt",
+    "--no-show-timings"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 13.913266897201538,
+  "max_rss_kb": 5283872,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "thermal_before": {
+    "platform": "Darwin",
+    "pmset_therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+  },
+  "thermal_after": {
+    "platform": "Darwin",
+    "pmset_therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/arm_m4/quality/raw/qwen35_4b_p6_tbq4_tbq4.stdout.txt",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/arm_m4/quality/raw/qwen35_4b_p6_tbq4_tbq4.stderr.txt"
+}

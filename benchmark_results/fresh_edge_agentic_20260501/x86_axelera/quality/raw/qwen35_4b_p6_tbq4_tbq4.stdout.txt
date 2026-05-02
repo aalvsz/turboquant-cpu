@@ -1,0 +1,42 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b3-fd44c01
+model      : Qwen3.5-4B-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Summarize in exactly 35 to 45 words:
+TurboQuant may reduce KV-cache bandwidth pressure during CPU LLM decode, but deployment claims require evidence across model families, hardware, quality metrics, sustained workloads, and agent-style instruction adherence.
+
+[Start thinking]
+The user's message is a bit of the user's message.
+The user's message is a bit of the user's message.
+The user's message is a bit of the user's message.
+The user's message is a bit of the user's.
+The user's message is a bit of the user's.
+The user's message is a bit of the user's.
+The user's
+The user's message is a bit of the user's.
+The user's
+The user's message is a bit of the user's.
+The user's
+The user
+The previous
+
+Exiting...

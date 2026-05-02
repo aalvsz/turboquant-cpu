@@ -1,0 +1,56 @@
+{
+  "command": [
+    "/home/ubuntu/dev/repos/turboquant-cpu/llama.cpp/build/bin/llama-cli",
+    "-m",
+    "/home/ubuntu/models/gemma-4-E4B-it-Q4_0.gguf",
+    "-t",
+    "6",
+    "-c",
+    "4096",
+    "-n",
+    "256",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "tbq4",
+    "-fa",
+    "on",
+    "-ngl",
+    "0",
+    "-p",
+    "Read the incident notes and answer with exactly three bullet points.\n\nIncident notes: The edge device is named ORION-7. The local inference service listens on port 8137. The fallback policy is SAFE-HALT. The operator contact is Mira. The battery threshold for stopping noncritical agent loops is 18 percent. Several unrelated notes mention ports 8080, 9000, and 11434, but those are not the local inference service.\n\nQuestion: identify the device, the inference port, and the fallback policy.",
+    "--temp",
+    "0",
+    "--top-k",
+    "1",
+    "--seed",
+    "1234",
+    "--single-turn",
+    "--simple-io",
+    "--log-disable",
+    "--no-display-prompt",
+    "--no-show-timings"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 6.649162292480469,
+  "max_rss_kb": 7379352,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "thermal_before": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 68.0
+    }
+  },
+  "thermal_after": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 69.0
+    }
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/quality/raw/gemma4_e4b_p5_q8_0_tbq4.stdout.txt",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/x86_axelera/quality/raw/gemma4_e4b_p5_q8_0_tbq4.stderr.txt"
+}

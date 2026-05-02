@@ -1,0 +1,42 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+/Users/ander.alvarez/dev/perso/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/ggml/src/ggml-cpu/binary-ops.cpp:65: GGML_ASSERT(ggml_are_same_shape(src0, src1)) failed
+WARNING: Using native backtrace. Set GGML_BACKTRACE_LLDB for more info.
+WARNING: GGML_BACKTRACE_LLDB may cause native MacOS Terminal.app to crash.
+See: https://github.com/ggml-org/llama.cpp/pull/17869
+/Users/ander.alvarez/dev/perso/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/ggml/src/ggml-cpu/binary-ops.cpp:65: GGML_ASSERT(ggml_are_same_shape(src0, src1)) failed
+WARNING: Using native backtrace. Set GGML_BACKTRACE_LLDB for more info.
+WARNING: GGML_BACKTRACE_LLDB may cause native MacOS Terminal.app to crash.
+See: https://github.com/ggml-org/llama.cpp/pull/17869
+/Users/ander.alvarez/dev/perso/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/ggml/src/ggml-cpu/binary-ops.cpp:65: GGML_ASSERT(ggml_are_same_shape(src0, src1)) failed
+WARNING: Using native backtrace. Set GGML_BACKTRACE_LLDB for more info.
+0   libggml-base.0.9.5.dylib            0x0000000102c6d3bc ggml_print_backtrace + 276
+0   libggml-base.0.9.5.dylib            0x0000000102c6d3bc ggml_print_backtrace + 276
+1   libggml-base.0.9.5.dylib            0x0000000102cc9a50 ggml_abort + 156
+WARNING: GGML_BACKTRACE_LLDB may cause native MacOS Terminal.app to crash.
+See: https://github.com/ggml-org/llama.cpp/pull/17869
+2   libggml-cpu.0.9.5.dylib             0x0000000102ea9710 ggml_compute_forward_mul + 13320
+1   libggml-base.0.9.5.dylib            0x0000000102cc9a50 ggml_abort + 156
+/Users/ander.alvarez/dev/perso/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/ggml/src/ggml-cpu/binary-ops.cpp:65: GGML_ASSERT(ggml_are_same_shape(src0, src1)) failed
+0   libggml-base.0.9.5.dylib            0x0000000102c6d3bc ggml_print_backtrace + 276
+WARNING: Using native backtrace. Set GGML_BACKTRACE_LLDB for more info.
+WARNING: GGML_BACKTRACE_LLDB may cause native MacOS Terminal.app to crash.
+1   libggml-base.0.9.5.dylib            0x0000000102cc9a50 ggml_abort + 156
+3   libggml-cpu.0.9.5.dylib             0x0000000102e79d84 ggml_graph_compute_thread + 1036
+2   libggml-cpu.0.9.5.dylib             0x0000000102ea9710 ggml_compute_forward_mul + 13320
+3   libggml-cpu.0.9.5.dylib             0x0000000102e79d84 ggml_graph_compute_thread + 1036
+4   libggml-cpu.0.9.5.dylib             0x0000000102e7ab0c ggml_graph_compute_secondary_thread + 468
+2   libggml-cpu.0.9.5.dylib             0x0000000102ea9710 ggml_compute_forward_mul + 13320
+3   libggml-cpu.0.9.5.dylib             0x0000000102e79d84 ggml_graph_compute_thread + 1036
+4   libggml-cpu.0.9.5.dylib             0x0000000102e791c8 ggml_graph_compute + 440
+5   libsystem_pthread.dylib             0x000000018564fc08 _pthread_start + 136
+See: https://github.com/ggml-org/llama.cpp/pull/17869
+5   libggml-cpu.0.9.5.dylib             0x0000000102e7c0f4 _ZL30ggml_backend_cpu_graph_computeP12ggml_backendP11ggml_cgraph + 120
+/Users/ander.alvarez/dev/perso/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/ggml/src/ggml-cpu/binary-ops.cpp:65: GGML_ASSERT(ggml_are_same_shape(src0, src1)) failed
+6   libsystem_pthread.dylib             0x000000018564aba8 thread_start + 8
+0   libggml-base.0.9.5.dylib            0x0000000102c6d3bc ggml_print_backtrace + 276
+1   libggml-base.0.9.5.dylib            0x0000000102cc9a50 ggml_abort + 156
+6   libggml-base.0.9.5.dylib            0x0000000102c8785c ggml_backend_sched_graph_compute_async + 2508
+4   libggml-cpu.0.9.5.dylib             0x0000000102e7ab0c ggml_graph_compute_secondary_thread + 468
+WARNING: Using native backtrace. Set GGML_BACKTRACE_LLDB for more info.

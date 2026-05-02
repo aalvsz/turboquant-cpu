@@ -1,0 +1,28 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b6-ef7047a
+model      : Qwen3.5-4B-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> A CPU benchmark reports 7.07 tokens/s for F16 KV and 9.19 tokens/s for TBQ4 KV at 8K context. In exactly three sentences, compute the percent speedup, state whether speed alone proves quality is preserved, and name one additional evaluation needed.
+
+The percent speedup achieved by switching from F16 to TBQ4 KV is approximately 30.6%, calculated by dividing the TBQ4 throughput (9.19 tokens/s) by the F16 throughput (7.07 tokens/s) and subtracting 1. However, this increase in speed alone does not prove that quality is preserved, as quantization can introduce accuracy losses that are invisible to raw performance metrics. To verify that quality remains intact, an additional evaluation such as a perplexity test or a specific benchmark on a standard dataset (like MMLU or GSM8K) is required.
+
+Exiting...

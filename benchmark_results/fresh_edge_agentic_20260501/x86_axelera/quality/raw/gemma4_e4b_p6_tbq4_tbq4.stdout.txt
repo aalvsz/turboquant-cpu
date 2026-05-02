@@ -1,0 +1,29 @@
+
+Loading model... 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b3-fd44c01
+model      : gemma-4-E4B-it-Q4_0.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read               add a text file
+
+
+> Summarize in exactly 35 to 45 words:
+TurboQuant may reduce KV-cache bandwidth pressure during CPU LLM decode, but deployment claims require evidence across model families, hardware, quality metrics, sustained workloads, and agent-style instruction adherence.
+
+TurboQuant potentially lessens KV-cache bandwidth strain during CPU LLM decoding. However, deployment claims necessitate rigorous evidence across diverse model families, hardware, quality metrics, sustained workloads, and adherence to agent-style instructions for validation.
+
+Exiting...

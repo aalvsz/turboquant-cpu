@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+
+# Generated benchmark workspaces can contain cloned repos, build products, and corpora.
+benchmark_results/**/src/
+benchmark_results/**/shared/wikitext-2-raw/
+benchmark_results/**/shared/*.zip

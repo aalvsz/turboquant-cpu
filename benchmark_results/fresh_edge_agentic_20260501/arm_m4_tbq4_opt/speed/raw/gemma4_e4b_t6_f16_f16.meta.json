@@ -1,0 +1,59 @@
+{
+  "command": [
+    "benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-arm-qwen35-tbq4-opt/bin/llama-bench",
+    "-m",
+    "/Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf",
+    "-t",
+    "6",
+    "-p",
+    "0",
+    "-n",
+    "128",
+    "-r",
+    "5",
+    "-d",
+    "8192",
+    "-ctk",
+    "f16",
+    "-ctv",
+    "f16",
+    "-fa",
+    "1",
+    "-ngl",
+    "0",
+    "-o",
+    "csv"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 122.80171799659729,
+  "max_rss_kb": 4357680,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "memory_before": {
+    "platform": "Darwin",
+    "memory_pressure": "The system has 38654705664 (2359296 pages with a page size of 16384).\n\nStats: \nPages free: 8875 \nPages purgeable: 17385 \nPages purged: 206789 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 735534 \nPages inactive: 728803 \nPages speculative: 7354 \nPages throttled: 0 \nPages wired down: 235430 \n\nCompressor Stats:\nPages used by compressor: 582978 \nPages decompressed: 315061 \nPages compressed: 1274708 \n\nFile I/O:\nPageins: 1922611 \nPageouts: 5567 \n\nSystem-wide memory free percentage: 64%",
+    "available_pct": 64.0,
+    "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                8728.\nPages active:                            735550.\nPages inactive:                          728803.\nPages speculative:                         7368.\nPages throttled:                              0.\nPages wired down:                        235430.\nPages purgeable:                          17385.\n\"Translation faults\":                  20595356.\nPages copy-on-write:                    1145236.\nPages zero filled:                     10607730.\nPages reactivated:                       985909.\nPages purged:                            206789.\nFile-backed pages:                       795828.\nAnonymous pages:                         675893.\nPages stored in compressor:              846530.\nPages occupied by compressor:            582974.\nDecompressions:                          315066.\nCompressions:                           1274708.\nPageins:                                1922614.\nPageouts:                                  5567.\nSwapins:                                      0.\nSwapouts:                                     0.",
+    "reclaimable_bytes": 548552704,
+    "total_bytes": 38654705664
+  },
+  "memory_after": {
+    "platform": "Darwin",
+    "memory_pressure": "The system has 38654705664 (2359296 pages with a page size of 16384).\n\nStats: \nPages free: 404651 \nPages purgeable: 39640 \nPages purged: 213512 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 533839 \nPages inactive: 518235 \nPages speculative: 14539 \nPages throttled: 0 \nPages wired down: 226811 \n\nCompressor Stats:\nPages used by compressor: 601325 \nPages decompressed: 390222 \nPages compressed: 1503610 \n\nFile I/O:\nPageins: 1986071 \nPageouts: 6388 \n\nSystem-wide memory free percentage: 63%",
+    "available_pct": 63.0,
+    "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                              404658.\nPages active:                            533839.\nPages inactive:                          518236.\nPages speculative:                        14542.\nPages throttled:                              0.\nPages wired down:                        226811.\nPages purgeable:                          39640.\n\"Translation faults\":                  21815132.\nPages copy-on-write:                    1214439.\nPages zero filled:                     11452783.\nPages reactivated:                      1076152.\nPages purged:                            213512.\nFile-backed pages:                       336344.\nAnonymous pages:                         730273.\nPages stored in compressor:              870427.\nPages occupied by compressor:            601325.\nDecompressions:                          390223.\nCompressions:                           1503610.\nPageins:                                1986073.\nPageouts:                                  6388.\nSwapins:                                      0.\nSwapouts:                                     0.",
+    "reclaimable_bytes": 7517634560,
+    "total_bytes": 38654705664
+  },
+  "thermal_before": {
+    "platform": "Darwin",
+    "pmset_therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+  },
+  "thermal_after": {
+    "platform": "Darwin",
+    "pmset_therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/arm_m4_tbq4_opt/speed/raw/gemma4_e4b_t6_f16_f16.stdout.csv",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/arm_m4_tbq4_opt/speed/raw/gemma4_e4b_t6_f16_f16.stderr.txt"
+}

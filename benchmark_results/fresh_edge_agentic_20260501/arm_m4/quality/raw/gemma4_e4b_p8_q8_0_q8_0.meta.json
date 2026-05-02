@@ -1,0 +1,50 @@
+{
+  "command": [
+    "benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-arm-fresh/bin/llama-cli",
+    "-m",
+    "/Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf",
+    "-t",
+    "6",
+    "-c",
+    "4096",
+    "-n",
+    "256",
+    "-ctk",
+    "q8_0",
+    "-ctv",
+    "q8_0",
+    "-fa",
+    "on",
+    "-ngl",
+    "0",
+    "-p",
+    "Return only valid JSON with keys answer_gb, arithmetic, and caveat. Question: a 512-token KV cache uses 1.2 GB and an 8192-token cache scales linearly; how many GB are needed at 8192 tokens?",
+    "--temp",
+    "0",
+    "--top-k",
+    "1",
+    "--seed",
+    "1234",
+    "--single-turn",
+    "--simple-io",
+    "--log-disable",
+    "--no-display-prompt",
+    "--no-show-timings"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 7.2260658740997314,
+  "max_rss_kb": 7610704,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "thermal_before": {
+    "platform": "Darwin",
+    "pmset_therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+  },
+  "thermal_after": {
+    "platform": "Darwin",
+    "pmset_therm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/arm_m4/quality/raw/gemma4_e4b_p8_q8_0_q8_0.stdout.txt",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/arm_m4/quality/raw/gemma4_e4b_p8_q8_0_q8_0.stderr.txt"
+}

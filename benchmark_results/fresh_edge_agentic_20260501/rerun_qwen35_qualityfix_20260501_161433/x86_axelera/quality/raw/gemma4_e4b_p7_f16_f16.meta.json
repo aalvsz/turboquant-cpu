@@ -1,0 +1,86 @@
+{
+  "command": [
+    "benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp-qwen35-qualityfix-x86/build-x86-qwen35-qualityfix/bin/llama-cli",
+    "-m",
+    "/home/ubuntu/models/gemma-4-E4B-it-Q4_0.gguf",
+    "-t",
+    "6",
+    "-c",
+    "4096",
+    "-n",
+    "384",
+    "-ctk",
+    "f16",
+    "-ctv",
+    "f16",
+    "-fa",
+    "on",
+    "-ngl",
+    "0",
+    "-p",
+    "Write exactly four bullet points. The bullets must start, in order, with Risk:, Evidence:, Mitigation:, Next:. Topic: using TurboQuant KV on edge agentic AI.",
+    "--temp",
+    "0",
+    "--top-k",
+    "1",
+    "--seed",
+    "1234",
+    "--single-turn",
+    "--simple-io",
+    "--log-disable",
+    "--no-display-prompt",
+    "--no-show-timings"
+  ],
+  "returncode": 0,
+  "elapsed_sec": 14.35906720161438,
+  "max_rss_kb": 7436924,
+  "energy_uj_before": null,
+  "energy_uj_after": null,
+  "energy_uj_delta": null,
+  "cpu_before": {
+    "platform": "Linux",
+    "loadavg_1m": 6.5419921875,
+    "loadavg_5m": 7.12255859375,
+    "loadavg_15m": 7.79443359375,
+    "logical_cpus": 12,
+    "loadavg_1m_per_logical_cpu": 0.545166015625,
+    "top_cpu_processes": "167427  2.4 17952 pulseaudio      /usr/bin/pulseaudio --daemonize=no --log-target=journal\n 175460  1.6 143452 cursor         /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=172684 --enable-crash-reporter=89dc14b9-e0a7-43ba-abe3-43aca42be675,no_channel --user-data-dir=/home/ubuntu/.config/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=vscode-webview,vscode-file,sentry-ipc --fetch-schemes=vscode-webview,vscode-file,sentry-ipc --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6808278228360641090,13844374754287492527,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708997556373682\n 175461  1.2 171456 cursor         /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=172684 --enable-crash-reporter=89dc14b9-e0a7-43ba-abe3-43aca42be675,no_channel --user-data-dir=/home/ubuntu/.config/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=vscode-webview,vscode-file,sentry-ipc --fetch-schemes=vscode-webview,vscode-file,sentry-ipc --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6808278228360641090,13844374754287492527,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708998493415531\n 175439  1.2 150992 cursor         /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=172684 --enable-crash-reporter=89dc14b9-e0a7-43ba-abe3-43aca42be675,no_channel --user-data-dir=/home/ubuntu/.config/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=vscode-webview,vscode-file,sentry-ipc --fetch-schemes=vscode-webview,vscode-file,sentry-ipc --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6808278228360641090,13844374754287492527,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708996619331833\n   7596  0.9  5784 axsystemserver  axsystemserver --bind *:5555\n 172760  0.8 691076 cursor         /usr/share/cursor/cursor --type=zygote\n  67912  0.6 57612 loki            /usr/bin/loki -config.file=/etc/loki/loki.yaml\n 168499  0.5 350588 firefox        /snap/firefox/8107/usr/lib/firefox/firefox\n 176522  0.2 62324 cursor          /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=172684 --enable-crash-reporter=89dc14b9-e0a7-43ba-abe3-43aca42be675,no_channel --user-data-dir=/home/ubuntu/.config/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=vscode-webview,vscode-file,sentry-ipc --fetch-schemes=vscode-webview,vscode-file,sentry-ipc --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6808278228360641090,13844374754287492527,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708999430457380\n 172661  0.2 155720 cursor         /usr/share/cursor/cursor\n   1069  0.2 54492 tailscaled      /usr/sbin/tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/run/tailscale/tailscaled.sock --port=41641\n1148826  0.1     0 kworker/4:1-mm_ [kworker/4:1-mm_percpu_wq]\n1128030  0.1 18696 python3         python3 benchmark_results/fresh_edge_agentic_20260501/scripts/fresh_eval.py --root benchmark_results/fresh_edge_agentic_20260501/rerun_qwen35_qualityfix_20260501_161433/x86_axelera --host-label x86_axelera_qwen35_qualityfix --bench-bin benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp-qwen35-qualityfix-x86/build-x86-qwen35-qualityfix/bin/llama-bench --cli-bin benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp-qwen35-qualityfix-x86/build-x86-qwen35-qualityfix/bin/llama-cli --ppl-bin benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp-qwen35-qualityfix-x86/build-x86-qwen35-qualityfix/bin/llama-perplexity --dataset benchmark_results/fresh_edge_agentic_20260501/shared/wikitext-2-raw/wiki.test.raw --model gemma4_e4b=/home/ubuntu/models/gemma-4-E4B-it-Q4_0.gguf --model qwen35_4b=/home/ubuntu/models/Qwen3.5-4B-Q4_0.gguf --stage all --threads-speed 6,12 --threads-quality 6 --depths 0,2048,8192 --speed-n-gen 64 --speed-repetitions 5 --sustained-n-gen 256 --sustained-repetitions 2 --sustained-depth 8192 --ppl-ctx 512 --ppl-chunks 20 --ppl-batch 512 --ppl-ubatch 512 --quality-ctx 4096 --quality-n-predict 384 --min-memory-free-pct 20 --skip-existing\n  68191  0.1 66024 grafana         grafana server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.ini --packaging=docker cfg:default.log.mode=console cfg:default.paths.data=/var/lib/grafana cfg:default.paths.logs=/var/log/grafana cfg:default.paths.plugins=/var/lib/grafana/plugins cfg:default.paths.provisioning=/etc/grafana/provisioning\n  67913  0.1 41292 tempo           /tempo -config.file=/etc/tempo/tempo.yaml\n   1076  0.1 22056 containerd      /usr/bin/containerd\n1148973  0.0  2048 head            head -20\n1148972  0.0  2220 sort            sort -k2 -nr\n1148971  0.0  3244 ps              ps -axo pid,pcpu,rss,comm,args\n1148968  0.0  1880 sh              sh -lc ps -axo pid,pcpu,rss,comm,args | sort -k2 -nr | head -20"
+  },
+  "cpu_after": {
+    "platform": "Linux",
+    "loadavg_1m": 6.64453125,
+    "loadavg_5m": 7.115234375,
+    "loadavg_15m": 7.78125,
+    "logical_cpus": 12,
+    "loadavg_1m_per_logical_cpu": 0.5537109375,
+    "top_cpu_processes": "167427  2.4 17952 pulseaudio      /usr/bin/pulseaudio --daemonize=no --log-target=journal\n 175460  1.6 143224 cursor         /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=172684 --enable-crash-reporter=89dc14b9-e0a7-43ba-abe3-43aca42be675,no_channel --user-data-dir=/home/ubuntu/.config/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=vscode-webview,vscode-file,sentry-ipc --fetch-schemes=vscode-webview,vscode-file,sentry-ipc --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6808278228360641090,13844374754287492527,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708997556373682\n 175461  1.2 171456 cursor         /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=172684 --enable-crash-reporter=89dc14b9-e0a7-43ba-abe3-43aca42be675,no_channel --user-data-dir=/home/ubuntu/.config/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=vscode-webview,vscode-file,sentry-ipc --fetch-schemes=vscode-webview,vscode-file,sentry-ipc --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6808278228360641090,13844374754287492527,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708998493415531\n 175439  1.2 150992 cursor         /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --dns-result-order=ipv4first --experimental-network-inspection --inspect-port=0 --crashpad-handler-pid=172684 --enable-crash-reporter=89dc14b9-e0a7-43ba-abe3-43aca42be675,no_channel --user-data-dir=/home/ubuntu/.config/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=vscode-webview,vscode-file,sentry-ipc --fetch-schemes=vscode-webview,vscode-file,sentry-ipc --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6808278228360641090,13844374754287492527,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708996619331833\n   7596  0.9  5784 axsystemserver  axsystemserver --bind *:5555\n 172760  0.8 691848 cursor         /usr/share/cursor/cursor --type=zygote\n  67912  0.6 57612 loki            /usr/bin/loki -config.file=/etc/loki/loki.yaml\n 168499  0.5 350588 firefox        /snap/firefox/8107/usr/lib/firefox/firefox\n 176522  0.2 62324 cursor          /proc/self/exe --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=172684 --enable-crash-reporter=89dc14b9-e0a7-43ba-abe3-43aca42be675,no_channel --user-data-dir=/home/ubuntu/.config/Cursor --standard-schemes=vscode-webview,vscode-file --enable-sandbox --secure-schemes=vscode-webview,vscode-file,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=vscode-webview,vscode-file,sentry-ipc --fetch-schemes=vscode-webview,vscode-file,sentry-ipc --service-worker-schemes=vscode-webview --code-cache-schemes=vscode-webview,vscode-file --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,6808278228360641090,13844374754287492527,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation --variations-seed-version --trace-process-track-uuid=3190708999430457380\n 172661  0.2 156660 cursor         /usr/share/cursor/cursor\n   1069  0.2 54500 tailscaled      /usr/sbin/tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/run/tailscale/tailscaled.sock --port=41641\n1128030  0.1 18696 python3         python3 benchmark_results/fresh_edge_agentic_20260501/scripts/fresh_eval.py --root benchmark_results/fresh_edge_agentic_20260501/rerun_qwen35_qualityfix_20260501_161433/x86_axelera --host-label x86_axelera_qwen35_qualityfix --bench-bin benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp-qwen35-qualityfix-x86/build-x86-qwen35-qualityfix/bin/llama-bench --cli-bin benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp-qwen35-qualityfix-x86/build-x86-qwen35-qualityfix/bin/llama-cli --ppl-bin benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp-qwen35-qualityfix-x86/build-x86-qwen35-qualityfix/bin/llama-perplexity --dataset benchmark_results/fresh_edge_agentic_20260501/shared/wikitext-2-raw/wiki.test.raw --model gemma4_e4b=/home/ubuntu/models/gemma-4-E4B-it-Q4_0.gguf --model qwen35_4b=/home/ubuntu/models/Qwen3.5-4B-Q4_0.gguf --stage all --threads-speed 6,12 --threads-quality 6 --depths 0,2048,8192 --speed-n-gen 64 --speed-repetitions 5 --sustained-n-gen 256 --sustained-repetitions 2 --sustained-depth 8192 --ppl-ctx 512 --ppl-chunks 20 --ppl-batch 512 --ppl-ubatch 512 --quality-ctx 4096 --quality-n-predict 384 --min-memory-free-pct 20 --skip-existing\n  68191  0.1 66024 grafana         grafana server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.ini --packaging=docker cfg:default.log.mode=console cfg:default.paths.data=/var/lib/grafana cfg:default.paths.logs=/var/log/grafana cfg:default.paths.plugins=/var/lib/grafana/plugins cfg:default.paths.provisioning=/etc/grafana/provisioning\n  67913  0.1 41304 tempo           /tempo -config.file=/etc/tempo/tempo.yaml\n   1076  0.1 22056 containerd      /usr/bin/containerd\n1149029  0.0  2056 head            head -20\n1149028  0.0  2220 sort            sort -k2 -nr\n1149027  0.0  3240 ps              ps -axo pid,pcpu,rss,comm,args\n1149024  0.0  1876 sh              sh -lc ps -axo pid,pcpu,rss,comm,args | sort -k2 -nr | head -20\n1148895  0.0     0 kworker/4:3-eve [kworker/4:3-events]"
+  },
+  "memory_before": {
+    "platform": "Linux",
+    "total_bytes": 33277730816,
+    "available_bytes": 28887519232,
+    "available_pct": 86.80735892638096
+  },
+  "memory_after": {
+    "platform": "Linux",
+    "total_bytes": 33277730816,
+    "available_bytes": 28908175360,
+    "available_pct": 86.86943085103896
+  },
+  "thermal_before": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 67.0
+    }
+  },
+  "thermal_after": {
+    "platform": "Linux",
+    "linux_thermal_c": {
+      "/sys/class/thermal/thermal_zone0/temp": 27.8,
+      "/sys/class/thermal/thermal_zone1/temp": 66.0
+    }
+  },
+  "stdout": "benchmark_results/fresh_edge_agentic_20260501/rerun_qwen35_qualityfix_20260501_161433/x86_axelera/quality/raw/gemma4_e4b_p7_f16_f16.stdout.txt",
+  "stderr": "benchmark_results/fresh_edge_agentic_20260501/rerun_qwen35_qualityfix_20260501_161433/x86_axelera/quality/raw/gemma4_e4b_p7_f16_f16.stderr.txt"
+}
