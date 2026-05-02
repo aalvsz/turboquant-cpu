@@ -1,0 +1,27 @@
+{
+  "run_id": "20260502_083151_m4_max",
+  "host_label": "m4_max",
+  "created_utc": "2026-05-02T06:31:51.774809+00:00",
+  "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+  "server_bin": "/Users/ander.alvarez/dev/perso/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-arm-qwen35-tbq4-qualityfix/bin/llama-server",
+  "server_version": "version: 7 (90b03b6)\nbuilt with AppleClang 21.0.0.21000099 for Darwin arm64",
+  "models": {
+    "gemma4_e4b": "/Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf",
+    "qwen35_4b": "/Users/ander.alvarez/Downloads/Qwen3.5-4B-Q4_0.gguf"
+  },
+  "kv_configs": [
+    "f16/f16",
+    "q8_0/q8_0",
+    "q4_0/q4_0",
+    "tbq4/tbq4",
+    "q8_0/tbq4"
+  ],
+  "threads": 10,
+  "threads_batch": 10,
+  "ctx_size": 8192,
+  "initial_memory": {
+    "label": "initial benchmark",
+    "free_pct": 58.0,
+    "timestamp_utc": "2026-05-02T06:31:51.832072+00:00"
+  }
+}

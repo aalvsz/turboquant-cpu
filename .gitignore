@@ -1,5 +1,7 @@
 __pycache__/
 *.pyc
+agent/.venv/
+agent/results/*smoke*/
 
 # Generated benchmark workspaces can contain cloned repos, build products, and corpora.
 benchmark_results/**/src/

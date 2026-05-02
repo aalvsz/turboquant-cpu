@@ -1,0 +1,4 @@
+# Optional ADK runtime. The benchmark runner itself uses only the Python stdlib.
+google-adk
+litellm!=1.82.7,!=1.82.8
+
