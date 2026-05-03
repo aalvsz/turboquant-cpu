@@ -123,6 +123,8 @@ def aggregate_summary(rows: List[Dict[str, str]]) -> List[Dict[str, Any]]:
         thermal = stats(fnum(item.get("thermal_max_c")) for item in items)
         watts = stats(fnum(item.get("rapl_package_watts_avg")) for item in items)
         joules = stats(fnum(item.get("rapl_package_joules")) for item in items)
+        battery_watts = stats(fnum(item.get("battery_power_w_avg")) for item in items)
+        battery_joules = stats(fnum(item.get("battery_joules")) for item in items)
         json_rate = stats(fnum(item["final_json_valid_rate"]) for item in items)
         plan_rate = stats(fnum(item["plan_valid_rate"]) for item in items)
         base = base_wall.get((kind, planner, suite, host, ctx, model), 0.0)
@@ -153,6 +155,8 @@ def aggregate_summary(rows: List[Dict[str, str]]) -> List[Dict[str, Any]]:
             "thermal_max_c_mean": thermal["mean"],
             "rapl_package_joules_mean": joules["mean"],
             "rapl_package_watts_avg_mean": watts["mean"],
+            "battery_joules_mean": battery_joules["mean"],
+            "battery_power_w_avg_mean": battery_watts["mean"],
             "json_valid_mean": json_rate["mean"],
             "plan_valid_mean": plan_rate["mean"],
             "server_failures": sum(1 for item in items if int(fnum(item.get("server_returncode"))) != 0),
@@ -272,6 +276,8 @@ def write_report(out_dir: Path, roots: List[Path], metadata: List[Dict[str, Any]
         if float(row.get("thermal_max_c_mean") or 0.0) > 0.0
         or float(row.get("rapl_package_joules_mean") or 0.0) > 0.0
         or float(row.get("rapl_package_watts_avg_mean") or 0.0) > 0.0
+        or float(row.get("battery_joules_mean") or 0.0) > 0.0
+        or float(row.get("battery_power_w_avg_mean") or 0.0) > 0.0
     ]
     if qwen_x86_8k and qwen_x86_invalid_8k:
         qwen_x86_finding = (
@@ -401,15 +407,17 @@ def write_report(out_dir: Path, roots: List[Path], metadata: List[Dict[str, Any]
             "",
             "Telemetry is comparable only within the same device and controlled power/ambient conditions.",
             "Zero joules/watts means the energy counter was unavailable or unreadable during that run, not zero power draw.",
+            "Battery columns are whole-system battery discharge estimates on macOS, not package or SoC power.",
             "",
-            "| run | host | ctx | model | config | max temp C | pkg joules | avg pkg W |",
-            "|---|---|---:|---|---|---:|---:|---:|",
+            "| run | host | ctx | model | config | max temp C | pkg joules | avg pkg W | batt joules | avg batt W |",
+            "|---|---|---:|---|---|---:|---:|---:|---:|---:|",
         ])
         for row in telemetry_rows:
             lines.append(
                 f"| {row['run_kind']} | {row['host_label']} | {row['ctx_size']} | {row['model']} | {row['config']} | "
                 f"{fmt(row['thermal_max_c_mean'], 1)} | {fmt(row['rapl_package_joules_mean'], 1)} | "
-                f"{fmt(row['rapl_package_watts_avg_mean'], 2)} |"
+                f"{fmt(row['rapl_package_watts_avg_mean'], 2)} | {fmt(row['battery_joules_mean'], 1)} | "
+                f"{fmt(row['battery_power_w_avg_mean'], 2)} |"
             )
     lines.extend([
         "",

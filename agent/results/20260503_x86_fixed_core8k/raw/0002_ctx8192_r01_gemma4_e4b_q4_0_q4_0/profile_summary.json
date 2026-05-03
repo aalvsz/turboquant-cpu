@@ -1,0 +1,13 @@
+{
+  "max_rss_mb": 7702.8203125,
+  "max_cpu_pct": 595.0,
+  "mean_cpu_pct": 581.8503703703703,
+  "samples": 675,
+  "server_version": "version: 6 (ef7047a)\nbuilt with GNU 12.3.0 for Linux x86_64",
+  "thermal_max_c": 87.0,
+  "rapl_package_joules": 44364.07759,
+  "rapl_package_watts_avg": 65.02775093391728,
+  "battery_power_w_avg": 0.0,
+  "battery_power_w_max": 0.0,
+  "battery_joules": 0.0
+}

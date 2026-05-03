@@ -52,6 +52,18 @@ same-device config comparisons such as Q4 vs TBQ4 under controlled conditions.
 Without sudo, `pmset -g therm` can only provide coarse thermal/performance
 pressure messages, not package power.
 
+When `--telemetry` runs on macOS without sudo, the benchmark harness samples
+`AppleSmartBattery` via `ioreg` and writes:
+
+- `profiler_samples.csv`: `battery_power_w`, `battery_voltage_mv`,
+  `battery_current_ma`, and battery state fields
+- `profile_summary.json` and `summary.csv`: `battery_joules`,
+  `battery_power_w_avg`, and `battery_power_w_max`
+
+This is whole-system battery discharge power. It is useful only for same-device
+on-battery comparisons, and it is not a substitute for `powermetrics` SoC power
+in a paper.
+
 ## Raspberry Pi
 
 Temperature and throttling are available without extra hardware:

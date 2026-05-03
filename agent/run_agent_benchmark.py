@@ -708,7 +708,85 @@ def linux_rapl_package_energy_uj() -> Optional[float]:
     return None
 
 
+def linux_rapl_max_energy_range_uj() -> Optional[float]:
+    roots = sorted(Path("/sys/class/powercap").glob("intel-rapl:*"))
+    ranges: List[float] = []
+    for root in roots:
+        try:
+            name = (root / "name").read_text(errors="ignore").strip().lower() if (root / "name").exists() else ""
+        except Exception:
+            name = ""
+        if root.name.count(":") == 1 and ("package" in name or not name):
+            value = read_number(root / "max_energy_range_uj")
+            if value is not None:
+                ranges.append(value)
+    return sum(ranges) if ranges else None
+
+
+def energy_joules_from_uj_samples(energy_samples: List[Tuple[float, float]], max_range_uj: Optional[float] = None) -> Tuple[float, float]:
+    if len(energy_samples) < 2:
+        return 0.0, 0.0
+    total_delta_uj = 0.0
+    for (_t0, e0), (_t1, e1) in zip(energy_samples, energy_samples[1:]):
+        delta_uj = e1 - e0
+        if delta_uj < 0 and max_range_uj:
+            delta_uj = (max_range_uj - e0) + e1
+        if delta_uj > 0:
+            total_delta_uj += delta_uj
+    t0 = energy_samples[0][0]
+    t1 = energy_samples[-1][0]
+    joules = total_delta_uj / 1_000_000.0
+    watts = joules / (t1 - t0) if t1 > t0 else 0.0
+    return joules, watts
+
+
+def signed_u64(value: int) -> int:
+    return value - (1 << 64) if value >= (1 << 63) else value
+
+
+def darwin_battery_telemetry() -> Dict[str, Any]:
+    text = run_quiet(["ioreg", "-rn", "AppleSmartBattery"], timeout=5)
+    if text.startswith("ERROR:"):
+        return {}
+    out: Dict[str, Any] = {}
+
+    def match_int(name: str) -> Optional[int]:
+        match = re.search(rf'"{re.escape(name)}"\s*=\s*(-?\d+)', text)
+        return int(match.group(1)) if match else None
+
+    def match_bool(name: str) -> Optional[bool]:
+        match = re.search(rf'"{re.escape(name)}"\s*=\s*(Yes|No)', text)
+        return (match.group(1) == "Yes") if match else None
+
+    voltage_mv = match_int("Voltage") or match_int("AppleRawBatteryVoltage")
+    current_ma = match_int("InstantAmperage")
+    if current_ma is None:
+        current_ma = match_int("Amperage")
+    if current_ma is not None:
+        current_ma = signed_u64(current_ma)
+    if voltage_mv is not None:
+        out["battery_voltage_mv"] = voltage_mv
+    if current_ma is not None:
+        out["battery_current_ma"] = current_ma
+    if voltage_mv is not None and current_ma is not None:
+        out["battery_power_w"] = round(abs(voltage_mv * current_ma) / 1_000_000.0, 4)
+    capacity = match_int("CurrentCapacity")
+    if capacity is not None:
+        out["battery_capacity_pct"] = capacity
+    external = match_bool("ExternalConnected")
+    if external is None:
+        external = match_bool("AppleRawExternalConnected")
+    charging = match_bool("IsCharging")
+    if external is not None:
+        out["battery_external_connected"] = external
+    if charging is not None:
+        out["battery_is_charging"] = charging
+    return out
+
+
 def sample_host_telemetry() -> Dict[str, Any]:
+    if platform.system() == "Darwin":
+        return darwin_battery_telemetry()
     if platform.system() != "Linux":
         return {}
     out: Dict[str, Any] = {}
@@ -870,12 +948,18 @@ def stop_server(server: ServerRun, out_dir: Path) -> None:
     avg_pkg_watts = 0.0
     pkg_joules = 0.0
     if len(energy_samples) >= 2:
-        t0, e0 = energy_samples[0]
-        t1, e1 = energy_samples[-1]
-        delta_uj = e1 - e0
-        if delta_uj >= 0 and t1 > t0:
-            pkg_joules = delta_uj / 1_000_000.0
-            avg_pkg_watts = pkg_joules / (t1 - t0)
+        pkg_joules, avg_pkg_watts = energy_joules_from_uj_samples(energy_samples, linux_rapl_max_energy_range_uj())
+    battery_values = [float(s["battery_power_w"]) for s in server.samples if s.get("battery_power_w") not in (None, "")]
+    battery_samples = [
+        (float(s["elapsed_sec"]), float(s["battery_power_w"]))
+        for s in server.samples
+        if s.get("battery_power_w") not in (None, "")
+    ]
+    battery_joules = 0.0
+    if len(battery_samples) >= 2:
+        for (t0, p0), (t1, p1) in zip(battery_samples, battery_samples[1:]):
+            if t1 > t0:
+                battery_joules += ((p0 + p1) / 2.0) * (t1 - t0)
     (out_dir / "profile_summary.json").write_text(json.dumps({
         "max_rss_mb": server.max_rss_kb / 1024.0,
         "max_cpu_pct": server.max_cpu_pct,
@@ -885,6 +969,9 @@ def stop_server(server: ServerRun, out_dir: Path) -> None:
         "thermal_max_c": max(thermal_values) if thermal_values else 0.0,
         "rapl_package_joules": pkg_joules,
         "rapl_package_watts_avg": avg_pkg_watts,
+        "battery_power_w_avg": sum(battery_values) / len(battery_values) if battery_values else 0.0,
+        "battery_power_w_max": max(battery_values) if battery_values else 0.0,
+        "battery_joules": battery_joules,
     }, indent=2))
 
 
@@ -1341,8 +1428,8 @@ def write_run_report(out_root: Path, summary_rows: List[Dict[str, Any]], task_ro
         "",
         "## Summary",
         "",
-        "| host | ctx | repeat | model | config | tasks | mean quality | total wall s | tok/s | plan valid | JSON valid | max RSS MB | max CPU % | max temp C | pkg J | avg pkg W |",
-        "|---|---:|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| host | ctx | repeat | model | config | tasks | mean quality | total wall s | tok/s | plan valid | JSON valid | max RSS MB | max CPU % | max temp C | pkg J | avg pkg W | batt J | avg batt W |",
+        "|---|---:|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in summary_rows:
         lines.append(
@@ -1351,7 +1438,8 @@ def write_run_report(out_root: Path, summary_rows: List[Dict[str, Any]], task_ro
             f"{float(row['completion_tokens_per_sec']):.3f} | {float(row['plan_valid_rate']):.3f} | "
             f"{float(row['final_json_valid_rate']):.3f} | {float(row['server_max_rss_mb']):.1f} | "
             f"{float(row['server_max_cpu_pct']):.1f} | {float(row.get('thermal_max_c') or 0.0):.1f} | "
-            f"{float(row.get('rapl_package_joules') or 0.0):.1f} | {float(row.get('rapl_package_watts_avg') or 0.0):.2f} |"
+            f"{float(row.get('rapl_package_joules') or 0.0):.1f} | {float(row.get('rapl_package_watts_avg') or 0.0):.2f} | "
+            f"{float(row.get('battery_joules') or 0.0):.1f} | {float(row.get('battery_power_w_avg') or 0.0):.2f} |"
         )
     lines.extend([
         "",
@@ -1530,12 +1618,18 @@ def main() -> None:
         pkg_joules = 0.0
         avg_pkg_watts = 0.0
         if len(energy_samples) >= 2:
-            t0, e0 = energy_samples[0]
-            t1, e1 = energy_samples[-1]
-            delta_uj = e1 - e0
-            if delta_uj >= 0 and t1 > t0:
-                pkg_joules = delta_uj / 1_000_000.0
-                avg_pkg_watts = pkg_joules / (t1 - t0)
+            pkg_joules, avg_pkg_watts = energy_joules_from_uj_samples(energy_samples, linux_rapl_max_energy_range_uj())
+        battery_values = [float(s["battery_power_w"]) for s in server.samples if s.get("battery_power_w") not in (None, "")]
+        battery_samples = [
+            (float(s["elapsed_sec"]), float(s["battery_power_w"]))
+            for s in server.samples
+            if s.get("battery_power_w") not in (None, "")
+        ]
+        battery_joules = 0.0
+        if len(battery_samples) >= 2:
+            for (t0, p0), (t1, p1) in zip(battery_samples, battery_samples[1:]):
+                if t1 > t0:
+                    battery_joules += ((p0 + p1) / 2.0) * (t1 - t0)
         summary = summarize_rows(rows)
         summary.update({
             "job_index": job_index,
@@ -1553,6 +1647,9 @@ def main() -> None:
             "thermal_max_c": max(thermal_values) if thermal_values else 0.0,
             "rapl_package_joules": pkg_joules,
             "rapl_package_watts_avg": avg_pkg_watts,
+            "battery_power_w_avg": sum(battery_values) / len(battery_values) if battery_values else 0.0,
+            "battery_power_w_max": max(battery_values) if battery_values else 0.0,
+            "battery_joules": battery_joules,
             "server_version": " ".join(server.server_version.split()),
             "server_version_major": server_version_major(server.server_version) or 0,
             "server_returncode": server.proc.returncode,

@@ -1,0 +1,17 @@
+run_kind,planner_mode,task_suite,host_label,ctx_size,model,config,paired_cases,quality_ge_q4_rate,json_ge_q4_rate,config_json_valid_rate,q4_json_valid_rate
+fixed_core8k,llm,core,m4_fixed_core8k_battery,8192,gemma4_e4b,f16/f16,5,1.0,1.0,1.0,1.0
+fixed_core8k,llm,core,m4_fixed_core8k_battery,8192,gemma4_e4b,q8_0/q8_0,5,1.0,1.0,1.0,1.0
+fixed_core8k,llm,core,m4_fixed_core8k_battery,8192,gemma4_e4b,q8_0/tbq4,5,1.0,1.0,1.0,1.0
+fixed_core8k,llm,core,m4_fixed_core8k_battery,8192,gemma4_e4b,tbq4/tbq4,5,1.0,1.0,1.0,1.0
+fixed_core8k,llm,core,m4_fixed_core8k_battery,8192,qwen35_4b,f16/f16,5,0.4,1.0,1.0,1.0
+fixed_core8k,llm,core,m4_fixed_core8k_battery,8192,qwen35_4b,q8_0/q8_0,5,0.4,1.0,1.0,1.0
+fixed_core8k,llm,core,m4_fixed_core8k_battery,8192,qwen35_4b,q8_0/tbq4,5,0.8,1.0,1.0,1.0
+fixed_core8k,llm,core,m4_fixed_core8k_battery,8192,qwen35_4b,tbq4/tbq4,5,0.8,1.0,1.0,1.0
+fixed_core8k,llm,core,x86_axelera_fixed_core8k,8192,gemma4_e4b,f16/f16,5,1.0,1.0,1.0,1.0
+fixed_core8k,llm,core,x86_axelera_fixed_core8k,8192,gemma4_e4b,q8_0/q8_0,5,1.0,1.0,1.0,1.0
+fixed_core8k,llm,core,x86_axelera_fixed_core8k,8192,gemma4_e4b,q8_0/tbq4,5,0.8,1.0,1.0,1.0
+fixed_core8k,llm,core,x86_axelera_fixed_core8k,8192,gemma4_e4b,tbq4/tbq4,5,1.0,1.0,1.0,1.0
+fixed_core8k,llm,core,x86_axelera_fixed_core8k,8192,qwen35_4b,f16/f16,5,0.6,1.0,1.0,1.0
+fixed_core8k,llm,core,x86_axelera_fixed_core8k,8192,qwen35_4b,q8_0/q8_0,5,0.6,1.0,1.0,1.0
+fixed_core8k,llm,core,x86_axelera_fixed_core8k,8192,qwen35_4b,q8_0/tbq4,5,0.8,1.0,1.0,1.0
+fixed_core8k,llm,core,x86_axelera_fixed_core8k,8192,qwen35_4b,tbq4/tbq4,5,0.6,1.0,1.0,1.0
