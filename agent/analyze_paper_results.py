@@ -120,6 +120,9 @@ def aggregate_summary(rows: List[Dict[str, str]]) -> List[Dict[str, Any]]:
         tok = stats(fnum(item["completion_tokens_per_sec"]) for item in items)
         rss = stats(fnum(item["server_max_rss_mb"]) for item in items)
         cpu = stats(fnum(item.get("server_max_cpu_pct")) for item in items)
+        thermal = stats(fnum(item.get("thermal_max_c")) for item in items)
+        watts = stats(fnum(item.get("rapl_package_watts_avg")) for item in items)
+        joules = stats(fnum(item.get("rapl_package_joules")) for item in items)
         json_rate = stats(fnum(item["final_json_valid_rate"]) for item in items)
         plan_rate = stats(fnum(item["plan_valid_rate"]) for item in items)
         base = base_wall.get((kind, planner, suite, host, ctx, model), 0.0)
@@ -147,6 +150,9 @@ def aggregate_summary(rows: List[Dict[str, str]]) -> List[Dict[str, Any]]:
             "tok_s_mean": tok["mean"],
             "rss_max_mean_mb": rss["mean"],
             "cpu_max_mean_pct": cpu["mean"],
+            "thermal_max_c_mean": thermal["mean"],
+            "rapl_package_joules_mean": joules["mean"],
+            "rapl_package_watts_avg_mean": watts["mean"],
             "json_valid_mean": json_rate["mean"],
             "plan_valid_mean": plan_rate["mean"],
             "server_failures": sum(1 for item in items if int(fnum(item.get("server_returncode"))) != 0),
@@ -259,6 +265,52 @@ def write_report(out_dir: Path, roots: List[Path], metadata: List[Dict[str, Any]
         if row["model"] == "qwen35_4b" and row["config"] == "tbq4/tbq4" and row["host_label"].startswith("m4")
     ]
     qwen_x86_8k = [row for row in rows_8k if row["model"] == "qwen35_4b" and row["host_label"].startswith("x86")]
+    qwen_x86_tbq_8k = [row for row in qwen_x86_8k if row["config"] == "tbq4/tbq4"]
+    qwen_x86_invalid_8k = [row for row in qwen_x86_8k if float(row["json_valid_mean"]) <= 0.001]
+    telemetry_rows = [
+        row for row in agg
+        if float(row.get("thermal_max_c_mean") or 0.0) > 0.0
+        or float(row.get("rapl_package_joules_mean") or 0.0) > 0.0
+        or float(row.get("rapl_package_watts_avg_mean") or 0.0) > 0.0
+    ]
+    if qwen_x86_8k and qwen_x86_invalid_8k:
+        qwen_x86_finding = (
+            f"- Qwen 3.5 4B on x86 still has zero-valid-JSON rows in "
+            f"`{len(qwen_x86_invalid_8k)}`/`{len(qwen_x86_8k)}` included 8K aggregates. "
+            "Treat those rows as serving-path failures, not TurboQuant quality evidence."
+        )
+    elif qwen_x86_8k:
+        qwen_x86_finding = (
+            "- Qwen 3.5 4B on x86 no longer shows zero-valid-JSON 8K aggregate rows; "
+            f"`tbq4/tbq4` speedups range from {pct_range(qwen_x86_tbq_8k, 'speedup_vs_q4_pct')} "
+            f"with quality deltas from {delta_range(qwen_x86_tbq_8k, 'quality_delta_vs_q4')}."
+        )
+    else:
+        qwen_x86_finding = "- No fixed Qwen 3.5 4B x86 8K rows are included in this report."
+    key_findings = [
+        f"- Completed `{completed_jobs}` benchmark jobs and `{completed_task_rows}` task executions. Server return-code failures in included summaries: `{server_failures}`.",
+    ]
+    if gemma_tbq_8k:
+        key_findings.append(
+            f"- Gemma 4B is the strongest current evidence: `tbq4/tbq4` is faster than Q4 in every included 8K Gemma slice, with speedups from {pct_range(gemma_tbq_8k, 'speedup_vs_q4_pct')} and quality deltas from {delta_range(gemma_tbq_8k, 'quality_delta_vs_q4')}."
+        )
+    else:
+        key_findings.append("- No Gemma 4B 8K `tbq4/tbq4` rows are included in this report.")
+    if qwen_m4_tbq_8k:
+        key_findings.append(
+            f"- Qwen 3.5 4B on M4 is mixed for `tbq4/tbq4`: speedups range from {pct_range(qwen_m4_tbq_8k, 'speedup_vs_q4_pct')}, while quality deltas range from {delta_range(qwen_m4_tbq_8k, 'quality_delta_vs_q4')}."
+        )
+    else:
+        key_findings.append("- No Qwen 3.5 4B M4 8K `tbq4/tbq4` rows are included in this report.")
+    key_findings.append(qwen_x86_finding)
+    if gemma_tbq_8k or qwen_m4_tbq_8k:
+        key_findings.append(
+            "- The evidence supports a narrower CPU edge-agent claim for Gemma and a tentative, workload-scoped optimization claim. It does not yet support a broad full-paper claim that TurboQuant is lossless across model families and CPU targets."
+        )
+    else:
+        key_findings.append(
+            "- This report resolves the Qwen/x86 serving-path question only. Use the full cross-device matrix before making broad edge-agent claims."
+        )
     lines = [
         "# Unified TurboQuant Edge-Agent Paper Report",
         "",
@@ -277,11 +329,7 @@ def write_report(out_dir: Path, roots: List[Path], metadata: List[Dict[str, Any]
         "",
         "## Key Findings",
         "",
-        f"- Completed `{completed_jobs}` benchmark jobs and `{completed_task_rows}` task executions. Server return-code failures in included summaries: `{server_failures}`.",
-        f"- Gemma 4B is the strongest current evidence: `tbq4/tbq4` is faster than Q4 in every included 8K Gemma slice, with speedups from {pct_range(gemma_tbq_8k, 'speedup_vs_q4_pct')} and quality deltas from {delta_range(gemma_tbq_8k, 'quality_delta_vs_q4')}.",
-        f"- Qwen 3.5 4B on M4 is mixed for `tbq4/tbq4`: speedups range from {pct_range(qwen_m4_tbq_8k, 'speedup_vs_q4_pct')}, while quality deltas range from {delta_range(qwen_m4_tbq_8k, 'quality_delta_vs_q4')}.",
-        f"- Qwen 3.5 4B on x86 produced `JSON=0.000` for `{len(qwen_x86_8k)}`/`{len(qwen_x86_8k)}` 8K aggregate rows across every KV config. Treat those rows as a Qwen/x86 serving-path issue, not as quality evidence for or against TurboQuant.",
-        "- The evidence supports a narrower CPU edge-agent claim for Gemma and a tentative, workload-scoped optimization claim. It does not yet support a broad full-paper claim that TurboQuant is lossless across model families and CPU targets.",
+        *key_findings,
         "",
         "## 8K Q4 Baseline Comparison",
         "",
@@ -346,6 +394,23 @@ def write_report(out_dir: Path, roots: List[Path], metadata: List[Dict[str, Any]
             f"{fmt(row['llm_tool_sec_mean'])} | {fmt(row['final_sec_mean'])} | "
             f"{fmt(row['prompt_eval_ms_mean'], 1)} | {fmt(row['decode_ms_mean'], 1)} |"
         )
+    if telemetry_rows:
+        lines.extend([
+            "",
+            "## Power And Thermal Telemetry",
+            "",
+            "Telemetry is comparable only within the same device and controlled power/ambient conditions.",
+            "Zero joules/watts means the energy counter was unavailable or unreadable during that run, not zero power draw.",
+            "",
+            "| run | host | ctx | model | config | max temp C | pkg joules | avg pkg W |",
+            "|---|---|---:|---|---|---:|---:|---:|",
+        ])
+        for row in telemetry_rows:
+            lines.append(
+                f"| {row['run_kind']} | {row['host_label']} | {row['ctx_size']} | {row['model']} | {row['config']} | "
+                f"{fmt(row['thermal_max_c_mean'], 1)} | {fmt(row['rapl_package_joules_mean'], 1)} | "
+                f"{fmt(row['rapl_package_watts_avg_mean'], 2)} |"
+            )
     lines.extend([
         "",
         "## Context Sweep",

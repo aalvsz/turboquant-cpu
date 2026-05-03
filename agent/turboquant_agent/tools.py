@@ -210,6 +210,8 @@ class LlmToolClient:
         max_tokens: int = 128,
         temperature: float = 0.0,
         seed: int = 1234,
+        json_schema: Optional[Dict[str, Any]] = None,
+        schema_name: str = "response",
     ) -> Dict[str, Any]:
         payload = {
             "model": self.model,
@@ -220,6 +222,15 @@ class LlmToolClient:
             "seed": seed,
             "stream": False,
         }
+        if json_schema is not None:
+            payload["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": schema_name,
+                    "strict": True,
+                    "schema": json_schema,
+                },
+            }
         raw = json.dumps(payload).encode("utf-8")
         req = urllib.request.Request(
             self.base_url + "/chat/completions",

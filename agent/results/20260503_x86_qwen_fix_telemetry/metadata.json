@@ -1,0 +1,44 @@
+{
+  "run_id": "20260503_124838_x86_axelera_qwen_fix_telemetry",
+  "host_label": "x86_axelera_qwen_fix_telemetry",
+  "created_utc": "2026-05-03T10:48:38.628635+00:00",
+  "platform": "Linux-6.8.0-107-generic-x86_64-with-glibc2.35",
+  "server_bin": "benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-x86-qwen35-tbq4-qualityfix/bin/llama-server",
+  "server_version": "version: 6 (ef7047a)\nbuilt with GNU 12.3.0 for Linux x86_64",
+  "models": {
+    "qwen35_4b": "/home/ubuntu/models/Qwen3.5-4B-Q4_0.gguf"
+  },
+  "kv_configs": [
+    "q4_0/q4_0",
+    "tbq4/tbq4",
+    "q8_0/tbq4"
+  ],
+  "ctx_sizes": [
+    8192
+  ],
+  "repeats": 1,
+  "task_suite": "core",
+  "run_kind": "qwen_fix_telemetry",
+  "planner_mode": "llm",
+  "task_count": 1,
+  "task_ids": [
+    "latency_triage"
+  ],
+  "threads": 6,
+  "threads_batch": 6,
+  "context_fill_ratio": 0.0,
+  "max_planner_tokens": 128,
+  "max_tool_tokens": 96,
+  "max_final_tokens": 144,
+  "telemetry": true,
+  "min_qwen_server_version": 6,
+  "allow_legacy_qwen_server": false,
+  "randomize_order": true,
+  "shuffle_seed": 20260502,
+  "job_count": 3,
+  "initial_memory": {
+    "label": "initial benchmark",
+    "free_pct": 86.97836135534656,
+    "timestamp_utc": "2026-05-03T10:48:38.633914+00:00"
+  }
+}

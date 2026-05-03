@@ -45,6 +45,39 @@ DEFAULT_MODEL_PATHS = {
     "gemma4_e4b": "/Users/ander.alvarez/Downloads/gemma-4-E4B-it-Q4_0.gguf",
     "qwen35_4b": "/Users/ander.alvarez/Downloads/Qwen3.5-4B-Q4_0.gguf",
 }
+PLANNER_JSON_SCHEMA = {
+    "type": "object",
+    "additionalProperties": False,
+    "properties": {
+        "tools": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "items": {
+                "type": "object",
+                "additionalProperties": False,
+                "properties": {
+                    "name": {"type": "string"},
+                    "args": {"type": "object"},
+                },
+                "required": ["name", "args"],
+            },
+        },
+        "rationale": {"type": "string"},
+    },
+    "required": ["tools", "rationale"],
+}
+FINAL_JSON_SCHEMA = {
+    "type": "object",
+    "additionalProperties": False,
+    "properties": {
+        "decision": {"type": "string"},
+        "evidence": {"type": "string"},
+        "caveats": {"type": "string"},
+        "next_action": {"type": "string"},
+    },
+    "required": ["decision", "evidence", "caveats", "next_action"],
+}
 
 KV_CONFIGS = [
     ("f16", "f16", "f16/f16"),
@@ -555,6 +588,7 @@ class ServerRun:
     stop_monitor: bool = False
     monitor_thread: Optional[threading.Thread] = None
     samples: List[Dict[str, Any]] = field(default_factory=list)
+    server_version: str = ""
 
 
 def run_quiet(cmd: List[str], timeout: float = 20.0) -> str:
@@ -562,6 +596,31 @@ def run_quiet(cmd: List[str], timeout: float = 20.0) -> str:
         return subprocess.check_output(cmd, stderr=subprocess.STDOUT, text=True, timeout=timeout).strip()
     except Exception as exc:
         return f"ERROR: {exc}"
+
+
+def server_version_text(server_bin: Path) -> str:
+    return run_quiet([str(server_bin), "--version"], timeout=10)
+
+
+def server_version_major(version_text: str) -> Optional[int]:
+    match = re.search(r"version:\s*(\d+)", version_text)
+    return int(match.group(1)) if match else None
+
+
+def validate_server_for_model(args: argparse.Namespace, model_name: str, version_text: str) -> None:
+    if not model_name.startswith("qwen") or args.allow_legacy_qwen_server:
+        return
+    major = server_version_major(version_text)
+    if major is None:
+        raise SystemExit(
+            f"Refusing Qwen run: could not parse llama-server version from {args.server_bin}: {version_text!r}"
+        )
+    if major < args.min_qwen_server_version:
+        raise SystemExit(
+            f"Refusing Qwen run with llama-server version {major}. "
+            f"Qwen requires version >= {args.min_qwen_server_version}; rebuild x86 from the "
+            "qwen35-tbq4-qualityfix llama.cpp tree or pass --allow-legacy-qwen-server for diagnosis only."
+        )
 
 
 def memory_free_pct() -> Optional[float]:
@@ -609,16 +668,72 @@ def sample_proc(pid: int) -> Tuple[int, float]:
         return 0, 0.0
 
 
-def monitor_server(server: ServerRun, interval: float) -> None:
+def read_number(path: Path) -> Optional[float]:
+    try:
+        return float(path.read_text().strip())
+    except Exception:
+        return None
+
+
+def linux_thermal_max_c() -> Optional[float]:
+    temps: List[float] = []
+    for path in Path("/sys/class/thermal").glob("thermal_zone*/temp"):
+        value = read_number(path)
+        if value is None:
+            continue
+        celsius = value / 1000.0 if value > 1000 else value
+        if 0.0 < celsius < 130.0:
+            temps.append(celsius)
+    return max(temps) if temps else None
+
+
+def linux_rapl_package_energy_uj() -> Optional[float]:
+    roots = sorted(Path("/sys/class/powercap").glob("intel-rapl:*"))
+    package_values: List[float] = []
+    for root in roots:
+        try:
+            name = (root / "name").read_text(errors="ignore").strip().lower() if (root / "name").exists() else ""
+        except Exception:
+            name = ""
+        if root.name.count(":") == 1 and ("package" in name or not name):
+            value = read_number(root / "energy_uj")
+            if value is not None:
+                package_values.append(value)
+    if package_values:
+        return sum(package_values)
+    for path in Path("/sys/class/powercap").glob("intel-rapl:*/energy_uj"):
+        value = read_number(path)
+        if value is not None:
+            return value
+    return None
+
+
+def sample_host_telemetry() -> Dict[str, Any]:
+    if platform.system() != "Linux":
+        return {}
+    out: Dict[str, Any] = {}
+    temp = linux_thermal_max_c()
+    energy = linux_rapl_package_energy_uj()
+    if temp is not None:
+        out["thermal_max_c"] = round(temp, 3)
+    if energy is not None:
+        out["rapl_package_energy_uj"] = int(energy)
+    return out
+
+
+def monitor_server(server: ServerRun, interval: float, telemetry: bool) -> None:
     while not server.stop_monitor and server.proc.poll() is None:
         rss, cpu = sample_proc(server.proc.pid)
         server.max_rss_kb = max(server.max_rss_kb, rss)
         server.max_cpu_pct = max(server.max_cpu_pct, cpu)
-        server.samples.append({
+        row = {
             "elapsed_sec": round(time.time(), 3),
             "rss_kb": rss,
             "cpu_pct": cpu,
-        })
+        }
+        if telemetry:
+            row.update(sample_host_telemetry())
+        server.samples.append(row)
         time.sleep(interval)
 
 
@@ -660,6 +775,8 @@ def start_server(
     ctx_size: int,
     port: int,
 ) -> ServerRun:
+    version_text = server_version_text(Path(args.server_bin))
+    validate_server_for_model(args, model_name, version_text)
     preflight_memory(args.min_memory_free_pct, f"{model_name} {label} ctx={ctx_size}")
     stdout_path = out_dir / "server.stdout.log"
     stderr_path = out_dir / "server.stderr.log"
@@ -695,13 +812,14 @@ def start_server(
         model_name,
     ]
     if model_name.startswith("qwen"):
-        cmd.extend(["--reasoning-budget", "0"])
+        cmd.extend(["--jinja", "--reasoning-budget", "0"])
     (out_dir / "server_command.json").write_text(json.dumps(cmd, indent=2))
+    (out_dir / "server_version.txt").write_text(version_text + "\n")
     proc = subprocess.Popen(cmd, stdout=stdout, stderr=stderr, text=True)
     stdout.close()
     stderr.close()
-    server = ServerRun(proc=proc, stdout_path=stdout_path, stderr_path=stderr_path)
-    server.monitor_thread = threading.Thread(target=monitor_server, args=(server, args.profile_interval), daemon=True)
+    server = ServerRun(proc=proc, stdout_path=stdout_path, stderr_path=stderr_path, server_version=version_text)
+    server.monitor_thread = threading.Thread(target=monitor_server, args=(server, args.profile_interval, args.telemetry), daemon=True)
     server.monitor_thread.start()
     try:
         wait_for_server(f"http://127.0.0.1:{port}", proc, timeout=args.server_timeout)
@@ -743,11 +861,30 @@ def stop_server(server: ServerRun, out_dir: Path) -> None:
         server.monitor_thread.join(timeout=2)
     write_csv(out_dir / "profiler_samples.csv", server.samples)
     mean_cpu = sum(float(s["cpu_pct"]) for s in server.samples) / len(server.samples) if server.samples else 0.0
+    thermal_values = [float(s["thermal_max_c"]) for s in server.samples if s.get("thermal_max_c") not in (None, "")]
+    energy_samples = [
+        (float(s["elapsed_sec"]), float(s["rapl_package_energy_uj"]))
+        for s in server.samples
+        if s.get("rapl_package_energy_uj") not in (None, "")
+    ]
+    avg_pkg_watts = 0.0
+    pkg_joules = 0.0
+    if len(energy_samples) >= 2:
+        t0, e0 = energy_samples[0]
+        t1, e1 = energy_samples[-1]
+        delta_uj = e1 - e0
+        if delta_uj >= 0 and t1 > t0:
+            pkg_joules = delta_uj / 1_000_000.0
+            avg_pkg_watts = pkg_joules / (t1 - t0)
     (out_dir / "profile_summary.json").write_text(json.dumps({
         "max_rss_mb": server.max_rss_kb / 1024.0,
         "max_cpu_pct": server.max_cpu_pct,
         "mean_cpu_pct": mean_cpu,
         "samples": len(server.samples),
+        "server_version": server.server_version,
+        "thermal_max_c": max(thermal_values) if thermal_values else 0.0,
+        "rapl_package_joules": pkg_joules,
+        "rapl_package_watts_avg": avg_pkg_watts,
     }, indent=2))
 
 
@@ -817,6 +954,8 @@ def plan_tools(
             {"role": "user", "content": prompt},
         ],
         max_tokens=max_tokens,
+        json_schema=PLANNER_JSON_SCHEMA,
+        schema_name="tool_plan",
     )
     parsed = extract_json(resp["content"])
     if isinstance(parsed, dict) and isinstance(parsed.get("tools"), list):
@@ -886,6 +1025,8 @@ def final_answer(client: LlmToolClient, task: Dict[str, Any], tool_results: List
             {"role": "user", "content": prompt},
         ],
         max_tokens=max_tokens,
+        json_schema=FINAL_JSON_SCHEMA,
+        schema_name="edge_agent_final",
     )
 
 
@@ -1200,8 +1341,8 @@ def write_run_report(out_root: Path, summary_rows: List[Dict[str, Any]], task_ro
         "",
         "## Summary",
         "",
-        "| host | ctx | repeat | model | config | tasks | mean quality | total wall s | tok/s | plan valid | JSON valid | max RSS MB | max CPU % |",
-        "|---|---:|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| host | ctx | repeat | model | config | tasks | mean quality | total wall s | tok/s | plan valid | JSON valid | max RSS MB | max CPU % | max temp C | pkg J | avg pkg W |",
+        "|---|---:|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in summary_rows:
         lines.append(
@@ -1209,7 +1350,8 @@ def write_run_report(out_root: Path, summary_rows: List[Dict[str, Any]], task_ro
             f"{row['tasks']} | {float(row['mean_quality_total']):.3f} | {float(row['total_wall_sec']):.3f} | "
             f"{float(row['completion_tokens_per_sec']):.3f} | {float(row['plan_valid_rate']):.3f} | "
             f"{float(row['final_json_valid_rate']):.3f} | {float(row['server_max_rss_mb']):.1f} | "
-            f"{float(row['server_max_cpu_pct']):.1f} |"
+            f"{float(row['server_max_cpu_pct']):.1f} | {float(row.get('thermal_max_c') or 0.0):.1f} | "
+            f"{float(row.get('rapl_package_joules') or 0.0):.1f} | {float(row.get('rapl_package_watts_avg') or 0.0):.2f} |"
         )
     lines.extend([
         "",
@@ -1255,6 +1397,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--server-timeout", type=float, default=180.0)
     parser.add_argument("--min-memory-free-pct", type=float, default=15.0)
     parser.add_argument("--profile-interval", type=float, default=1.0)
+    parser.add_argument("--telemetry", action="store_true", help="Sample Linux RAPL package energy and thermal zones when available")
+    parser.add_argument("--min-qwen-server-version", type=int, default=6)
+    parser.add_argument("--allow-legacy-qwen-server", action="store_true")
     parser.add_argument("--out-root", type=Path, default=None)
     parser.add_argument("--limit-tasks", type=int, default=0)
     return parser.parse_args()
@@ -1317,6 +1462,9 @@ def main() -> None:
         "max_planner_tokens": args.max_planner_tokens,
         "max_tool_tokens": args.max_tool_tokens,
         "max_final_tokens": args.max_final_tokens,
+        "telemetry": args.telemetry,
+        "min_qwen_server_version": args.min_qwen_server_version,
+        "allow_legacy_qwen_server": args.allow_legacy_qwen_server,
         "randomize_order": args.randomize_order,
         "shuffle_seed": args.shuffle_seed,
         "job_count": len(jobs),
@@ -1373,6 +1521,21 @@ def main() -> None:
             stop_server(server, combo_dir)
         write_csv(combo_dir / "tasks.csv", rows)
         mean_cpu = sum(float(s["cpu_pct"]) for s in server.samples) / len(server.samples) if server.samples else 0.0
+        thermal_values = [float(s["thermal_max_c"]) for s in server.samples if s.get("thermal_max_c") not in (None, "")]
+        energy_samples = [
+            (float(s["elapsed_sec"]), float(s["rapl_package_energy_uj"]))
+            for s in server.samples
+            if s.get("rapl_package_energy_uj") not in (None, "")
+        ]
+        pkg_joules = 0.0
+        avg_pkg_watts = 0.0
+        if len(energy_samples) >= 2:
+            t0, e0 = energy_samples[0]
+            t1, e1 = energy_samples[-1]
+            delta_uj = e1 - e0
+            if delta_uj >= 0 and t1 > t0:
+                pkg_joules = delta_uj / 1_000_000.0
+                avg_pkg_watts = pkg_joules / (t1 - t0)
         summary = summarize_rows(rows)
         summary.update({
             "job_index": job_index,
@@ -1387,6 +1550,11 @@ def main() -> None:
             "server_max_cpu_pct": server.max_cpu_pct,
             "server_mean_cpu_pct": mean_cpu,
             "server_profile_samples": len(server.samples),
+            "thermal_max_c": max(thermal_values) if thermal_values else 0.0,
+            "rapl_package_joules": pkg_joules,
+            "rapl_package_watts_avg": avg_pkg_watts,
+            "server_version": " ".join(server.server_version.split()),
+            "server_version_major": server_version_major(server.server_version) or 0,
             "server_returncode": server.proc.returncode,
             "run_kind": args.run_kind,
             "task_suite": args.task_suite,
