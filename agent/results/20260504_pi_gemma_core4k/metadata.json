@@ -1,0 +1,50 @@
+{
+  "run_id": "20260504_233635_raspberry_pi5_8gb_gemma_core4k",
+  "host_label": "raspberry_pi5_8gb_gemma_core4k",
+  "created_utc": "2026-05-04T21:36:35.648416+00:00",
+  "platform": "Linux-6.12.25+rpt-rpi-2712-aarch64-with-glibc2.36",
+  "server_bin": "benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-pi-turboquant/bin/llama-server",
+  "server_version": "version: 0 (unknown)\nbuilt with GNU 12.2.0 for Linux aarch64",
+  "models": {
+    "gemma4_e4b": "/home/anderalsa/models/gemma-4-E4B-it-Q4_0.gguf"
+  },
+  "kv_configs": [
+    "f16/f16",
+    "q8_0/q8_0",
+    "q4_0/q4_0",
+    "tbq4/tbq4",
+    "q8_0/tbq4"
+  ],
+  "ctx_sizes": [
+    4096
+  ],
+  "repeats": 1,
+  "task_suite": "core",
+  "run_kind": "pi_core4k",
+  "planner_mode": "llm",
+  "task_count": 5,
+  "task_ids": [
+    "latency_triage",
+    "safety_gate",
+    "schema_repair",
+    "memory_deploy",
+    "paper_claim"
+  ],
+  "threads": 4,
+  "threads_batch": 4,
+  "context_fill_ratio": 0.35,
+  "max_planner_tokens": 128,
+  "max_tool_tokens": 96,
+  "max_final_tokens": 144,
+  "telemetry": true,
+  "min_qwen_server_version": 6,
+  "allow_legacy_qwen_server": false,
+  "randomize_order": true,
+  "shuffle_seed": 20260502,
+  "job_count": 5,
+  "initial_memory": {
+    "label": "initial benchmark",
+    "free_pct": 95.20865143893535,
+    "timestamp_utc": "2026-05-04T21:36:35.666500+00:00"
+  }
+}

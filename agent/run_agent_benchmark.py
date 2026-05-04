@@ -708,6 +708,21 @@ def linux_rapl_package_energy_uj() -> Optional[float]:
     return None
 
 
+def linux_vcgencmd_throttled() -> Optional[int]:
+    if platform.system() != "Linux":
+        return None
+    text = run_quiet(["vcgencmd", "get_throttled"], timeout=5)
+    if text.startswith("ERROR:"):
+        return None
+    match = re.search(r"throttled=(0x[0-9a-fA-F]+|\d+)", text)
+    if not match:
+        return None
+    try:
+        return int(match.group(1), 0)
+    except ValueError:
+        return None
+
+
 def linux_rapl_max_energy_range_uj() -> Optional[float]:
     roots = sorted(Path("/sys/class/powercap").glob("intel-rapl:*"))
     ranges: List[float] = []
@@ -796,6 +811,9 @@ def sample_host_telemetry() -> Dict[str, Any]:
         out["thermal_max_c"] = round(temp, 3)
     if energy is not None:
         out["rapl_package_energy_uj"] = int(energy)
+    throttled = linux_vcgencmd_throttled()
+    if throttled is not None:
+        out["vcgencmd_throttled"] = throttled
     return out
 
 
@@ -940,6 +958,7 @@ def stop_server(server: ServerRun, out_dir: Path) -> None:
     write_csv(out_dir / "profiler_samples.csv", server.samples)
     mean_cpu = sum(float(s["cpu_pct"]) for s in server.samples) / len(server.samples) if server.samples else 0.0
     thermal_values = [float(s["thermal_max_c"]) for s in server.samples if s.get("thermal_max_c") not in (None, "")]
+    throttled_values = [int(float(s["vcgencmd_throttled"])) for s in server.samples if s.get("vcgencmd_throttled") not in (None, "")]
     energy_samples = [
         (float(s["elapsed_sec"]), float(s["rapl_package_energy_uj"]))
         for s in server.samples
@@ -967,6 +986,8 @@ def stop_server(server: ServerRun, out_dir: Path) -> None:
         "samples": len(server.samples),
         "server_version": server.server_version,
         "thermal_max_c": max(thermal_values) if thermal_values else 0.0,
+        "vcgencmd_throttled_last": throttled_values[-1] if throttled_values else 0,
+        "vcgencmd_throttled_or": int(any(throttled_values)) if throttled_values else 0,
         "rapl_package_joules": pkg_joules,
         "rapl_package_watts_avg": avg_pkg_watts,
         "battery_power_w_avg": sum(battery_values) / len(battery_values) if battery_values else 0.0,
@@ -1428,8 +1449,8 @@ def write_run_report(out_root: Path, summary_rows: List[Dict[str, Any]], task_ro
         "",
         "## Summary",
         "",
-        "| host | ctx | repeat | model | config | tasks | mean quality | total wall s | tok/s | plan valid | JSON valid | max RSS MB | max CPU % | max temp C | pkg J | avg pkg W | batt J | avg batt W |",
-        "|---|---:|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| host | ctx | repeat | model | config | tasks | mean quality | total wall s | tok/s | plan valid | JSON valid | max RSS MB | max CPU % | max temp C | throttle | pkg J | avg pkg W | batt J | avg batt W |",
+        "|---|---:|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in summary_rows:
         lines.append(
@@ -1438,6 +1459,7 @@ def write_run_report(out_root: Path, summary_rows: List[Dict[str, Any]], task_ro
             f"{float(row['completion_tokens_per_sec']):.3f} | {float(row['plan_valid_rate']):.3f} | "
             f"{float(row['final_json_valid_rate']):.3f} | {float(row['server_max_rss_mb']):.1f} | "
             f"{float(row['server_max_cpu_pct']):.1f} | {float(row.get('thermal_max_c') or 0.0):.1f} | "
+            f"0x{int(float(row.get('vcgencmd_throttled_or') or 0)):x} | "
             f"{float(row.get('rapl_package_joules') or 0.0):.1f} | {float(row.get('rapl_package_watts_avg') or 0.0):.2f} | "
             f"{float(row.get('battery_joules') or 0.0):.1f} | {float(row.get('battery_power_w_avg') or 0.0):.2f} |"
         )
@@ -1610,6 +1632,7 @@ def main() -> None:
         write_csv(combo_dir / "tasks.csv", rows)
         mean_cpu = sum(float(s["cpu_pct"]) for s in server.samples) / len(server.samples) if server.samples else 0.0
         thermal_values = [float(s["thermal_max_c"]) for s in server.samples if s.get("thermal_max_c") not in (None, "")]
+        throttled_values = [int(float(s["vcgencmd_throttled"])) for s in server.samples if s.get("vcgencmd_throttled") not in (None, "")]
         energy_samples = [
             (float(s["elapsed_sec"]), float(s["rapl_package_energy_uj"]))
             for s in server.samples
@@ -1645,6 +1668,8 @@ def main() -> None:
             "server_mean_cpu_pct": mean_cpu,
             "server_profile_samples": len(server.samples),
             "thermal_max_c": max(thermal_values) if thermal_values else 0.0,
+            "vcgencmd_throttled_last": throttled_values[-1] if throttled_values else 0,
+            "vcgencmd_throttled_or": int(any(throttled_values)) if throttled_values else 0,
             "rapl_package_joules": pkg_joules,
             "rapl_package_watts_avg": avg_pkg_watts,
             "battery_power_w_avg": sum(battery_values) / len(battery_values) if battery_values else 0.0,

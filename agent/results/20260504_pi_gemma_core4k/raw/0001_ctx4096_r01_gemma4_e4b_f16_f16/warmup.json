@@ -1,0 +1,39 @@
+{
+  "content": "OK",
+  "elapsed_sec": 1.3511665469995933,
+  "prompt_tokens": 21,
+  "completion_tokens": 2,
+  "raw": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "OK"
+        }
+      }
+    ],
+    "created": 1777930618,
+    "model": "gemma4_e4b",
+    "system_fingerprint": "b0-unknown",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 2,
+      "prompt_tokens": 21,
+      "total_tokens": 23
+    },
+    "id": "chatcmpl-OYR6kA2jkbavg8343HFwhwVkIAySCI39",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 21,
+      "prompt_ms": 1082.873,
+      "prompt_per_token_ms": 51.565380952380956,
+      "prompt_per_second": 19.392855856596295,
+      "predicted_n": 2,
+      "predicted_ms": 264.059,
+      "predicted_per_token_ms": 132.0295,
+      "predicted_per_second": 7.574064887013886
+    }
+  }
+}
