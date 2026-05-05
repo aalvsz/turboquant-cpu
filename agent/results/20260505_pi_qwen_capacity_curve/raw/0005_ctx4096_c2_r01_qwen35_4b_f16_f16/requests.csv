@@ -1,0 +1,9 @@
+worker_id,ok,error,wall_sec,json_valid,decision,prompt_tokens,completion_tokens,content,job_index,host_label,repeat,model,config,type_k,type_v,ctx_size,concurrency,server_ctx_total,context_fill_ratio,raw_dir,memavailable_mb_before,memavailable_pct_before
+2,True,,270.2636093170004,False,,1602,128,"{""decision"":""GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",5,raspberry_pi5_8gb_capacity_qwen,1,qwen35_4b,f16/f16,f16,f16,4096,2,8192,0.35,agent/results/20260505_pi_qwen_capacity_curve/raw/0005_ctx4096_c2_r01_qwen35_4b_f16_f16,7597.8125,94.22255636766678
+1,True,,270.8538183230048,False,,1602,128,"{
+""decision"": ""candidate_q4.505.5.5.5.50505 cpu_only=true, ""
+    																,
+																				""evidence""
+																				:
+																				""decision: ""
+					",5,raspberry_pi5_8gb_capacity_qwen,1,qwen35_4b,f16/f16,f16,f16,4096,2,8192,0.35,agent/results/20260505_pi_qwen_capacity_curve/raw/0005_ctx4096_c2_r01_qwen35_4b_f16_f16,7597.8125,94.22255636766678

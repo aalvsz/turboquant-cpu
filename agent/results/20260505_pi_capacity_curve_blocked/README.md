@@ -5,8 +5,16 @@ Generated: 2026-05-05
 ## Status
 
 The Raspberry Pi capacity-curve experiment was started from scratch with the new
-`agent/run_capacity_curve.py` harness. Qwen 3.5 4B runs completed remotely, but
-the result folders could not be copied back after the SSH transport changed:
+`agent/run_capacity_curve.py` harness. Qwen 3.5 4B runs completed remotely.
+
+This folder records a temporary SSH interruption that happened before the
+results were copied back. The LAN route later recovered and the completed
+folders were copied into the repository:
+
+- `agent/results/20260505_pi_qwen_capacity_curve`
+- `agent/results/20260505_pi_qwen_context_curve_c1`
+
+Temporary interruption details:
 
 - Tailscale can still reach `raspberrypi` at `100.84.61.68`.
 - Normal SSH over the previous LAN address `10.15.1.39` times out.
@@ -20,7 +28,7 @@ the result folders could not be copied back after the SSH transport changed:
 Because the Tailscale check is an account login form, it could not be completed
 autonomously from the terminal without browser credentials.
 
-## Completed Remotely Before Fetch Was Blocked
+## Completed Remotely Then Copied Back
 
 Remote repo path:
 `/home/anderalsa/turboquant-cpu`
@@ -45,9 +53,7 @@ Observed Qwen single-agent context sweep before SSH loss:
 | 16384 | f16/f16 | 364.7 | 1.0 | 5182.9 |
 | 16384 | q4_0/q4_0 | 522.1 | 1.0 | 4809.9 |
 | 16384 | tbq4/tbq4 | 424.7 | 1.0 | 4811.4 |
-
-The final `16384 q8_0/tbq4` row completed after the last status snapshot, but
-its exact values are only in the remote `summary.csv`.
+| 16384 | q8_0/tbq4 | 446.4 | 1.0 | 4875.4 |
 
 Observed Qwen 4K concurrency sweep rows before the long outlier was stopped:
 
@@ -61,14 +67,7 @@ Observed Qwen 4K concurrency sweep rows before the long outlier was stopped:
 | 4096 | 2 | q4_0/q4_0 | 258.6 | 0.5 | 4985.0 |
 | 4096 | 2 | tbq4/tbq4 | 275.5 | 0.0 | 4998.8 |
 
-## Next Resume Commands
-
-After LAN SSH is restored or the Tailscale browser check succeeds:
-
-```bash
-rsync -av anderalsa@<pi-lan-ip>:/home/anderalsa/turboquant-cpu/agent/results/20260505_pi_qwen_capacity_curve agent/results/
-rsync -av anderalsa@<pi-lan-ip>:/home/anderalsa/turboquant-cpu/agent/results/20260505_pi_qwen_context_curve_c1 agent/results/
-```
+## Remaining Follow-Up
 
 Before running any remaining Gemma rows, check free memory and throttling:
 

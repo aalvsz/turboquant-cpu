@@ -1,0 +1,11 @@
+{
+  "worker_id": 0,
+  "ok": true,
+  "error": "",
+  "wall_sec": 10.258439932993497,
+  "json_valid": false,
+  "decision": "",
+  "prompt_tokens": 155,
+  "completion_tokens": 8,
+  "content": "{\"decision\":\"q4_0/q"
+}

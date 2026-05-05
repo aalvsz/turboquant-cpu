@@ -1,0 +1,40 @@
+{
+  "run_id": "20260505_100154_raspberry_pi5_8gb_qwen_context_c1",
+  "host_label": "raspberry_pi5_8gb_qwen_context_c1",
+  "created_utc": "2026-05-05T08:01:54.043297+00:00",
+  "platform": "Linux-6.12.25+rpt-rpi-2712-aarch64-with-glibc2.36",
+  "server_bin": "/home/anderalsa/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-pi-turboquant/bin/llama-server",
+  "server_version": "version: 0 (unknown)\nbuilt with GNU 12.2.0 for Linux aarch64",
+  "models": {
+    "qwen35_4b": "/home/anderalsa/models/Qwen3.5-4B-Q4_0.gguf"
+  },
+  "kv_configs": [
+    "f16/f16",
+    "q4_0/q4_0",
+    "tbq4/tbq4",
+    "q8_0/tbq4"
+  ],
+  "ctx_sizes": [
+    8192,
+    12288,
+    16384
+  ],
+  "concurrency": [
+    1
+  ],
+  "repeats": 1,
+  "context_fill_ratio": 0.35,
+  "max_tokens": 128,
+  "threads": 4,
+  "threads_batch": 4,
+  "telemetry": true,
+  "max_rss_mb": 7600.0,
+  "initial_memory": {
+    "memtotal_mb": 8063.6875,
+    "memavailable_mb": 7666.421875,
+    "swaptotal_mb": 511.984375,
+    "swapfree_mb": 443.96875,
+    "memavailable_pct": 95.0734000418543
+  },
+  "job_count": 12
+}
