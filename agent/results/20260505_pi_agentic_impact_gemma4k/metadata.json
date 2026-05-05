@@ -1,0 +1,53 @@
+{
+  "run_id": "20260505_232519_raspberry_pi5_8gb_agentic_gemma4k",
+  "host_label": "raspberry_pi5_8gb_agentic_gemma4k",
+  "created_utc": "2026-05-05T21:25:19.573834+00:00",
+  "platform": "Linux-6.12.25+rpt-rpi-2712-aarch64-with-glibc2.36",
+  "server_bin": "/home/anderalsa/turboquant-cpu/benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-pi-turboquant/bin/llama-server",
+  "server_version": "version: 0 (unknown)\nbuilt with GNU 12.2.0 for Linux aarch64",
+  "models": {
+    "gemma4_e4b": "/home/anderalsa/models/gemma-4-E4B-it-Q4_0.gguf"
+  },
+  "kv_configs": [
+    "f16/f16",
+    "q8_0/q8_0",
+    "q4_0/q4_0",
+    "tbq4/tbq4",
+    "q8_0/tbq4"
+  ],
+  "ctx_sizes": [
+    4096
+  ],
+  "repeats": 1,
+  "task_suite": "agentic_impact",
+  "run_kind": "agentic_impact",
+  "planner_mode": "llm",
+  "task_count": 8,
+  "task_ids": [
+    "safety_gate",
+    "schema_repair",
+    "tool_timeout_recovery",
+    "retrieval_dedup",
+    "reasoning_budget_tradeoff",
+    "reasoning_memory_latency_tradeoff",
+    "claim_language_audit",
+    "deployment_rank_quality"
+  ],
+  "threads": 4,
+  "threads_batch": 4,
+  "context_fill_ratio": 0.0,
+  "max_planner_tokens": 128,
+  "max_tool_tokens": 96,
+  "max_final_tokens": 144,
+  "telemetry": true,
+  "min_qwen_server_version": 6,
+  "allow_legacy_qwen_server": false,
+  "randomize_order": true,
+  "shuffle_seed": 20260502,
+  "job_count": 5,
+  "initial_memory": {
+    "label": "initial benchmark",
+    "free_pct": 95.13521264309908,
+    "timestamp_utc": "2026-05-05T21:25:19.585206+00:00"
+  }
+}

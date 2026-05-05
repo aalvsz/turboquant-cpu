@@ -1,0 +1,15 @@
+{
+  "max_rss_mb": 7152.59375,
+  "max_cpu_pct": 355.0,
+  "mean_cpu_pct": 345.13432465923177,
+  "samples": 807,
+  "server_version": "version: 0 (unknown)\nbuilt with GNU 12.2.0 for Linux aarch64",
+  "thermal_max_c": 76.55,
+  "vcgencmd_throttled_last": 0,
+  "vcgencmd_throttled_or": 0,
+  "rapl_package_joules": 0.0,
+  "rapl_package_watts_avg": 0.0,
+  "battery_power_w_avg": 0.0,
+  "battery_power_w_max": 0.0,
+  "battery_joules": 0.0
+}
