@@ -1,0 +1,53 @@
+{
+  "run_id": "20260505_175844_m4_agentic_impact_qwen8k",
+  "host_label": "m4_agentic_impact_qwen8k",
+  "created_utc": "2026-05-05T15:58:44.859745+00:00",
+  "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+  "server_bin": "benchmark_results/fresh_edge_agentic_20260501/src/llama.cpp/build-arm-qwen35-tbq4-qualityfix/bin/llama-server",
+  "server_version": "version: 7 (90b03b6)\nbuilt with AppleClang 21.0.0.21000099 for Darwin arm64",
+  "models": {
+    "qwen35_4b": "/Users/ander.alvarez/Downloads/Qwen3.5-4B-Q4_0.gguf"
+  },
+  "kv_configs": [
+    "f16/f16",
+    "q8_0/q8_0",
+    "q4_0/q4_0",
+    "tbq4/tbq4",
+    "q8_0/tbq4"
+  ],
+  "ctx_sizes": [
+    8192
+  ],
+  "repeats": 1,
+  "task_suite": "agentic_impact",
+  "run_kind": "agentic_impact",
+  "planner_mode": "llm",
+  "task_count": 8,
+  "task_ids": [
+    "safety_gate",
+    "schema_repair",
+    "tool_timeout_recovery",
+    "retrieval_dedup",
+    "reasoning_budget_tradeoff",
+    "reasoning_memory_latency_tradeoff",
+    "claim_language_audit",
+    "deployment_rank_quality"
+  ],
+  "threads": 10,
+  "threads_batch": 10,
+  "context_fill_ratio": 0.0,
+  "max_planner_tokens": 128,
+  "max_tool_tokens": 96,
+  "max_final_tokens": 144,
+  "telemetry": true,
+  "min_qwen_server_version": 6,
+  "allow_legacy_qwen_server": false,
+  "randomize_order": true,
+  "shuffle_seed": 20260502,
+  "job_count": 5,
+  "initial_memory": {
+    "label": "initial benchmark",
+    "free_pct": 54.0,
+    "timestamp_utc": "2026-05-05T15:58:44.925037+00:00"
+  }
+}

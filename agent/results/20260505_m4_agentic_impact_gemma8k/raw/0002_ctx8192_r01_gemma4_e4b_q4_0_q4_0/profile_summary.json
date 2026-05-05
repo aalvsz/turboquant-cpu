@@ -1,0 +1,15 @@
+{
+  "max_rss_mb": 7920.015625,
+  "max_cpu_pct": 150.3,
+  "mean_cpu_pct": 100.80731707317074,
+  "samples": 82,
+  "server_version": "version: 7 (90b03b6)\nbuilt with AppleClang 21.0.0.21000099 for Darwin arm64",
+  "thermal_max_c": 0.0,
+  "vcgencmd_throttled_last": 0,
+  "vcgencmd_throttled_or": 0,
+  "rapl_package_joules": 0.0,
+  "rapl_package_watts_avg": 0.0,
+  "battery_power_w_avg": 17.300521951219512,
+  "battery_power_w_max": 17.8416,
+  "battery_joules": 1450.7484044005153
+}

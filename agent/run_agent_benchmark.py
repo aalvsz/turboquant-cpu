@@ -315,6 +315,50 @@ def build_tasks() -> List[Dict[str, Any]]:
             expected_decision="conservative candidate",
         ),
         task(
+            "reasoning_budget_tradeoff",
+            "reasoning",
+            "config",
+            "Reason over latency, Q4 baseline, and tool evidence to choose the KV setting that best protects the step budget.",
+            [
+                {"name": "read_edge_log", "args": {"case_id": "config"}},
+                {"name": "compare_kv_configs", "args": {"model": "{model}", "baseline_config": "q4_0/q4_0", "candidate_config": "tbq4/tbq4", "host": "{metric_host}"}},
+                {"name": "calculate_speedup", "args": {"baseline": 3180, "candidate": 2710}},
+                {"name": "llm_summarize_evidence", "args": {"evidence": "{context}", "focus": "reasoning budget tradeoff"}},
+            ],
+            required_all=["tbq", "q4", "speedup"],
+            required_any=[["budget", "latency", "step"]],
+            expected_decision="tbq faster",
+        ),
+        task(
+            "reasoning_memory_latency_tradeoff",
+            "reasoning",
+            "memory",
+            "Reason over memory pressure and latency to decide whether f16, q4, tbq4, or q8_0/tbq4 is the best CPU edge-agent tradeoff.",
+            [
+                {"name": "estimate_kv_memory", "args": {"ctx_size": "{ctx_size}", "config": "f16/f16"}},
+                {"name": "estimate_kv_memory", "args": {"ctx_size": "{ctx_size}", "config": "tbq4/tbq4"}},
+                {"name": "rank_deployment_configs", "args": {"priority": "quality"}},
+                {"name": "llm_recommend_config", "args": {"evidence": "{context}"}},
+            ],
+            required_all=["memory", "latency"],
+            required_any=[["q8_0/tbq4", "tbq4", "tradeoff"]],
+            expected_decision="tradeoff",
+        ),
+        task(
+            "reasoning_parallel_reliability",
+            "reasoning",
+            "parallel",
+            "Use the Qwen parallel-serving evidence to decide whether concurrent agent slots are publishable for reliability yet.",
+            [
+                {"name": "read_edge_log", "args": {"case_id": "parallel"}},
+                {"name": "validate_json", "args": {"text": "{context}"}},
+                {"name": "llm_summarize_evidence", "args": {"evidence": "{context}", "focus": "parallel reliability"}},
+            ],
+            required_all=["parallel", "json"],
+            required_any=[["sequential", "single", "avoid"]],
+            expected_decision="avoid parallel",
+        ),
+        task(
             "f16_edge_reject",
             "memory",
             "memory",
@@ -575,6 +619,16 @@ CONTEXT_TASK_IDS = {
     "context_pressure_8k",
     "metric_speedup_calc",
     "deployment_rank_latency",
+}
+AGENTIC_IMPACT_TASK_IDS = {
+    "tool_timeout_recovery",
+    "schema_repair",
+    "safety_gate",
+    "retrieval_dedup",
+    "reasoning_budget_tradeoff",
+    "reasoning_memory_latency_tradeoff",
+    "deployment_rank_quality",
+    "claim_language_audit",
 }
 
 
@@ -1426,6 +1480,8 @@ def selected_tasks(spec: str) -> List[Dict[str, Any]]:
         return [t for t in TASKS if t["id"] in CORE_TASK_IDS]
     if spec == "context":
         return [t for t in TASKS if t["id"] in CONTEXT_TASK_IDS]
+    if spec == "agentic_impact":
+        return [t for t in TASKS if t["id"] in AGENTIC_IMPACT_TASK_IDS]
     if spec == "paper":
         return TASKS
     wanted = {x.strip() for x in spec.split(",") if x.strip()}

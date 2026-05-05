@@ -97,6 +97,12 @@ was not strict JSON and because args.path was missing.
 2026-05-02T11:15:31Z sensor=vibration zscore=1.2
 2026-05-02T11:15:32Z proposed_action=slow_line confidence=0.79 actuator=true
 """,
+    "parallel": """
+2026-05-05T10:02:10Z model=qwen35_4b ctx=4096 concurrency=2 config=f16/f16 json_valid_rate=0.0
+2026-05-05T10:06:41Z model=qwen35_4b ctx=4096 concurrency=2 config=q4_0/q4_0 json_valid_rate=0.5
+2026-05-05T10:11:00Z model=qwen35_4b ctx=4096 concurrency=2 config=tbq4/tbq4 json_valid_rate=0.0
+2026-05-05T10:12:15Z operator_note="prefer sequential serving until Qwen parallel JSON reliability is fixed"
+""",
 }
 
 
