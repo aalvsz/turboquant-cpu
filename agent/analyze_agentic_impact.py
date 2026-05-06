@@ -89,6 +89,13 @@ def aggregate_summary(rows: List[Dict[str, str]]) -> List[Dict[str, Any]]:
         plan_valid = stats(fnum(v["plan_valid_rate"]) for v in vals)
         tool = stats(fnum(v["mean_tool_use_score"]) for v in vals)
         correct = stats(fnum(v["mean_correctness_score"]) for v in vals)
+        rapl_joules = stats(fnum(v.get("rapl_package_joules")) for v in vals)
+        rapl_watts = stats(fnum(v.get("rapl_package_watts_avg")) for v in vals)
+        battery_joules = stats(fnum(v.get("battery_joules")) for v in vals)
+        battery_watts = stats(fnum(v.get("battery_power_w_avg")) for v in vals)
+        throttled = max(int(fnum(v.get("vcgencmd_throttled_or"))) for v in vals)
+        energy_joules = rapl_joules["mean"] if rapl_joules["mean"] > 0 else battery_joules["mean"]
+        power_watts = rapl_watts["mean"] if rapl_watts["mean"] > 0 else battery_watts["mean"]
         base_key = (host, ctx, model, suite)
         q4w = q4_wall.get(base_key, 0.0)
         q4q = q4_quality.get(base_key, 0.0)
@@ -110,6 +117,14 @@ def aggregate_summary(rows: List[Dict[str, str]]) -> List[Dict[str, Any]]:
             "tool_use_mean": tool["mean"],
             "correctness_mean": correct["mean"],
             "rss_max_mb": max(fnum(v.get("server_max_rss_mb")) for v in vals),
+            "thermal_max_c": max(fnum(v.get("thermal_max_c")) for v in vals),
+            "throttled_or": throttled,
+            "rapl_joules_mean": rapl_joules["mean"],
+            "rapl_watts_avg": rapl_watts["mean"],
+            "battery_joules_mean": battery_joules["mean"],
+            "battery_power_w_avg": battery_watts["mean"],
+            "energy_joules_mean": energy_joules,
+            "power_w_avg": power_watts,
         })
     return out
 
@@ -193,8 +208,8 @@ def write_report(out_dir: Path, summary: List[Dict[str, Any]], categories: List[
         "",
         "## Run-Level Summary",
         "",
-        "| host | ctx | model | config | reps | wall s | vs Q4 | quality | delta Q4 | JSON | plan | tool | correct | RSS MB |",
-        "|---|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| host | ctx | model | config | reps | wall s | vs Q4 | quality | delta Q4 | JSON | plan | tool | correct | RSS MB | therm C | energy J | W | throttle |",
+        "|---|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ])
     for row in summary:
         lines.append(
@@ -202,7 +217,9 @@ def write_report(out_dir: Path, summary: List[Dict[str, Any]], categories: List[
             f"{fmt(row['wall_mean_sec'])} | {fmt(row['speedup_vs_q4_pct'], 1)}% | "
             f"{fmt(row['quality_mean'])} | {fmt(row['quality_delta_vs_q4'])} | "
             f"{fmt(row['json_valid_mean'])} | {fmt(row['plan_valid_mean'])} | "
-            f"{fmt(row['tool_use_mean'])} | {fmt(row['correctness_mean'])} | {fmt(row['rss_max_mb'], 1)} |"
+            f"{fmt(row['tool_use_mean'])} | {fmt(row['correctness_mean'])} | {fmt(row['rss_max_mb'], 1)} | "
+            f"{fmt(row['thermal_max_c'], 1)} | {fmt(row['energy_joules_mean'], 1)} | "
+            f"{fmt(row['power_w_avg'], 1)} | {row['throttled_or']} |"
         )
     lines.extend([
         "",
@@ -226,6 +243,7 @@ def write_report(out_dir: Path, summary: List[Dict[str, Any]], categories: List[
         "- A useful KV quantization result should improve wall time or memory versus Q4 without reducing JSON, tool-use, reasoning/correctness, or safety scores.",
         "- A result that is faster than Q4 but materially below Q4 on quality should be treated as a deployment risk, not a win.",
         "- F16 can be faster when memory fits; KV quantization matters most when context length, concurrency, or memory pressure becomes the bottleneck.",
+        "- Energy columns use RAPL package energy on x86 when available, otherwise battery discharge telemetry on macOS; Raspberry Pi rows currently expose thermal/throttle telemetry but not wall-power energy.",
     ])
     out_dir.joinpath("AGENTIC_KV_IMPACT_REPORT.md").write_text("\n".join(lines) + "\n")
 
